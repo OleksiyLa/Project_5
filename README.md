@@ -53,3 +53,7 @@
   ![Desktop wireframe](./README/wireframes/pizza_basket/desktop.png)
 
 </details>
+
+### Database Schema
+
+![Database Schema](./README/db/schema.png)
