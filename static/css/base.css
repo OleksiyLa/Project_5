@@ -9,6 +9,8 @@
     --light-color: #ffffff;
 }
 
+
+/* common */
 * {
     box-sizing: border-box;
 }
@@ -25,11 +27,30 @@ body {
     color: var(--dark-color);
 }
 
+h1 {
+  font-family: 'Salsa', cursive;
+}
+
+/* utils */
+.overlay {
+  content: "";
+  display: block;
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 50vh;
+  width: 100%;
+  background-color: var(--overlay-color);
+}
+
+/* header */
+.logo {
+  font-family: 'Salsa', cursive;
+}
 
 /* Main */
 main {
     min-height: 90%;
-    position: relative;
 }
 
 .carousel-img {
@@ -40,17 +61,6 @@ main {
     background-repeat: no-repeat;
     background-position: center;
 }
-
-/* .carousel-img::after {
-    content: "";
-    display: block;
-    position: absolute;
-    top: 0;
-    left: 0;
-    height: 50vh;
-    width: 100%;
-    background-color: var(--overlay-color);
-} */
 
 .carousel-img-1 {
     background-image: url("https://res.cloudinary.com/dcq31wib9/image/upload/v1702986919/slider_3_t4o5se.webp");
@@ -71,18 +81,7 @@ main {
 .carousel-text {
     position: relative;
     text-align: center;
-    z-index: 99;
-}
-
-.overlay {
-  content: "";
-  display: block;
-  position: absolute;
-  top: 0;
-  left: 0;
-  height: 50vh;
-  width: 100%;
-  background-color: var(--overlay-color);
+    z-index: 1;
 }
 
 /* Footer */
