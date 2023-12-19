@@ -4,8 +4,32 @@
 {% block title %}Pizza{% endblock title %}
 
 {% block content %}
-<div class="container my-5 text-center">
-    <h1 class="text-success">Pizza</h1>
-    <p class="text-warning">Welcome to the pizza page</p>
-</div>
+<main>
+  <div class="container-fluid p-0">
+    <div id="carouselImagePizza" class="carousel slide" data-bs-ride="carousel">
+        <div class="carousel-inner">
+          <div class="carousel-item active" data-bs-interval="10000">
+            <div class="carousel-img carousel-img-1"></div>
+          </div>
+          <div class="carousel-item" data-bs-interval="2000">
+            <div class="carousel-img carousel-img-2"></div>
+          </div>
+          <div class="carousel-item">
+            <div class="carousel-img carousel-img-3"></div>
+          </div>
+        </div>
+        <button class="carousel-control-prev" type="button" data-bs-target="#carouselImagePizza" data-bs-slide="prev">
+          <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+          <span class="visually-hidden">Previous</span>
+        </button>
+        <button class="carousel-control-next" type="button" data-bs-target="#carouselImagePizza" data-bs-slide="next">
+          <span class="carousel-control-next-icon" aria-hidden="true"></span>
+          <span class="visually-hidden">Next</span>
+        </button>
+    </div>
+    <div class="container my-5 text-center">
+        <h1 class="">Pizza</h1>
+    </div>
+  </div>
+</main>
 {% endblock content %}
