@@ -60,6 +60,19 @@ h1 {
   box-shadow: none !important;
 }
 
+.btn-custom:hover {
+  opacity: 0.9;
+}
+
+.custom-input {
+  outline: none !important;
+  box-shadow: none !important;
+}
+
+.custom-input:focus {
+  border-color: #00555a !important;
+}
+
 /* header */
 header nav .navbar-nav .nav-item a.nav-link {
     color: #00555a;
