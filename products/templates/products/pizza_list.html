@@ -49,6 +49,53 @@
         <h1 class="mt-4 mb-5">Super Pizza</h1>
         
         <div class="container">
+          <div class="row mb-5">
+            <form class="col" id="pizza-filter-form" method="GET" action="{% url 'pizza_list' %}">
+              <div class="dropdown">
+                <button class="btn btn-secondary dropdown-toggle btn-custom" type="button" id="filterDropdown" data-bs-toggle="dropdown" aria-expanded="false">
+                  Filter Pizza
+                </button>
+                <ul class="dropdown-menu" aria-labelledby="filterDropdown">
+                  <li>
+                    <label class="dropdown-item">
+                      <input class="form-check-input pizza-filter" type="checkbox" name="is_spicy" autocomplete="off" {% if form.is_spicy.value %}checked{% endif %}>
+                      Spicy
+                    </label>
+                  </li>
+                  <li>
+                    <label class="dropdown-item">
+                      <input class="form-check-input pizza-filter" type="checkbox" name="is_vegetarian" autocomplete="off" {% if form.is_vegetarian.value %}checked{% endif %}>
+                      Vegetarian
+                    </label>
+                  </li>
+                  <li>
+                    <label class="dropdown-item">
+                      <input class="form-check-input pizza-filter" type="checkbox" name="is_premium" autocomplete="off" {% if form.is_premium.value %}checked{% endif %}>
+                      Premium
+                    </label>
+                  </li>
+                  <li>
+                    <label class="dropdown-item">
+                      <input class="form-check-input pizza-filter" type="checkbox" name="is_seafood" autocomplete="off" {% if form.is_seafood.value %}checked{% endif %}>
+                      Seafood
+                    </label>
+                  </li>
+                  <li>
+                    <label class="dropdown-item">
+                      <input class="form-check-input pizza-filter" type="checkbox" name="is_new" autocomplete="off" {% if form.is_new.value %}checked{% endif %}>
+                      New
+                    </label>
+                  </li>
+                </ul>
+              </div>
+            </form>
+            <form class="col mb-3" method="GET" action="{% url 'pizza_list' %}">
+              <div class="d-flex">
+                <input type="text" class="form-control" id="textInput" placeholder="Search for pizza...">
+                <button type="submit" class="btn btn-primary btn-custom">Find</button>
+              </div>
+            </form>
+          </div>
           <div class="row row-cols-1 row-cols-md-3 g-4">
             {% for product in products %}
               <div class="col col-lg-3">
@@ -86,3 +133,16 @@
   </div>
 </main>
 {% endblock content %}
+
+{% block scripts %}
+<script>
+  document.addEventListener('DOMContentLoaded', function() {
+    const checkboxes = document.querySelectorAll('.pizza-filter');
+    checkboxes.forEach(function(checkbox) {
+      checkbox.addEventListener('change', function() {
+        document.getElementById('pizza-filter-form').submit();
+      });
+    });
+  });
+</script>
+{% endblock %}
