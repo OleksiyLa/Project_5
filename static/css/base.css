@@ -32,15 +32,6 @@ h1 {
   color: #00555a;
 }
 
-h2.card-title {
-  font-family: 'Salsa', cursive;
-  color: #00555a;
-}
-
-.pizza-card-header:hover {
-  opacity: 0.9;
-}
-
 /* utils */
 .overlay {
   content: "";
@@ -57,36 +48,30 @@ h2.card-title {
   color: #800020;
 }
 
-.btn-group .btn.btn-outline-primary {
-  color: #00555a;
-  border-color: #00555a;
-  outline: none;
-  box-shadow: none;
-}
-
-.btn-group .btn.btn-outline-primary:hover {
-  color: #ffffff;
-  background-color: #00555a;
-  opacity: 0.9;
-  border-color: #00555a;
-  outline: none;
-  box-shadow: none;
-}
-
-.btn-group > .btn-check[type="radio"]:checked + .btn {
-  color: #ffffff;
-  background-color: #00555a;
-  box-shadow: none;
-  border-color: #00555a;
-}
-
 .price {
   font-size: 1.7rem;
 }
 
 /* header */
+header nav .navbar-nav .nav-item a.nav-link {
+    color: #00555a;
+    /* font-weight: 500; */
+    font-size: 1.1rem;
+}
+
+header nav .navbar-nav .nav-item a.nav-link.active {
+  color: #800020;
+  font-weight: 600;
+}
+
+header nav .navbar-nav .nav-item a.nav-link:hover {
+  color: #00555a;
+  opacity: 0.9;
+}
+
 .logo {
   font-family: 'Salsa', cursive;
+  color: #00555a;
 }
 
 /* Main */
@@ -125,6 +110,15 @@ main {
     z-index: 1;
 }
 
+h2.card-title {
+  font-family: 'Salsa', cursive;
+  color: #00555a;
+}
+
+.pizza-card-header:hover {
+  opacity: 0.9;
+}
+
 .pizza-list-cart {
   width: 30px;
 }
@@ -135,6 +129,29 @@ main {
 
 .card-footer-cart:hover {
   opacity: 0.9;
+}
+
+.btn-group .btn.btn-outline-primary {
+  color: #00555a;
+  border-color: #00555a;
+  outline: none;
+  box-shadow: none;
+}
+
+.btn-group .btn.btn-outline-primary:hover {
+  color: #ffffff;
+  background-color: #00555a;
+  opacity: 0.9;
+  border-color: #00555a;
+  outline: none;
+  box-shadow: none;
+}
+
+.btn-group > .btn-check[type="radio"]:checked + .btn {
+  color: #ffffff;
+  background-color: #00555a;
+  box-shadow: none;
+  border-color: #00555a;
 }
 
 /* Footer */
