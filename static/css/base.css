@@ -29,6 +29,16 @@ body {
 
 h1 {
   font-family: 'Salsa', cursive;
+  color: #00555a;
+}
+
+h2.card-title {
+  font-family: 'Salsa', cursive;
+  color: #00555a;
+}
+
+.pizza-card-header:hover {
+  opacity: 0.9;
 }
 
 /* utils */
@@ -41,6 +51,37 @@ h1 {
   height: 50vh;
   width: 100%;
   background-color: var(--overlay-color);
+}
+
+.text-red {
+  color: #800020;
+}
+
+.btn-group .btn.btn-outline-primary {
+  color: #00555a;
+  border-color: #00555a;
+  outline: none;
+  box-shadow: none;
+}
+
+.btn-group .btn.btn-outline-primary:hover {
+  color: #ffffff;
+  background-color: #00555a;
+  opacity: 0.9;
+  border-color: #00555a;
+  outline: none;
+  box-shadow: none;
+}
+
+.btn-group > .btn-check[type="radio"]:checked + .btn {
+  color: #ffffff;
+  background-color: #00555a;
+  box-shadow: none;
+  border-color: #00555a;
+}
+
+.price {
+  font-size: 1.7rem;
 }
 
 /* header */
@@ -82,6 +123,18 @@ main {
     position: relative;
     text-align: center;
     z-index: 1;
+}
+
+.pizza-list-cart {
+  width: 30px;
+}
+
+.card-footer-cart {
+  cursor: pointer;
+}
+
+.card-footer-cart:hover {
+  opacity: 0.9;
 }
 
 /* Footer */
