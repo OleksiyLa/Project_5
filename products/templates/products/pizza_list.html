@@ -98,7 +98,7 @@
         </div>
         <div class="row row-cols-1 row-cols-md-3 g-4">
           {% for product in products %}
-            <div class="col col-lg-3">
+            <div class="col col-md-6 col-lg-3">
               <div class="card shadow h-100 rounded-top">
                 <a href="" class="text-decoration-none pizza-card-header">
                   <img src="{{ product.image.url }}" class="card-img-top" alt="{{ product.name }}">
@@ -110,10 +110,10 @@
                     <div class="btn-group" role="group" aria-label="Length options">
                       <input type="radio" class="btn-check pizza-size-input" name="length-{{ product.slug}}" id="length-30-{{ product.slug }}" value="30" autocomplete="off" checked>
                       <label class="btn btn-outline-primary" for="length-30-{{ product.slug}}">30cm</label>
-                      
+
                       <input type="radio" class="btn-check pizza-size-input" name="length-{{ product.slug}}" id="length-35-{{ product.slug }}" value="35" autocomplete="off">
                       <label class="btn btn-outline-primary" for="length-35-{{ product.slug}}">35cm</label>
-                      
+
                       <input type="radio" class="btn-check pizza-size-input" name="length-{{ product.slug}}" id="length-40-{{ product.slug }}" value="40" autocomplete="off">
                       <label class="btn btn-outline-primary" for="length-40-{{ product.slug}}">40cm</label>
                     </div>
@@ -136,7 +136,7 @@
                       </a>
                   </li>
               {% endif %}
-      
+
               {% for num in products.paginator.page_range %}
                   <li class="page-item {% if products.number == num %}active{% endif %}">
                       <a class="page-link" href="?q={{ request.GET.q }}&is_spicy={{ request.GET.is_spicy }}&is_vegetarian={{ request.GET.is_vegetarian }}&is_premium={{ request.GET.is_premium }}&is_seafood={{ request.GET.is_seafood }}&is_new={{ request.GET.is_new }}&page={{ num }}">{{ num }}</a>
