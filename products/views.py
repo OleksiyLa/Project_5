@@ -1,9 +1,8 @@
 from django.shortcuts import render, redirect
 from django.db.models import Q
+from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
 from .models import Product
 from .forms import AddProduct, PizzaFilterForm
-
-# Create your views here.
 
 
 def pizza_list(request):
@@ -35,6 +34,16 @@ def pizza_list(request):
 
             if any(filters.values()):
                 products = products.filter(**filters)
+            
+    paginator = Paginator(products, 12)
+    page = request.GET.get('page')
+
+    try:
+        products = paginator.page(page)
+    except PageNotAnInteger:
+        products = paginator.page(1)
+    except EmptyPage:
+        products = paginator.page(paginator.num_pages)
 
     return render(request, 'products/pizza_list.html', {'products': products, 'form': form})
 

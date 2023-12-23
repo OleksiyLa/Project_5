@@ -179,6 +179,22 @@ h2.card-title {
   border-color: #00555a;
 }
 
+.page-link {
+  color: #00555a;
+  outline: none;
+  box-shadow: none;
+}
+
+.page-link:hover {
+  color: #00555a;
+}
+
+.page-item.active .page-link {
+  background-color: #00555a;
+  border-color: #00555a;
+  color: #ffffff;
+}
+
 /* Footer */
 footer {
     position: relative;
