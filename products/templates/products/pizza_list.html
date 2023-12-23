@@ -131,7 +131,7 @@
           <ul class="pagination justify-content-center">
               {% if products.has_previous %}
                   <li class="page-item">
-                      <a class="page-link" href="?q={{ request.GET.q }}&page={{ products.previous_page_number }}" aria-label="Previous">
+                      <a class="page-link" href="?q={{ request.GET.q }}&is_spicy={{ request.GET.is_spicy }}&is_vegetarian={{ request.GET.is_vegetarian }}&is_premium={{ request.GET.is_premium }}&is_seafood={{ request.GET.is_seafood }}&is_new={{ request.GET.is_new }}&page={{ products.previous_page_number }}" aria-label="Previous">
                           <span aria-hidden="true">&laquo;</span>
                       </a>
                   </li>
@@ -139,13 +139,13 @@
       
               {% for num in products.paginator.page_range %}
                   <li class="page-item {% if products.number == num %}active{% endif %}">
-                      <a class="page-link" href="?q={{ request.GET.q }}&page={{ num }}">{{ num }}</a>
+                      <a class="page-link" href="?q={{ request.GET.q }}&is_spicy={{ request.GET.is_spicy }}&is_vegetarian={{ request.GET.is_vegetarian }}&is_premium={{ request.GET.is_premium }}&is_seafood={{ request.GET.is_seafood }}&is_new={{ request.GET.is_new }}&page={{ num }}">{{ num }}</a>
                   </li>
               {% endfor %}
       
               {% if products.has_next %}
                   <li class="page-item">
-                      <a class="page-link" href="?q={{ request.GET.q }}&page={{ products.next_page_number }}" aria-label="Next">
+                      <a class="page-link" href="?q={{ request.GET.q }}&is_spicy={{ request.GET.is_spicy }}&is_vegetarian={{ request.GET.is_vegetarian }}&is_premium={{ request.GET.is_premium }}&is_seafood={{ request.GET.is_seafood }}&is_new={{ request.GET.is_new }}&page={{ products.next_page_number }}" aria-label="Next">
                           <span aria-hidden="true">&raquo;</span>
                       </a>
                   </li>
