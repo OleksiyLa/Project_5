@@ -179,6 +179,14 @@ h2.card-title {
   border-color: #00555a;
 }
 
+.card {
+  overflow: hidden;
+}
+
+.card-img-top.pizza-image {
+  transform: scale(0.98);
+}
+
 .page-link {
   color: #00555a;
   outline: none;
