@@ -50,7 +50,7 @@
       
       <div class="container">
         <div class="row mb-5">
-          <form class="col col-lg-1 mb-3" id="pizza-filter-form" method="GET" action="{% url 'pizza_list' %}">
+          <form class="col-12 col-lg-1 mb-3" id="pizza-filter-form" method="GET" action="{% url 'pizza_list' %}">
             <div class="dropdown">
               <button class="btn btn-secondary dropdown-toggle btn-custom" type="button" id="filterDropdown" data-bs-toggle="dropdown" aria-expanded="false">
                 Filter Pizza
@@ -94,10 +94,10 @@
               All Pizza
             </button>
           </a>
-          <form class="col-lg-6 offset-lg-3 mb-3" method="GET" action="{% url 'pizza_list' %}">
-            <div class="d-flex">
+          <form class="col-12 col-lg-6 offset-lg-3 mb-3" method="GET" action="{% url 'pizza_list' %}">
+            <div class="search-pizza">
               <input type="text" class="form-control rounded-0 rounded-start custom-input" name="q" id="textInput" placeholder="Search for pizza...">
-              <button type="submit" class="btn btn-primary btn-custom rounded-0 col-2">Find Pizza</button>
+              <button type="submit" class="btn btn-primary btn-custom rounded-0">Find Pizza</button>
             </div>
           </form>
         </div>
