@@ -89,7 +89,12 @@
               </ul>
             </div>
           </form>
-          <form class="col-lg-6 offset-lg-5 mb-3" method="GET" action="{% url 'pizza_list' %}">
+          <a href="{% url 'pizza_list' %}" class="col col-lg-2 mb-3">
+            <button class="btn btn-secondary btn-custom" type="button">
+              All Pizza
+            </button>
+          </a>
+          <form class="col-lg-6 offset-lg-3 mb-3" method="GET" action="{% url 'pizza_list' %}">
             <div class="d-flex">
               <input type="text" class="form-control rounded-0 rounded-start custom-input" name="q" id="textInput" placeholder="Search for pizza...">
               <button type="submit" class="btn btn-primary btn-custom rounded-0 col-2">Find Pizza</button>
