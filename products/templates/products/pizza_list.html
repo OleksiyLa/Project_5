@@ -129,7 +129,7 @@
                   {% csrf_token %}
                   <input type="hidden" name="product_id" value="{{ product.id }}">
                   <input type="hidden" name="selected_size" class="selected-size" value="30">
-                  <input type="hidden" name="redirect_url" value="{{ request.path }}">
+                  <input type="hidden" name="redirect_url" value="{{ full_path }}">
                   <button type="submit" class="btn btn-primary btn-custom rounded-2 w-100">Add to Cart</button>
                 </form>
               </div>

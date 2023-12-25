@@ -10,16 +10,19 @@ def view_bag(request):
 def add_to_bag(request, item_id):
     """ Add a quantity of the specified product to the shopping bag """
 
-    product_id = request.POST.get('product_id')
-    size = request.POST.get('selected_size')
-    redirect_url = request.POST.get('redirect_url')
-    bag = request.session.get('bag', {})
-
-    if item_id in list(bag.keys()):
-        bag[item_id] += 1
-    else:
-        bag[item_id] = 1
+    if request.method == 'POST':
+        size = request.POST.get('selected_size')
+        redirect_url = request.POST.get('redirect_url')
+        bag = request.session.get('bag', {})
+        print(size)
+        if item_id in bag:
+            if size in bag[item_id]:
+                bag[item_id][size] += 1
+            else:
+                bag[item_id] = {size: 1}
+        else:
+            bag[item_id] = {size: 1}
 
     request.session['bag'] = bag
-    print(request.session['bag'])
+    print('get', request.GET)
     return redirect(redirect_url)

@@ -15,7 +15,7 @@
         <div class="row">
             <div class="col">
                 {% if bag_items %}
-                    
+                    {{ bag_items|length }} item{{ bag_items|pluralize }} in your bag.
                 {% else %}
                     <p class="lead mb-5">Your bag is empty.</p>
                     <a href="{% url 'pizza_list' %}" class="btn btn-outline-black rounded-0 btn-lg">

@@ -7,6 +7,7 @@ from .forms import AddProduct, PizzaFilterForm
 
 def pizza_list(request):
     products = Product.objects.all()
+    full_path = request.build_absolute_uri()
     query = request.GET.get('q')
     if query:
         form = PizzaFilterForm()
@@ -45,7 +46,7 @@ def pizza_list(request):
     except EmptyPage:
         products = paginator.page(paginator.num_pages)
 
-    return render(request, 'products/pizza_list.html', {'products': products, 'form': form})
+    return render(request, 'products/pizza_list.html', {'products': products, 'form': form, 'full_path': full_path})
 
 
 def add_pizza(request):
