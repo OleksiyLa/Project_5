@@ -1,0 +1,42 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block title %}Pizza{% endblock title %}
+
+{% block content %}
+<main>
+	<div class="pizza-detail">
+			<div class="card shadow rounded">
+					<div class="card-body text-center">
+							<h2 class="card-title">{{ product.name }}</h2>
+							<img src="{{ product.image.url }}" class="card-img-top pizza-image" alt="{{ product.name }}" style="max-width: 500px; height: auto;">
+							<p class="card-text">{{ product.description }}</p>
+							<div class="size-options">
+								<div class="btn-group" role="group" aria-label="Length options" id="pizza-size">
+										<input type="radio" class="btn-check pizza-size-input" name="pizza-size" id="size-30" value="30" autocomplete="off" checked>
+										<label class="btn btn-outline-primary" for="size-30">30cm</label>
+
+										<input type="radio" class="btn-check pizza-size-input" name="pizza-size" id="size-35" value="35" autocomplete="off">
+										<label class="btn btn-outline-primary" for="size-35">35cm</label>
+
+										<input type="radio" class="btn-check pizza-size-input" name="pizza-size" id="size-40" value="40" autocomplete="off">
+										<label class="btn btn-outline-primary" for="size-40">40cm</label>
+								</div>
+							</div>
+							<p class="card-text text-red m-2"><strong class="price" data-base-price="{{ product.price }}">€{{ product.price }}</strong></p>
+							<form class="add-to-cart-form" method="POST" action="{% url 'add_to_bag' product.id %}">
+									{% csrf_token %}
+									<input type="hidden" name="product_id" value="{{ product.id }}">
+									<input type="hidden" name="selected_size" class="selected-size" value="30">
+									<input type="hidden" name="redirect_url" value="{{ full_path }}">
+									<button type="submit" class="btn btn-primary btn-custom rounded-2">Add to Cart</button>
+							</form>
+					</div>
+			</div>
+	</div>
+</main>
+{% endblock content %}
+
+{% block scripts %}
+  {% include './includes/calculate_pizza.html' %}
+{% endblock %}

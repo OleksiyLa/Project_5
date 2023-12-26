@@ -58,3 +58,8 @@ def add_pizza(request):
             form.save()
             return redirect('pizza_list')
     return render(request, 'products/pizza_add.html', {'form': form})
+
+
+def pizza_detail(request, slug):
+    pizza = Product.objects.get(slug=slug)
+    return render(request, 'products/pizza_detail.html', {'product': pizza})
