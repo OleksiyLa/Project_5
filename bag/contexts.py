@@ -8,6 +8,7 @@ def bag_contents(request):
 
     bag_items = []
     total = 0
+    price = 0
     product_count = 0
     bag = request.session.get('bag', {})
 
@@ -17,10 +18,13 @@ def bag_contents(request):
         for size, quantity in sizes.items():
             print(f"Size: {size}, Quantity: {quantity}, product.price: {product.price}")
             if size == '30':
+                price = quantity * product.price
                 total += quantity * product.price
             if size == '35':
+                price = quantity * product.price * Decimal(1.1)
                 total += quantity * product.price * Decimal(1.1)
             if size == '40':
+                price = quantity * product.price * Decimal(1.3)
                 total += quantity * product.price * Decimal(1.3)
             
             product_count += quantity
@@ -29,6 +33,7 @@ def bag_contents(request):
                 'size': size,
                 'quantity': quantity,
                 'product': product,
+                'price': round(price, 2),
             })
 
     if total < settings.FREE_DELIVERY_THRESHOLD:

@@ -19,7 +19,7 @@ def add_to_bag(request, item_id):
             if size in bag[item_id]:
                 bag[item_id][size] += 1
             else:
-                bag[item_id] = {size: 1}
+                bag[item_id][size] = 1
         else:
             bag[item_id] = {size: 1}
 
