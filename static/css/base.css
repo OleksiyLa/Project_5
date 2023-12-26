@@ -45,8 +45,16 @@ h1 {
   background-color: var(--overlay-color);
 }
 
+.salsa {
+  font-family: 'Salsa', cursive;
+}
+
 .text-red {
   color: #800020;
+}
+
+.bg-red {
+  background-color: #800020;
 }
 
 .text-main-color {

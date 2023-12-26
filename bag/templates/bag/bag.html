@@ -15,46 +15,56 @@
             <div class="col">
                 {% if bag_items %}
                     <p class="h3 text-main-color">{{ bag_items|length }} item{{ bag_items|pluralize }} in your bag.</p>
-                    <div class="table-responsive">
-                        <table class="table table-bordered">
-                            <thead class="bg-main-color text-center">
-                                <tr>
-                                    <th scope="col" class="h4">Product</th>
-                                    <th scope="col" class="h4">Price</th>
-                                    <th scope="col" class="h4">Size</th>
-                                    <th scope="col" class="h4">Quantity</th>
-                                    <th scope="col" class="h4">Action</th>
-                                </tr>
-                            </thead>
-                            <tbody class="main-color text-center">
+                    <div class="row">
+                        <div class="col">
+                            <div class="row row-cols-1 row-cols-md-2 row-cols-lg-3 g-3">
                                 {% for item in bag_items %}
-                                    <tr>
-                                        <td class="align-middle">
-                                            <div class="d-flex align-items-center">
-                                                <img src="{{ item.product.image.url }}" alt="{{ item.product.name }}" class="img-fluid mr-3" width="100">
-                                                <div>
-                                                    <p class="mb-0 h4">{{ item.product.name }}</p>
+                                    <div class="col">
+                                        <div class="card h-100 shadow">
+                                            <div class="row g-0">
+                                                <div class="col-md-4">
+                                                    <img src="{{ item.product.image.url }}" alt="{{ item.product.name }}" class="img-fluid">
+                                                </div>
+                                                <div class="col-md-8">
+                                                    <div class="card-body d-flex flex-column justify-content-between h-100">
+                                                        <div>
+                                                            <h5 class="card-title">{{ item.product.name }} {{ item.size }}cm</h5>
+                                                            <p class="card-text">€{{ item.price }}</p>
+                                                        </div>
+                                                        <p>Additional: Nothing</p>
+                                                        <form class="form update-form mb-2" method="POST" action="">
+                                                            {% csrf_token %}
+                                                            <div class="input-group">
+                                                                <button class="btn btn-sm btn-custom rounded-0" 
+                                                                    data-item_id="{{ item.item_id }}" id="decrement-qty_{{ item.item_id }}">
+                                                                    <i class="fas fa-minus"></i>
+                                                                </button>
+                                                                <input class="form-control form-control-sm qty_input text-center" type="number"
+                                                                    name="quantity" value="{{ item.quantity }}" min="1" max="99"
+                                                                    data-item_id="{{ item.item_id }}"
+                                                                    id="id_qty_{{ item.item_id }}" readonly>
+                                                                <button class="btn btn-sm btn-custom rounded-0"
+                                                                    data-item_id="{{ item.item_id }}" id="increment-qty_{{ item.item_id }}">
+                                                                    <i class="fas fa-plus"></i>
+                                                                </button>
+                                                            </div>
+                                                        </form>
+                                                        <a href="#" class="btn btn-sm btn-danger bg-red mt-2">
+                                                            <i class="fas fa-trash-alt"></i> Remove
+                                                        </a>
+                                                    </div>
                                                 </div>
                                             </div>
-                                        </td>
-                                        <td class="align-middle">
-                                            <p class="mb-0 h4">€{{ item.price }}</p>
-                                        </td>
-                                        <td class="align-middle">
-                                            <p class="mb-0 h4">{{ item.size }}cm</p>
-                                        </td>
-                                        <td class="align-middle">
-                                            <p class="mb-0 h4">{{ item.quantity }}</p>
-                                        </td>
-                                        <td class="align-middle">
-                                            <button type="button" class="btn btn-outline-danger rounded-pill">
-                                                <i class="fas fa-trash-alt mr-1"></i>Remove
-                                            </button>
-                                        </td>
-                                    </tr>
+                                        </div>
+                                    </div>
                                 {% endfor %}
-                            </tbody>
-                        </table>
+                            </div>
+                
+                            <div class="mt-4 d-flex justify-content-between">
+                                <p class="h3 text-main-color salsa">€{{ total }}</p>
+                                <button class="btn btn-custom">Checkout</button>
+                            </div>
+                        </div>
                     </div>
                 {% else %}
                     <p class="lead mb-5 text-center">Your bag is empty.</p>
