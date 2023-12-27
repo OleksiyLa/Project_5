@@ -13,7 +13,7 @@
 					<div class="card-body text-center">
 						<h2 class="card-title">{{ product.name }}</h2>
 						<img src="{{ product.image.url }}" class="card-img-top pizza-image" alt="{{ product.name }}" style="max-width: 500px; height: auto;">
-						<p class="card-text px-5">{{ product.description }}</p>
+						<p class="card-text px-5">{{ product.description }}<span class="card-text-additional-toppings"></span></p>
 						<div class="size-options my-4">
 							<div class="btn-group" role="group" aria-label="Length options" id="pizza-size">
 								<input type="radio" class="btn-check pizza-size-input" name="pizza-size" id="size-30" value="30" autocomplete="off" checked>
@@ -97,24 +97,42 @@ document.addEventListener('DOMContentLoaded', function() {
     document.querySelector('.price').textContent = `€${totalPrice.toFixed(2)}`;
   };
 
+  const additionalToppingsText = document.querySelector('.card-text-additional-toppings');
 	const toppingIcons = document.querySelectorAll('.add-icon');
 	const selectedToppingsInput = document.querySelector('.selected-toppings');
 
 	toppingIcons.forEach(icon => {
 		icon.addEventListener('click', function() {
 			const toppingId = this.getAttribute('data-topping-id');
+      const card = this.closest('.topping-card');
 			if (selectedToppingsInput.value === '') {
 				selectedToppingsInput.value = toppingId;
 				this.classList.add('selected');
+        this.classList.remove('fa-plus');
+        this.classList.add('fa-minus');
+        card.classList.add('selected');
+        additionalToppingsText.textContent += (', ' + card.querySelector('.card-title').textContent);
 			} else {
 				let selectedToppings = selectedToppingsInput.value.split(',');
 				const index = selectedToppings.indexOf(toppingId);
 				if (index !== -1) {
 					selectedToppings.splice(index, 1);
 					this.classList.remove('selected');
+          this.classList.add('fa-plus');
+          this.classList.remove('fa-minus');
+          card.classList.remove('selected');
+          additionalToppingsText.textContent = additionalToppingsText.textContent.split(', ').filter(topping => {
+            if (!(topping === card.querySelector('.card-title').textContent)) {
+              return true;
+            }
+          }).join(', ');
 				} else {
 					selectedToppings.push(toppingId);
 					this.classList.add('selected');
+          this.classList.remove('fa-plus');
+          this.classList.add('fa-minus');
+          card.classList.add('selected');
+          additionalToppingsText.textContent += (', ' + card.querySelector('.card-title').textContent);
 				}
 				selectedToppingsInput.value = selectedToppings.join(',');
 			}
