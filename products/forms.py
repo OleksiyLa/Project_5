@@ -1,5 +1,5 @@
 from django import forms
-from .models import Product
+from .models import Product, Topping
 
 
 class AddProduct(forms.ModelForm):
@@ -7,6 +7,12 @@ class AddProduct(forms.ModelForm):
     class Meta:
         model = Product
         fields = ['name', 'description', 'price', 'rating', 'image', 'is_spicy', 'is_vegetarian', 'is_premium', 'is_seafood', 'is_new']
+
+
+class AddTopping(forms.ModelForm):
+    class Meta:
+        model = Topping
+        fields = ['name', 'price', 'image']
 
 
 class PizzaFilterForm(forms.Form):

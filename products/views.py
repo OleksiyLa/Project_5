@@ -2,7 +2,7 @@ from django.shortcuts import render, redirect
 from django.db.models import Q
 from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
 from .models import Product
-from .forms import AddProduct, PizzaFilterForm
+from .forms import AddProduct, PizzaFilterForm, AddTopping
 
 
 def pizza_list(request):
@@ -58,6 +58,17 @@ def add_pizza(request):
             form.save()
             return redirect('pizza_list')
     return render(request, 'products/pizza_add.html', {'form': form})
+
+
+def add_topping(request):
+    form = AddTopping()
+    if request.method == 'POST':
+        form = AddTopping(request.POST, request.FILES)
+
+        if form.is_valid():
+            form.save()
+            return redirect('pizza_list')
+    return render(request, 'products/topping_add.html', {'form': form})
 
 
 def pizza_detail(request, slug):
