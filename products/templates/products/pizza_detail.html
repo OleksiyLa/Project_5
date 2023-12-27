@@ -31,6 +31,7 @@
 							{% csrf_token %}
 							<input type="hidden" name="product_id" value="{{ product.id }}">
 							<input type="hidden" name="selected_size" class="selected-size" value="30">
+							<input type="hidden" name="additional_toppings" class="selected-toppings" value="">
 							<input type="hidden" name="redirect_url" value="{{ full_path }}">
 							<button type="submit" class="btn btn-primary btn-custom rounded-2 p-2">Add to Cart</button>
 						</form>
@@ -49,7 +50,7 @@
 								<img src="{{ topping.image.url }}" class="img-fluid topping-image" alt="Topping">
 								<h5 class="card-title my-3">{{ topping.name }}</h5>
 								<p class="card-text topping-price" data-base-price="{{ topping.price }}">€{{ topping.price }}</p>
-								<i class="fa fa-plus add-icon" aria-hidden="true"></i>
+								<i class="fa fa-plus add-icon" data-topping-id="{{ topping.id }}" aria-label="select topping"></i>
 							</div>
 						</div>
 					</div>
@@ -62,12 +63,28 @@
 
 {% block scripts %}
 <script>
-	document.addEventListener('DOMContentLoaded', function() {
-		const checkboxes = document.querySelectorAll('.pizza-filter');
-		checkboxes.forEach(function(checkbox) {
-			checkbox.addEventListener('change', function() {
-				document.getElementById('pizza-filter-form').submit();
-			});
+document.addEventListener('DOMContentLoaded', function() {
+	const toppingIcons = document.querySelectorAll('.add-icon');
+	const selectedToppingsInput = document.querySelector('.selected-toppings');
+
+	toppingIcons.forEach(icon => {
+		icon.addEventListener('click', function() {
+			const toppingId = this.getAttribute('data-topping-id');
+			if (selectedToppingsInput.value === '') {
+				selectedToppingsInput.value = toppingId;
+				this.classList.add('selected');
+			} else {
+				let selectedToppings = selectedToppingsInput.value.split(',');
+				const index = selectedToppings.indexOf(toppingId);
+				if (index !== -1) {
+					selectedToppings.splice(index, 1);
+					this.classList.remove('selected');
+				} else {
+					selectedToppings.push(toppingId);
+					this.classList.add('selected');
+				}
+				selectedToppingsInput.value = selectedToppings.join(',');
+			}
 		});
 	});
 
@@ -101,13 +118,13 @@
 			}
 
 			toppingCards.forEach(toppingCard => {
-					const toppingPriceElement = toppingCard.querySelector('.topping-price');
-					const toppingPrice = parseFloat(toppingPriceElement.getAttribute('data-base-price'));
-					const newToppingPrice = toppingPrice * multiplier;
-					toppingPriceElement.textContent = `€${newToppingPrice.toFixed(2)}`;
+				const toppingPriceElement = toppingCard.querySelector('.topping-price');
+				const toppingPrice = parseFloat(toppingPriceElement.getAttribute('data-base-price'));
+				const newToppingPrice = toppingPrice * multiplier;
+				toppingPriceElement.textContent = `€${newToppingPrice.toFixed(2)}`;
 			});
 		});
 	});
-
+});
 </script>
 {% endblock %}

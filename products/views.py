@@ -72,6 +72,7 @@ def add_topping(request):
 
 
 def pizza_detail(request, slug):
+    full_path = request.build_absolute_uri()
     pizza = Product.objects.get(slug=slug)
     toppings = Topping.objects.all()
-    return render(request, 'products/pizza_detail.html', {'product': pizza, 'toppings': toppings})
+    return render(request, 'products/pizza_detail.html', {'product': pizza, 'toppings': toppings, 'full_path': full_path})
