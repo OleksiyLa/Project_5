@@ -240,6 +240,44 @@ h2.card-title {
   color: #ffffff;
 }
 
+/* Pizza detail */
+.topping-card {
+  overflow: visible;
+  padding-top: 40px;
+  width: 200px;
+  height: 250px;
+}
+
+.topping-image {
+  height: 60px;
+  position: absolute;
+  top: -10px;
+  left: 50%;
+  transform: translateX(-50%);
+}
+
+.add-icon {
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%);
+  bottom: 2rem;
+  font-size: 2rem;
+  cursor: pointer;
+  color: var(--main-color);
+}
+
+.add-icon:hover {
+  opacity: 0.9;
+}
+
+.topping-price {
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%);
+  bottom: 4rem;
+  font-size: 1.3rem;
+}
+
 /* Footer */
 footer {
     position: relative;

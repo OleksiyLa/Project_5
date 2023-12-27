@@ -1,7 +1,7 @@
 from django.shortcuts import render, redirect
 from django.db.models import Q
 from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
-from .models import Product
+from .models import Product, Topping
 from .forms import AddProduct, PizzaFilterForm, AddTopping
 
 
@@ -73,4 +73,5 @@ def add_topping(request):
 
 def pizza_detail(request, slug):
     pizza = Product.objects.get(slug=slug)
-    return render(request, 'products/pizza_detail.html', {'product': pizza})
+    toppings = Topping.objects.all()
+    return render(request, 'products/pizza_detail.html', {'product': pizza, 'toppings': toppings})
