@@ -1,4 +1,5 @@
 from django.shortcuts import render, redirect, reverse, HttpResponse
+import uuid
 
 
 def view_bag(request):
@@ -12,19 +13,46 @@ def add_to_bag(request, item_id):
 
     if request.method == 'POST':
         size = request.POST.get('selected_size')
+        additional_toppings = request.POST.get('additional_toppings')
         redirect_url = request.POST.get('redirect_url')
         bag = request.session.get('bag', {})
-        print(size)
+        sorted_toppings_list = []
+        if additional_toppings:
+            sorted_toppings_list = sorted(additional_toppings.split(','))
+
         if item_id in bag:
-            if size in bag[item_id]:
-                bag[item_id][size] += 1
+            pizzas_by_size = [pizza for pizza in bag[item_id] if pizza['size'] == size]
+            if len(pizzas_by_size) > 0:
+                flag = True
+                for pizza in pizzas_by_size:
+                    sorted_toppings = sorted(pizza['additional_toppings'])
+                    if sorted_toppings == sorted_toppings_list:
+                        pizza['quantity'] += 1
+                        flag = False
+                        break
+                if flag:
+                    bag[item_id].append({
+                        'id': str(uuid.uuid4()),
+                        'size': size,
+                        'additional_toppings': sorted_toppings_list,
+                        'quantity': 1
+                    })       
             else:
-                bag[item_id][size] = 1
+                bag[item_id].append({
+                    'id': str(uuid.uuid4()),
+                    'size': size,
+                    'additional_toppings': sorted_toppings_list,
+                    'quantity': 1
+                })
         else:
-            bag[item_id] = {size: 1}
+            bag[item_id] = [{
+                'id': str(uuid.uuid4()),
+                'size': size,
+                'additional_toppings': sorted_toppings_list,
+                'quantity': 1
+            }]
 
     request.session['bag'] = bag
-    print('get', request.GET)
     return redirect(redirect_url)
 
 
@@ -45,8 +73,6 @@ def remove_from_bag(request, item_id, item_size):
     """Remove the item from the shopping bag"""
 
     try:
-        # size = request.POST['product_size']
-        print(item_size)
         bag = request.session.get('bag', {})
         del bag[item_id][item_size]
 
