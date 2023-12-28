@@ -70,12 +70,12 @@ def adjust_bag(request, item_id):
     return redirect(reverse('view_bag'))
 
 
-def remove_from_bag(request, item_id, item_size):
+def remove_from_bag(request, item_id, id):
     """Remove the item from the shopping bag"""
 
     try:
         bag = request.session.get('bag', {})
-        del bag[item_id][item_size]
+        bag[item_id] = [pizza for pizza in bag[item_id] if pizza['id'] != id]
 
         request.session['bag'] = bag
         return redirect(reverse('view_bag'))
