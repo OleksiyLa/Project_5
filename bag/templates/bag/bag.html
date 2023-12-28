@@ -34,18 +34,18 @@
 														<p>{{ item.toppings }}</p>
 														<form class="form update-form mb-2" method="POST" action="{% url 'adjust_bag' item.item_id %}">
 															{% csrf_token %}
-															<input type="hidden" name="size" value="{{ item.size }}">
+															<input type="hidden" name="id" value="{{ item.id }}">
 															<div class="input-group">
 																<button class="btn btn-sm btn-custom rounded-0 decrement-qty change-qty" 
-																		data-item-id="{{ item.item_id }}" data-item-size="{{ item.size }}" id="decrement-qty_{{ item.item_id }}_{{ item.size }}">
+																		data-id="{{ item.id }}" id="decrement-qty_{{ item.id }}">
 																	<i class="fas fa-minus"></i>
 																</button>
 																<input class="form-control form-control-sm qty_input text-center" type="number"
 																		name="quantity" value="{{ item.quantity }}" min="1" max="99"
-																		data-item-id="{{ item.item_id }}" data-item-size="{{ item.size }}"
-																		id="id_qty_{{ item.item_id }}_{{ item.size }}" readonly>
+																		data-id="{{ item.id }}"
+																		id="id_qty_{{ item.id }}" readonly>
 																<button class="btn btn-sm btn-custom rounded-0 increment-qty change-qty"
-																		data-item-id="{{ item.item_id }}" data-item-size="{{ item.size }}" id="increment-qty_{{ item.item_id }}_{{ item.size }}">
+																		data-id="{{ item.id }}" id="increment-qty_{{ item.id }}">
 																	<i class="fas fa-plus"></i>
 																</button>
 															</div>
@@ -81,14 +81,14 @@
 
 {% block scripts %}
 <script type="text/javascript">
-function handleEnableDisable(itemId, itemSize) {
-	const inputElement = document.getElementById('id_qty_' + itemId + '_' + itemSize);
+function handleEnableDisable(id) {
+	const inputElement = document.getElementById('id_qty_' + id);
 	if (inputElement) {
 		const currentValue = parseInt(inputElement.value);
 		const minusDisabled = currentValue < 2;
 		const plusDisabled = currentValue > 98;
-		const decrementButton = document.getElementById('decrement-qty_' + itemId + '_' + itemSize);
-		const incrementButton = document.getElementById('increment-qty_' + itemId + '_' + itemSize);
+		const decrementButton = document.getElementById('decrement-qty_' + id);
+		const incrementButton = document.getElementById('increment-qty_' + id);
 		decrementButton.disabled = minusDisabled;
 		incrementButton.disabled = plusDisabled;
 	} 
@@ -106,28 +106,25 @@ function debounce(func, delay) {
 
 document.addEventListener('DOMContentLoaded', () => {
 	document.querySelectorAll('.qty_input').forEach(input => {
-		const itemId = input.dataset.itemId;
-		const itemSize = input.dataset.itemSize;
-		handleEnableDisable(itemId, itemSize);
+		const id = input.dataset.id;
+		handleEnableDisable(id);
 
 		input.addEventListener('change', function() {
-			const itemId = this.dataset.itemId;
-			const itemSize = this.dataset.itemSize;
-			handleEnableDisable(itemId, itemSize);
+			const id = this.dataset.id;
+			handleEnableDisable(id);
 		});
 	});
 
 	document.querySelectorAll('.increment-qty').forEach(btn => {
 		btn.addEventListener('click', function(e) {
 			e.preventDefault();
-			const itemId = this.dataset.itemId;
-			const itemSize = this.dataset.itemSize;
+			const id = this.dataset.id;
 			const closestInput = this.closest('.input-group').querySelector('.qty_input');
 			const form = closestInput.parentNode.parentNode
 			if (closestInput) {
 				let currentValue = parseInt(closestInput.value);
 				closestInput.value = currentValue + 1;
-				handleEnableDisable(itemId, itemSize);
+				handleEnableDisable(id);
 				debounce(() => {
 					form.submit();
 				}, 1000)();
@@ -138,14 +135,13 @@ document.addEventListener('DOMContentLoaded', () => {
 	document.querySelectorAll('.decrement-qty').forEach(btn => {
 		btn.addEventListener('click', function(e) {
 			e.preventDefault();
-			const itemId = this.dataset.itemId;
-			const itemSize = this.dataset.itemSize;
+			const id = this.dataset.id;
 			const closestInput = this.closest('.input-group').querySelector('.qty_input');
 			const form = closestInput.parentNode.parentNode
 			if (closestInput) {
 				let currentValue = parseInt(closestInput.value);
 				closestInput.value = currentValue - 1;
-				handleEnableDisable(itemId, itemSize);
+				handleEnableDisable(id);
 				debounce(() => {
 					form.submit();
 				}, 1000)();
