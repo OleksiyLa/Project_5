@@ -18,7 +18,10 @@ def add_to_bag(request, item_id):
         bag = request.session.get('bag', {})
         sorted_toppings_list = []
         if additional_toppings:
-            sorted_toppings_list = sorted(additional_toppings.split(','))
+            additional_toppings_list = additional_toppings.split(',')
+            if len(additional_toppings_list) > 7:
+                return redirect(redirect_url)
+            sorted_toppings_list = sorted(additional_toppings_list)
 
         if item_id in bag:
             pizzas_by_size = [pizza for pizza in bag[item_id] if pizza['size'] == size]
