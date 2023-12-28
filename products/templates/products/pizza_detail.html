@@ -4,7 +4,24 @@
 {% block title %}Pizza{% endblock title %}
 
 {% block content %}
+
 <main class="container mt-4">
+	<div class="modal fade position-fixed" id="toppingLimitModal" tabindex="-1" aria-labelledby="toppingLimitModalLabel" aria-hidden="true">
+		<div class="modal-dialog">
+				<div class="modal-content">
+						<div class="modal-header">
+								<h5 class="modal-title" id="toppingLimitModalLabel">Topping Limit Exceeded</h5>
+								<button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+						</div>
+						<div class="modal-body text-center">
+								You can only select up to 7 additional toppings.
+						</div>
+						<div class="modal-footer">
+								<button type="button" class="btn btn-custom" data-bs-dismiss="modal">Close</button>
+						</div>
+				</div>
+		</div>
+	</div>
 	<div class="row">
 		<!-- Pizza details -->
 		<div class="col-lg-10 offset-lg-1">
@@ -104,40 +121,45 @@ document.addEventListener('DOMContentLoaded', function() {
 	toppingIcons.forEach(icon => {
 		icon.addEventListener('click', function() {
 			const toppingId = this.getAttribute('data-topping-id');
-      const card = this.closest('.topping-card');
+			const card = this.closest('.topping-card');
 			if (selectedToppingsInput.value === '') {
 				selectedToppingsInput.value = toppingId;
 				this.classList.add('selected');
-        this.classList.remove('fa-plus');
-        this.classList.add('fa-minus');
-        card.classList.add('selected');
-        additionalToppingsText.textContent += (', ' + card.querySelector('.card-title').textContent);
+				this.classList.remove('fa-plus');
+				this.classList.add('fa-minus');
+				card.classList.add('selected');
+				additionalToppingsText.textContent += (', ' + card.querySelector('.card-title').textContent);
 			} else {
 				let selectedToppings = selectedToppingsInput.value.split(',');
 				const index = selectedToppings.indexOf(toppingId);
 				if (index !== -1) {
 					selectedToppings.splice(index, 1);
 					this.classList.remove('selected');
-          this.classList.add('fa-plus');
-          this.classList.remove('fa-minus');
-          card.classList.remove('selected');
-          additionalToppingsText.textContent = additionalToppingsText.textContent.split(', ').filter(topping => {
-            if (!(topping === card.querySelector('.card-title').textContent)) {
-              return true;
-            }
-          }).join(', ');
+					this.classList.add('fa-plus');
+					this.classList.remove('fa-minus');
+					card.classList.remove('selected');
+					additionalToppingsText.textContent = additionalToppingsText.textContent.split(', ').filter(topping => {
+						if (!(topping === card.querySelector('.card-title').textContent)) {
+						return true;
+						}
+					}).join(', ');
 				} else {
+					if (selectedToppings.length === 7) {
+						const toppingLimitModal = new bootstrap.Modal(document.getElementById('toppingLimitModal'));
+						toppingLimitModal.show();
+						return;
+				}
 					selectedToppings.push(toppingId);
 					this.classList.add('selected');
-          this.classList.remove('fa-plus');
-          this.classList.add('fa-minus');
-          card.classList.add('selected');
-          additionalToppingsText.textContent += (', ' + card.querySelector('.card-title').textContent);
-				}
-				selectedToppingsInput.value = selectedToppings.join(',');
-			}
-			updateTotalPrice();
-		});
+					this.classList.remove('fa-plus');
+					this.classList.add('fa-minus');
+					card.classList.add('selected');
+					additionalToppingsText.textContent += (', ' + card.querySelector('.card-title').textContent);
+							}
+							selectedToppingsInput.value = selectedToppings.join(',');
+						}
+						updateTotalPrice();
+					});
 	});
 
 	let multiplier = 1;
