@@ -31,6 +31,7 @@
 						<h2 class="card-title">{{ product.name }}</h2>
 						<img src="{{ product.image.url }}" class="card-img-top pizza-image" alt="{{ product.name }}" style="max-width: 500px; height: auto;">
 						<p class="card-text px-5">{{ product.description }}<span class="card-text-additional-toppings"></span></p>
+						<a href="#toppings" id="navigate-to-toppings-link" class="link text-main-color p-2">Add Toppings</a>
 						<div class="size-options my-4">
 							<div class="btn-group" role="group" aria-label="Length options" id="pizza-size">
 								<input type="radio" class="btn-check pizza-size-input" name="pizza-size" id="size-30" value="30" autocomplete="off" checked>
@@ -58,7 +59,7 @@
 		</div>
 		<!-- Toppings -->
 		<div class="mt-4">
-			<h2 class="mb-2 text-center text-main-color salsa">Additional Toppings</h2>
+			<h2 class="mb-2 text-center text-main-color salsa" id="toppings">Additional Toppings</h2>
 			<div class="row d-flex justify-content-around">
 				{% for topping in toppings %}
 					<div class="card topping-card position-relative my-4 rounded-3">

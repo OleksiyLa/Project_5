@@ -262,6 +262,11 @@ h2.card-title {
 }
 
 /* Pizza detail */
+#navigate-to-toppings-link:hover {
+  color: var(--main-color);
+  opacity: 0.9;
+}
+
 .topping-card {
   overflow: visible;
   padding-top: 40px;
