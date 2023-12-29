@@ -1,4 +1,5 @@
 from django.shortcuts import render, redirect, reverse, HttpResponse
+from django.contrib import messages
 import uuid
 
 
@@ -20,6 +21,7 @@ def add_to_bag(request, item_id):
         if additional_toppings:
             additional_toppings_list = additional_toppings.split(',')
             if len(additional_toppings_list) > 7:
+                messages.warning(request, "You can only add up to 7 additional toppings")
                 return redirect(redirect_url)
             sorted_toppings_list = sorted(additional_toppings_list)
 
@@ -54,6 +56,7 @@ def add_to_bag(request, item_id):
                 'additional_toppings': sorted_toppings_list,
                 'quantity': 1
             }]
+        messages.success(request, f'Pizza added to your bag')
 
     request.session['bag'] = bag
     return redirect(redirect_url)
@@ -70,6 +73,7 @@ def adjust_bag(request, item_id):
             pizza['quantity'] = quantity
 
     request.session['bag'] = bag
+    messages.info(request, f'Updated pizza quantity to {quantity}')
     return redirect(reverse('view_bag'))
 
 
@@ -81,6 +85,7 @@ def remove_from_bag(request, item_id, id):
         bag[item_id] = [pizza for pizza in bag[item_id] if pizza['id'] != id]
 
         request.session['bag'] = bag
+        messages.info(request, f'Pizza removed from your bag')
         return redirect(reverse('view_bag'))
 
     except Exception as e:

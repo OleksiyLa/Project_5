@@ -15,16 +15,32 @@
 <body>
   {% include './includes/nav.html' %}
   {% if messages %}
-    {% for message in messages %}
-    <div class="alert alert-{{ message.tags }}">
-      {{ message }}
+    <div class="message-container bg-main-color">
+      {% for message in messages %}
+        {% with message.level as level %}
+          {% if level == 40 %}
+            {% include './includes/toasts/toast_error.html' %}
+          {% elif level == 30 %}
+            {% include './includes/toasts/toast_warning.html' %}
+          {% elif level == 25 %}
+            {% include './includes/toasts/toast_success.html' %}
+          {% else %}
+            {% include './includes/toasts/toast_info.html' %}
+          {% endif %}
+        {% endwith %}
+      {% endfor %}
     </div>
-    {% endfor %}
   {% endif %}
   {% block content %}
   {% endblock %}
   {% include './includes/footer.html' %}
   {% block scripts %}
   {% endblock %}
+  <script>
+    const toast = new bootstrap.Toast(document.querySelector('.custom-toast'));
+    if(toast) {
+      toast.show();
+    }
+  </script>
 </body>
 </html>

@@ -24,8 +24,9 @@ body, html {
 }
 
 body {
-    background-color: var(--main-bg-color);
-    color: var(--dark-color);
+  background-color: var(--main-bg-color);
+  color: var(--dark-color);
+  padding-top: 60px;
 }
 
 h1 {
@@ -97,9 +98,15 @@ h1 {
 }
 
 /* header */
+header {
+  top: 0;
+  z-index: 999;
+  border-bottom: #00555a 2px solid;
+  height: 60px;
+}
+
 header nav .navbar-nav .nav-item a.nav-link {
     color: var(--main-color);
-    /* font-weight: 500; */
     font-size: 1.1rem;
 }
 
@@ -307,4 +314,63 @@ footer a:hover .social-svg {
 .social-svg {
   fill: #ffffff;
   width: 100%
+}
+
+/* ------------------------------- bootstrap toasts */
+
+.message-container {
+  width: 260px;
+  position: fixed;
+  top: 72px;
+  right: 10px;
+  z-index: 999999999;
+}
+
+.custom-toast {
+  width: 260px;
+  overflow: visible;
+}
+
+.toast-capper {
+  height: 2px;
+}
+
+/* from CSS-tricks.com: https://css-tricks.com/snippets/css/css-triangle/ */
+.arrow-up {
+  width: 0; 
+  height: 0; 
+  border-left: 4px solid transparent;
+  border-right: 4px solid transparent; 
+  border-bottom: 10px solid var(--light-color);
+  position: absolute;
+  top: -10px;
+  right: 36px;
+}
+
+.bg-info {
+  background-color: var(--main-color) !important;
+}
+
+.bg-warning {
+  background-color: #ffbf00 !important;
+}
+
+.bg-success {
+  background-color: #0b5a1d !important;
+}
+
+.arrow-success {
+  border-bottom-color: #0b5a1d !important;
+}
+
+.arrow-danger {
+  border-bottom-color: #800020 !important;
+}
+
+.arrow-warning {
+  border-bottom-color: #ffbf00 !important;
+}
+
+.arrow-info {
+  border-bottom-color: var(--main-color) !important;
 }
