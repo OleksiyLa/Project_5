@@ -30,7 +30,7 @@
           </li>
           <li class="nav-item mx-3">
             <a class="nav-link {% if active_link == 'bag' %}active{% endif %}" href="{% url 'view_bag' %}">
-              €{{ total }}
+              {% if bag_items %}€{{ grand_total }}{% endif %}
               <img src="{% static 'svg/cart.svg' %}" alt="cart" width="25px">
             </a>
           </li>

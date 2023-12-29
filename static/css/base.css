@@ -4,8 +4,10 @@
     /* Color variables */
     --main-color: #00555a;
     --main-bg-color: #d6cccc;
-    --overlay-color: rgba(30, 30, 30, 0.3);
-    --full-screen-overlay-color: rgba(30, 30, 30, 0.6);
+    --error-color: #800020;
+    --success-color: #0b5a1d;
+    --warning-color: #ffbf00;
+    --overlay-color: rgba(30, 30, 30, 0.5);
     --dark-color: #000000;
     --light-color: #ffffff;
 }
@@ -51,11 +53,11 @@ h1 {
 }
 
 .text-red {
-  color: #800020;
+  color: var(--error-color);
 }
 
 .bg-red {
-  background-color: #800020;
+  background-color: var(--error-color);
 }
 
 .text-main-color {
@@ -97,6 +99,18 @@ h1 {
   border-color: var(--main-color) !important;
 }
 
+.bg-info {
+  background-color: var(--main-color) !important;
+}
+
+.bg-warning {
+  background-color: var(--warning-color) !important;
+}
+
+.bg-success {
+  background-color: var(--success-color) !important;
+}
+
 /* header */
 header {
   top: 0;
@@ -111,7 +125,7 @@ header nav .navbar-nav .nav-item a.nav-link {
 }
 
 header nav .navbar-nav .nav-item a.nav-link.active {
-  color: #800020;
+  color: var(--error-color);
   font-weight: 600;
 }
 
@@ -256,7 +270,7 @@ h2.card-title {
 }
 
 .topping-card.selected {
-  border: 2px solid #800020;
+  border: 2px solid var(--error-color);
 }
 
 .topping-image {
@@ -282,7 +296,7 @@ h2.card-title {
 }
 
 .add-icon.selected {
-  color:#800020;
+  color:var(--error-color);
 }
 
 .topping-price {
@@ -316,7 +330,7 @@ footer a:hover .social-svg {
   width: 100%
 }
 
-/* ------------------------------- bootstrap toasts */
+/* toasts */
 
 .message-container {
   width: 260px;
@@ -347,28 +361,16 @@ footer a:hover .social-svg {
   right: 36px;
 }
 
-.bg-info {
-  background-color: var(--main-color) !important;
-}
-
-.bg-warning {
-  background-color: #ffbf00 !important;
-}
-
-.bg-success {
-  background-color: #0b5a1d !important;
-}
-
 .arrow-success {
-  border-bottom-color: #0b5a1d !important;
+  border-bottom-color: var(--success-color) !important;
 }
 
 .arrow-danger {
-  border-bottom-color: #800020 !important;
+  border-bottom-color: var(--error-color) !important;
 }
 
 .arrow-warning {
-  border-bottom-color: #ffbf00 !important;
+  border-bottom-color: var(--warning-color) !important;
 }
 
 .arrow-info {

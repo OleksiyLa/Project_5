@@ -1,11 +1,12 @@
 from decimal import Decimal
-from django.conf import settings
 from django.shortcuts import get_object_or_404
 from products.models import Product, Topping
 
 
 def bag_contents(request):
 
+    deliver_cost = Decimal('12.00')
+    free_delivery_threshold = Decimal('50.00')
     bag_items = []
     total = 0
     price = 0
@@ -46,22 +47,17 @@ def bag_contents(request):
                 'price': round(price, 2),
             })
 
-    if total < settings.FREE_DELIVERY_THRESHOLD:
-        delivery = total * Decimal(settings.STANDARD_DELIVERY_PERCENTAGE / 100)
-        free_delivery_delta = settings.FREE_DELIVERY_THRESHOLD - total
-    else:
-        delivery = 0
-        free_delivery_delta = 0
+    if total >= free_delivery_threshold:
+        deliver_cost = Decimal('0.00')  
 
-    grand_total = delivery + total
+    grand_total = deliver_cost + Decimal(total)
 
     context = {
         'bag_items': bag_items,
         'total': round(total, 2),
         'product_count': product_count,
-        'delivery': delivery,
-        'free_delivery_delta': free_delivery_delta,
-        'free_delivery_threshold': settings.FREE_DELIVERY_THRESHOLD,
+        'deliver_cost': deliver_cost,
+        'free_delivery_threshold': free_delivery_threshold,
         'grand_total': round(grand_total, 2),
     }
 
