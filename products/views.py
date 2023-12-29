@@ -46,7 +46,7 @@ def pizza_list(request):
     except EmptyPage:
         products = paginator.page(paginator.num_pages)
 
-    return render(request, 'products/pizza_list.html', {'products': products, 'form': form, 'full_path': full_path})
+    return render(request, 'products/pizza_list.html', {'products': products, 'form': form, 'full_path': full_path, 'active_link': 'pizza'})
 
 
 def add_pizza(request):

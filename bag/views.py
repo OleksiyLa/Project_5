@@ -6,7 +6,7 @@ import uuid
 def view_bag(request):
     """ A view that renders the cart page """
 
-    return render(request, 'bag/bag.html')
+    return render(request, 'bag/bag.html', {'active_link': 'bag'})
 
 
 def add_to_bag(request, item_id):
