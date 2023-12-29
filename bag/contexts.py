@@ -5,7 +5,7 @@ from products.models import Product, Topping
 
 def bag_contents(request):
 
-    deliver_cost = Decimal('12.00')
+    delivery_cost = Decimal('12.00')
     free_delivery_threshold = Decimal('50.00')
     bag_items = []
     total = 0
@@ -48,15 +48,15 @@ def bag_contents(request):
             })
 
     if total >= free_delivery_threshold:
-        deliver_cost = Decimal('0.00')  
+        delivery_cost = Decimal('0.00')  
 
-    grand_total = deliver_cost + Decimal(total)
+    grand_total = delivery_cost + Decimal(total)
 
     context = {
         'bag_items': bag_items,
         'total': round(total, 2),
         'product_count': product_count,
-        'deliver_cost': deliver_cost,
+        'delivery_cost': delivery_cost,
         'free_delivery_threshold': free_delivery_threshold,
         'grand_total': round(grand_total, 2),
     }
