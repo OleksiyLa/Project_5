@@ -29,10 +29,10 @@
 				<div class="card shadow rounded">
 					<div class="card-body text-center">
 						<h2 class="card-title">{{ product.name }}</h2>
-						{% if item.product.image %}
+						{% if product.image %}
 							<img src="{{ product.image.url }}" class="card-img-top pizza-image" alt="{{ product.name }}" style="max-width: 500px; height: auto;">
 						{% else %}
-							<img class="card-img-top pizza-image" style="width: 250px;" src="https://res.cloudinary.com/dcq31wib9/image/upload/v1703947640/noimage_hpttfg.png" alt="{{ item.product.name }}">
+							<img class="card-img-top pizza-image" style="width: 250px;" src="https://res.cloudinary.com/dcq31wib9/image/upload/v1703947640/noimage_hpttfg.png" alt="{{ product.name }}">
 						{% endif %}
 						<p class="card-text px-5">{{ product.description }}<span class="card-text-additional-toppings"></span></p>
 						<a href="#toppings" id="navigate-to-toppings-link" class="link text-main-color p-2">Add Toppings</a>
