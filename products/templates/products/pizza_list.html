@@ -106,7 +106,11 @@
             <div class="col col-md-6 col-lg-3">
               <div class="card shadow h-100 rounded-top">
                 <a href="{% url 'pizza_detail' product.slug %}" class="text-decoration-none pizza-card-header">
-                  <img src="{{ product.image.url }}" class="card-img-top pizza-image" alt="{{ product.name }}">
+                  {% if product.image %}
+                    <img src="{{ product.image.url }}" class="card-img-top pizza-image" alt="{{ product.name }}">
+                  {% else %}
+                    <img class="card-img-top pizza-image" style="width: 250px;" src="https://res.cloudinary.com/dcq31wib9/image/upload/v1703947640/noimage_hpttfg.png" alt="{{ item.product.name }}">
+                  {% endif %}
                   <h2 class="card-title h4 px-4">{{ product.name }}</h2>
                 </a>
                 <div class="card-body py-2 px-4 d-flex flex-column justify-content-between">

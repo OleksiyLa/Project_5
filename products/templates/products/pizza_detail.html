@@ -29,7 +29,11 @@
 				<div class="card shadow rounded">
 					<div class="card-body text-center">
 						<h2 class="card-title">{{ product.name }}</h2>
-						<img src="{{ product.image.url }}" class="card-img-top pizza-image" alt="{{ product.name }}" style="max-width: 500px; height: auto;">
+						{% if item.product.image %}
+							<img src="{{ product.image.url }}" class="card-img-top pizza-image" alt="{{ product.name }}" style="max-width: 500px; height: auto;">
+						{% else %}
+							<img class="card-img-top pizza-image" style="width: 250px;" src="https://res.cloudinary.com/dcq31wib9/image/upload/v1703947640/noimage_hpttfg.png" alt="{{ item.product.name }}">
+						{% endif %}
 						<p class="card-text px-5">{{ product.description }}<span class="card-text-additional-toppings"></span></p>
 						<a href="#toppings" id="navigate-to-toppings-link" class="link text-main-color p-2">Add Toppings</a>
 						<div class="size-options my-4">
@@ -65,7 +69,11 @@
 					<div class="card topping-card position-relative my-4 rounded-3">
 						<div class="row g-0 text-center">
 							<div class="card-body">
-								<img src="{{ topping.image.url }}" class="img-fluid topping-image" alt="Topping">
+								{% if topping.image %}
+									<img src="{{ topping.image.url }}" class="img-fluid topping-image" alt="Topping">
+								{% else %}
+									<img class="img-fluid topping-image top-0" src="https://res.cloudinary.com/dcq31wib9/image/upload/v1703947640/noimage_hpttfg.png" alt="{{ topping.name }}">
+								{% endif %}
 								<h5 class="card-title my-3">{{ topping.name }}</h5>
 								<p class="card-text topping-price" data-base-price="{{ topping.price }}">€{{ topping.price }}</p>
 								<i class="fa fa-plus add-icon" data-topping-id="{{ topping.id }}" aria-label="select topping"></i>
