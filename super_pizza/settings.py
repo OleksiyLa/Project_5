@@ -27,7 +27,7 @@ SECRET_KEY = config("SECRET_KEY")
 
 # SECURITY WARNING: don't run with debug turned on in production!
 
-DEBUG = False
+DEBUG = True
 
 ALLOWED_HOSTS = ['super-pizza-4be7f9269aef.herokuapp.com', '127.0.0.1']
 
@@ -52,6 +52,7 @@ INSTALLED_APPS = [
     'crispy_bootstrap5',
     'bag',
     'about',
+    'checkout',
 ]
 
 SITE_ID = 1
