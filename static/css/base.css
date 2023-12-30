@@ -90,6 +90,19 @@ h1 {
   opacity: 0.9;
 }
 
+.btn-outline-custom {
+  color: var(--main-color) !important;
+  border-color: var(--main-color) !important;
+  outline: none !important;
+  box-shadow: none !important;
+}
+
+.btn-outline-custom:hover {
+  color: #ffffff !important;
+  background-color: var(--main-color) !important;
+  opacity: 0.9;
+}
+
 .custom-input {
   outline: none !important;
   box-shadow: none !important;
