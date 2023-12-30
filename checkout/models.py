@@ -4,6 +4,7 @@ from django.db import models
 from django.db.models import Sum
 from django.conf import settings
 from products.models import Product, Topping
+from decimal import Decimal
 
 
 class Order(models.Model):
@@ -61,3 +62,19 @@ class OrderLineItem(models.Model):
     quantity = models.IntegerField(null=False, blank=False, default=0)
     toppings = models.ManyToManyField(Topping)
     lineitem_total = models.DecimalField(max_digits=6, decimal_places=2, null=False, blank=False, editable=False)
+
+    def save(self, *args, **kwargs):
+        """
+        Override the original save method to set the lineitem total
+        and update the order total.
+        """
+        toppings_price = sum(int(topping.price) for topping in self.toppings.all())
+        if self.product_size == '30':
+            self.lineitem_total = self.product.price * self.quantity + toppings_price
+        if self.product_size == '35':
+            toppings_price = toppings_price * Decimal(1.1)
+            self.lineitem_total = self.product.price * Decimal(1.1) * self.quantity + toppings_price
+        if self.product_size == '40':
+            toppings_price = toppings_price * Decimal(1.3)
+            self.lineitem_total = self.product.price * Decimal(1.3) * self.quantity + toppings_price
+        super().save(*args, **kwargs)
