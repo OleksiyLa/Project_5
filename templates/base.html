@@ -3,6 +3,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>{% block title %}{% endblock %}</title>
@@ -41,11 +42,6 @@
   {% include './includes/footer.html' %}
   {% block scripts %}
   {% endblock %}
-  <script>
-    const toast = new bootstrap.Toast(document.querySelector('.custom-toast'));
-    if(toast) {
-      toast.show();
-    }
-  </script>
+  <script src="{% static 'js/index.js' %}"></script>
 </body>
 </html>
