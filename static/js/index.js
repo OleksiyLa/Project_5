@@ -1,7 +1,8 @@
-let toast = document.querySelector('.custom-toast')
-if(toast) {
-    toast = new bootstrap.Toast();
-    if(toast) {
-    toast.show();
-    }
+let toasts = document.getElementsByClassName('custom-toast')
+if(toasts) {
+    toasts = Array.from(toasts);
+    toasts.forEach(toast => {
+        const bsToast = new bootstrap.Toast(toast);
+        bsToast.show();
+    })
 }
