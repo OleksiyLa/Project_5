@@ -7,6 +7,7 @@ from .forms import OrderForm
 from .models import Order, OrderLineItem
 from products.models import Product, Topping
 from bag.contexts import bag_contents
+from decimal import Decimal
 
 import stripe
 import json
@@ -39,10 +40,14 @@ def checkout(request):
             'full_name': request.POST['full_name'],
             'email': request.POST['email'],
             'phone_number': request.POST['phone_number'],
+            'country': request.POST['country'],
             'postcode': request.POST['postcode'],
+            'town_or_city': request.POST['town_or_city'],
             'street_address1': request.POST['street_address1'],
             'street_address2': request.POST['street_address2'],
+            'county': request.POST['county'],
         }
+
         order_form = OrderForm(form_data)
         if order_form.is_valid():
             order = order_form.save(commit=False)
@@ -54,15 +59,45 @@ def checkout(request):
                 product = Product.objects.get(id=item_id)
                 for item in item_list:
                     try:
-                        selected_toppings = Topping.objects.filter(id__in=item.additional_toppings)
-                        order_line_item = OrderLineItem(
+                        selected_toppings = None
+                        if len(item['additional_toppings']) > 0:
+                            if len(item['additional_toppings']) > 1:
+                                selected_toppings = Topping.objects.filter(id__in=item['additional_toppings'])
+                            else:
+                                selected_toppings = Topping.objects.filter(id=item['additional_toppings'][0])
+
+                        toppings_price = 0
+                        if selected_toppings is not None:
+                            toppings_price = sum(int(topping.price) for topping in selected_toppings.all()) * item['quantity']
+
+                        if item['size'] == '30':
+                            lineitem_total = product.price * item['quantity'] + toppings_price
+                        elif item['size'] == '35':
+                            toppings_price = toppings_price * Decimal(1.1)
+                            lineitem_total = (product.price * Decimal(1.1)) * item['quantity'] + toppings_price
+                        elif item['size'] == '40':
+                            toppings_price = toppings_price * Decimal(1.3)
+                            lineitem_total = (product.price * Decimal(1.3)) * item['quantity'] + toppings_price
+
+                        try:
+                            order_line_item = OrderLineItem(
                                 order=order,
                                 product=product,
-                                product_size=item.size,
-                                quantity=item.quantity,
-                                toppings=selected_toppings,
-                        )
-                        order_line_item.save()
+                                product_size=item['size'],
+                                quantity=item['quantity'],
+                                lineitem_total=round(lineitem_total, 2),
+                            )
+
+                            order_line_item.save()
+                            
+                            if selected_toppings is not None:
+                                order_line_item.toppings.set(selected_toppings)
+                                order_line_item.save()
+                        except Exception as e:
+                            messages.error(request, f'An error occurred while saving your order. \
+                                Please try again later. {e}')
+                            order.delete()
+                            return redirect(reverse('view_bag'))
 
                     except Product.DoesNotExist:
                         messages.error(request, (
@@ -113,6 +148,7 @@ def checkout_success(request, order_number):
     """
     save_info = request.session.get('save_info')
     order = get_object_or_404(Order, order_number=order_number)
+
     messages.success(request, f'Order successfully processed! \
         Your order number is {order_number}. A confirmation \
         email will be sent to {order.email}.')

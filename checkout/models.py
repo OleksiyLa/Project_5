@@ -4,7 +4,6 @@ from django.db import models
 from django.db.models import Sum
 from django.conf import settings
 from products.models import Product, Topping
-from decimal import Decimal
 
 
 class Order(models.Model):
@@ -12,8 +11,8 @@ class Order(models.Model):
     full_name = models.CharField(max_length=50, null=False, blank=False)
     email = models.EmailField(max_length=254, null=False, blank=False)
     phone_number = models.CharField(max_length=20, null=False, blank=False)
-    country = models.CharField(max_length=40, null=False, blank=False, default="Ireland")
-    county = models.CharField(max_length=80, null=False, blank=False, default="County Kerry")
+    country = models.CharField(max_length=40, null=False, blank=False, default="IE")
+    county = models.CharField(max_length=80, null=False, blank=False, default="Kerry")
     town_or_city = models.CharField(max_length=40, null=False, blank=False, default="Tralee")
     postcode = models.CharField(max_length=20, null=True, blank=True)
     street_address1 = models.CharField(max_length=80, null=False, blank=False)
@@ -22,6 +21,8 @@ class Order(models.Model):
     delivery_cost = models.DecimalField(max_digits=4, decimal_places=2, null=False, default=0)
     order_total = models.DecimalField(max_digits=7, decimal_places=2, null=False, default=0)
     grand_total = models.DecimalField(max_digits=7, decimal_places=2, null=False, default=0)
+    original_bag = models.TextField(null=False, blank=False, default='')
+    stripe_pid = models.CharField(max_length=254, null=False, blank=False, default='')
 
     def _generate_order_number(self):
         """
@@ -34,6 +35,7 @@ class Order(models.Model):
         Update grand total each time a line item is added,
         accounting for delivery costs.
         """
+        print("update_total", self.lineitems.aggregate(Sum('lineitem_total'))['lineitem_total__sum'])
         self.order_total = self.lineitems.aggregate(Sum('lineitem_total'))['lineitem_total__sum']
         if self.order_total < 50:
             self.delivery_cost = 12
@@ -62,19 +64,3 @@ class OrderLineItem(models.Model):
     quantity = models.IntegerField(null=False, blank=False, default=0)
     toppings = models.ManyToManyField(Topping)
     lineitem_total = models.DecimalField(max_digits=6, decimal_places=2, null=False, blank=False, editable=False)
-
-    def save(self, *args, **kwargs):
-        """
-        Override the original save method to set the lineitem total
-        and update the order total.
-        """
-        toppings_price = sum(int(topping.price) for topping in self.toppings.all())
-        if self.product_size == '30':
-            self.lineitem_total = self.product.price * self.quantity + toppings_price
-        if self.product_size == '35':
-            toppings_price = toppings_price * Decimal(1.1)
-            self.lineitem_total = self.product.price * Decimal(1.1) * self.quantity + toppings_price
-        if self.product_size == '40':
-            toppings_price = toppings_price * Decimal(1.3)
-            self.lineitem_total = self.product.price * Decimal(1.3) * self.quantity + toppings_price
-        super().save(*args, **kwargs)

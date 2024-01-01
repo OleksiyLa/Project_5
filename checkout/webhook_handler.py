@@ -1,7 +1,8 @@
 from django.http import HttpResponse
 
 from .models import Order, OrderLineItem
-from products.models import Product
+from products.models import Product, Topping
+from decimal import Decimal
 
 import json
 import time
@@ -81,24 +82,44 @@ class StripeWH_Handler:
                     original_bag=bag,
                     stripe_pid=pid,
                 )
-                for item_id, item_data in json.loads(bag).items():
+                for item_id, item_list in json.loads(bag).items():
                     product = Product.objects.get(id=item_id)
-                    if isinstance(item_data, int):
-                        order_line_item = OrderLineItem(
-                            order=order,
-                            product=product,
-                            quantity=item_data,
-                        )
-                        order_line_item.save()
-                    else:
-                        for size, quantity in item_data['items_by_size'].items():
+                    for item in item_list:
+                        selected_toppings = None
+                        if len(item['additional_toppings']) > 0:
+                            if len(item['additional_toppings']) > 1:
+                                selected_toppings = Topping.objects.filter(id__in=item['additional_toppings'])
+                            else:
+                                selected_toppings = Topping.objects.filter(id=item['additional_toppings'][0])
+
+                        toppings_price = 0
+                        if selected_toppings is not None:
+                            toppings_price = sum(int(topping.price) for topping in selected_toppings.all()) * item['quantity']
+
+                        if item['size'] == '30':
+                            lineitem_total = product.price * item['quantity'] + toppings_price
+                        elif item['size'] == '35':
+                            toppings_price = toppings_price * Decimal(1.1)
+                            lineitem_total = (product.price * Decimal(1.1)) * item['quantity'] + toppings_price
+                        elif item['size'] == '40':
+                            toppings_price = toppings_price * Decimal(1.3)
+                            lineitem_total = (product.price * Decimal(1.3)) * item['quantity'] + toppings_price
+
+
                             order_line_item = OrderLineItem(
                                 order=order,
                                 product=product,
-                                quantity=quantity,
-                                product_size=size,
+                                product_size=item['size'],
+                                quantity=item['quantity'],
+                                lineitem_total=round(lineitem_total, 2),
                             )
+
                             order_line_item.save()
+                            
+                            if selected_toppings is not None:
+                                order_line_item.toppings.set(selected_toppings)
+                                order_line_item.save()
+
             except Exception as e:
                 if order:
                     order.delete()
@@ -116,4 +137,3 @@ class StripeWH_Handler:
         return HttpResponse(
             content=f'Webhook received: {event["type"]}',
             status=200)
-    
