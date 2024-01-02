@@ -25,7 +25,7 @@
             {% endif %}
             {% if request.user.is_superuser %}
               <li class="nav-item mx-2">
-                <a class="nav-link {% if active_link == 'admin' %}active{% endif %}" href="#">Admin</a>
+                <a class="nav-link {% if active_link == 'admin' %}active{% endif %}" href="{% url 'admin:index' %}">Admin</a>
               </li>
             {% endif %}
           {% endif %}
