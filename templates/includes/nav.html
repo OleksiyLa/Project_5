@@ -17,17 +17,32 @@
           <li class="nav-item mx-2">
             <a class="nav-link {% if active_link == 'about' %}active{% endif %}" href="{% url 'about' %}">About</a>
           </li>
-          <li class="nav-item mx-2">
-            <a class="nav-link {% if active_link == 'orders' %}active{% endif %}" href="#">Orders</a>
-          </li>
-          <li class="nav-item mx-2">
-            <a class="nav-link {% if active_link == 'admin' %}active{% endif %}" href="#">Admin</a>
-          </li>
+          {% if request.user.is_authenticated %}
+            {% if request.user.is_superuser %}
+            <li class="nav-item mx-2">
+              <a class="nav-link {% if active_link == 'orders' %}active{% endif %}" href="#">Orders</a>
+            </li>
+            {% endif %}
+            {% if request.user.is_superuser %}
+            <li class="nav-item mx-2">
+              <a class="nav-link {% if active_link == 'admin' %}active{% endif %}" href="#">Admin</a>
+            </li>
+            {% endif %}
+          {% endif %}
         </ul>
         <ul class="navbar-nav text-center">
-          <li class="nav-item mx-2">
-            <a class="nav-link {% if active_link == 'login' %}active{% endif %}" href="#">Login</a>
-          </li>
+          {% if request.user.is_authenticated %}
+            <li class="nav-item mx-2">
+              <a class="nav-link {% if active_link == 'login' %}active{% endif %}" href="{% url 'account_logout' %}">Logout</a>
+            </li>
+          {% else %}
+            <li class="nav-item mx-2">
+              <a class="nav-link {% if active_link == 'login' %}active{% endif %}" href="{% url 'account_login' %}">Login</a>
+            </li>
+            <li class="nav-item mx-2">
+              <a class="nav-link {% if active_link == 'register' %}active{% endif %}" href="{% url 'account_signup' %}">Register</a>
+            </li>
+          {% endif %}
           <li class="nav-item mx-3">
             <a class="nav-link {% if active_link == 'bag' %}active{% endif %}" href="{% url 'view_bag' %}">
               {% if bag_items %}€{{ grand_total }}{% endif %}
