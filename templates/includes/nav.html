@@ -18,15 +18,15 @@
             <a class="nav-link {% if active_link == 'about' %}active{% endif %}" href="{% url 'about' %}">About</a>
           </li>
           {% if request.user.is_authenticated %}
-            {% if request.user.is_superuser %}
-            <li class="nav-item mx-2">
-              <a class="nav-link {% if active_link == 'orders' %}active{% endif %}" href="#">Orders</a>
-            </li>
+            {% if request.user.is_superuser or is_worker %}
+              <li class="nav-item mx-2">
+                <a class="nav-link {% if active_link == 'orders' %}active{% endif %}" href="#">Orders</a>
+              </li>
             {% endif %}
             {% if request.user.is_superuser %}
-            <li class="nav-item mx-2">
-              <a class="nav-link {% if active_link == 'admin' %}active{% endif %}" href="#">Admin</a>
-            </li>
+              <li class="nav-item mx-2">
+                <a class="nav-link {% if active_link == 'admin' %}active{% endif %}" href="#">Admin</a>
+              </li>
             {% endif %}
           {% endif %}
         </ul>
