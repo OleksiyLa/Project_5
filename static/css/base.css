@@ -328,6 +328,11 @@ h2.card-title {
   font-size: 1.3rem;
 }
 
+.pizza-toppings-category-topping {
+  cursor: pointer;
+  width: 100px;
+}
+
 /* Footer */
 footer {
     position: relative;

@@ -64,9 +64,28 @@
 		<!-- Toppings -->
 		<div class="mt-4">
 			<h2 class="mb-2 text-center text-main-color salsa" id="toppings">Additional Toppings</h2>
+			<div class="d-flex justify-content-center mt-4">
+				<div class="btn-group main-color d-flex flex-wrap" role="group" aria-label="Toppings options" id="topping_categories">
+					<input type="radio" class="btn-check" name="pizza-toppings-category" id="all" value="all" autocomplete="off" checked>
+					<label class="btn btn-outline-primary pizza-toppings-category-topping" for="all">All</label>
+					<input type="radio" class="btn-check" name="pizza-toppings-category" id="meats" value="Meats" autocomplete="off">
+					<label class="btn btn-outline-primary pizza-toppings-category-topping" for="meats">Meats</label>
+					<input type="radio" class="btn-check" name="pizza-toppings-category" id="seafood" value="Seafood" autocomplete="off">
+					<label class="btn btn-outline-primary pizza-toppings-category-topping" for="seafood">Seafood</label>
+					<input type="radio" class="btn-check" name="pizza-toppings-category" id="vegetables" value="Vegetables" autocomplete="off">
+					<label class="btn btn-outline-primary pizza-toppings-category-topping" for="vegetables">Vegetables</label>
+					<input type="radio" class="btn-check" name="pizza-toppings-category" id="fruits" value="Fruits" autocomplete="off">
+					<label class="btn btn-outline-primary pizza-toppings-category-topping" for="fruits">Fruits</label>
+					<input type="radio" class="btn-check" name="pizza-toppings-category" id="cheeses" value="Cheeses" autocomplete="off">
+					<label class="btn btn-outline-primary pizza-toppings-category-topping" for="cheeses">Cheeses</label>
+					<input type="radio" class="btn-check" name="pizza-toppings-category" id="other" value="Other" autocomplete="off">
+					<label class="btn btn-outline-primary pizza-toppings-category-topping" for="other">Other</label>
+				</div>
+			</div>
+			
 			<div class="row d-flex justify-content-around">
 				{% for topping in toppings %}
-					<div class="card topping-card position-relative my-4 rounded-3">
+					<div class="card topping-card position-relative my-4 {{ topping.category }} rounded-3">
 						<div class="row g-0 text-center">
 							<div class="card-body">
 								{% if topping.image %}
@@ -89,4 +108,23 @@
 
 {% block scripts %}
 <script src="{% static 'products/js/pizza_detail.js' %}"></script>
+<script>
+	$(document).ready(function() {
+		let previousSelectedTopping = 'all';
+		$('input[name="pizza-toppings-category"]').change(function() {
+			const selectedCategory = $(this).val();
+			
+			if (previousSelectedTopping === 'all') {
+				$('.topping-card').addClass('d-none');
+				$(`.${selectedCategory}`).removeClass('d-none');
+			} else if (selectedCategory === 'all') {
+				$('.topping-card').removeClass('d-none');
+			} else {
+				$(`.${previousSelectedTopping}`).addClass('d-none');
+				$(`.${selectedCategory}`).removeClass('d-none');
+			}
+			previousSelectedTopping = selectedCategory;
+		});
+	});
+</script>
 {% endblock %}
