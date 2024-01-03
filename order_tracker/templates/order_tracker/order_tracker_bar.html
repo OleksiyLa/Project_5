@@ -1,0 +1,53 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block title %}Order Tracker Bar{% endblock title %}
+
+{% block content %}
+<h1 class="text-center my-5">Order Tracker</h1>
+<main class="mt-5">
+  
+  <div class="container mt-4">
+
+    <div class="card p-4 bg-main-color text-center">
+        <div class="card-header">
+          Order Number: {{ order.order_number }}
+        </div>
+        <div class="m-5 card-body">
+          <p class="card-text">Address: {{ order.street_address1 }}, {{ order.town_or_city }}, {{ order.county }}, {{ order.country }}</p>
+          <p class="card-text">Grand Total: €{{ order.grand_total }}</p>
+            {% for line_item in order.lineitems.all %}
+              <p>({{ line_item.product }} {{ line_item.product_size }}cm |Quantity: {{ line_item.quantity }} Price: €{{ line_item.lineitem_total }})</p>
+            {% endfor %}
+            <div class="progress m-5" style="height: 40px;">
+              <div class="salsa progress-bar text-bg-warning h5" role="progressbar" style="background: #0b5a1d; color: #d3d3d3; height: 40px; width: 
+                {% if status == 'new' %}
+                    0%
+                {% elif status == 'accepted' %}
+                    20%
+                {% elif status == 'being_cooked' %}
+                    40%
+                {% elif status == 'being_prepared' %}
+                    60%
+                {% elif status == 'being_delivered' %}
+                    80%
+                {% elif status == 'completed' %}
+                    100%
+                {% endif %}
+                ;" aria-valuenow="{% if status == 'new' %}0{% elif status == 'accepted' %}20{% elif status == 'being_cooked' %}40{% elif status == 'being_prepared' %}60{% elif status == 'being_delivered' %}80{% elif status == 'completed' %}100{% endif %}" aria-valuemin="0" aria-valuemax="100">
+                {{ status_name }}
+              </div>
+            </div>
+        </div>
+        <div class="card-footer salsa h5">
+          Enjoy your pizza!
+        </div>
+    </div>
+  </div>
+</main>
+
+{% endblock content %}
+
+{% block scripts %}
+<script src="{% static 'products/js/pizza_list.js' %}"></script>
+{% endblock %}
