@@ -4,6 +4,7 @@ from django.db import models
 from django.db.models import Sum
 from django.conf import settings
 from products.models import Product, Topping
+from order_status_management.models import OrderProgress
 
 
 class Order(models.Model):
@@ -23,6 +24,14 @@ class Order(models.Model):
     grand_total = models.DecimalField(max_digits=7, decimal_places=2, null=False, default=0)
     original_bag = models.TextField(null=False, blank=False, default='')
     stripe_pid = models.CharField(max_length=254, null=False, blank=False, default='')
+    progress = models.OneToOneField(
+        OrderProgress,
+        null=False,
+        blank=True,
+        on_delete=models.CASCADE,
+        related_name='order'
+    )
+
 
     def _generate_order_number(self):
         """
