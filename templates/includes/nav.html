@@ -20,7 +20,7 @@
           {% if request.user.is_authenticated %}
             {% if request.user.is_superuser or is_worker %}
               <li class="nav-item mx-2">
-                <a class="nav-link {% if active_link == 'orders' %}active{% endif %}" href="#">Orders</a>
+                <a class="nav-link {% if active_link == 'orders' %}active{% endif %}" href="{% url 'orders' %}">Orders</a>
               </li>
             {% endif %}
             {% if request.user.is_superuser %}
