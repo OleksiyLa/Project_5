@@ -1,5 +1,5 @@
 from django.shortcuts import render, redirect
-from django.db.models import Q
+from django.utils import timezone
 from checkout.models import Order
 
 
@@ -15,15 +15,20 @@ def proceed(request, order_number):
     print(prev_status)
     if prev_status == 'new':
         order.progress.status = 'accepted'
-    if prev_status == 'accepted':
+        order.progress.accepted_at = timezone.now()
+    elif prev_status == 'accepted':
         order.progress.status = 'being_cooked'
-    if prev_status == 'being_cooked':
+        order.progress.start_cooking_at = timezone.now()
+    elif prev_status == 'being_cooked':
         order.progress.status = 'being_prepared'
-    if prev_status == 'being_prepared':
+        order.progress.start_preparing_at = timezone.now()
+    elif prev_status == 'being_prepared':
         order.progress.status = 'being_delivered'
-    if prev_status == 'being_delivered':
+        order.progress.start_delivering_at = timezone.now()
+    elif prev_status == 'being_delivered':
         order.progress.status = 'completed'
-    if prev_status == 'completed':
+        order.progress.completed_at = timezone.now()
+    elif prev_status == 'completed':
         order.progress.is_active = False
     order.progress.save()
     return redirect('orders', prev_status)

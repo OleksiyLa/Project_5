@@ -25,16 +25,6 @@ class OrderProgress(models.Model):
         if self._state.adding:
             if self.status == 'new':
                 self.new_at = timezone.now()
-            elif self.status == 'accepted':
-                self.accepted_at = timezone.now()
-            elif self.status == 'being_cooked':
-                self.start_cooking_at = timezone.now()
-            elif self.status == 'being_prepared':
-                self.start_preparing_at = timezone.now()
-            elif self.status == 'being_delivered':
-                self.start_delivering_at = timezone.now()
-            elif self.status == 'completed':
-                self.completed_at = timezone.now()
         
         super().save(*args, **kwargs)
 
