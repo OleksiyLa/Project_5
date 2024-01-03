@@ -13,7 +13,7 @@ def order_tracker_bar(request, order_number):
     order = Order.objects.get(order_number=order_number)
     status = order.progress.status
     
-
+    status_name = 'Pending'
     if status == 'accepted':
         status_name = 'Accepted'
     elif status == 'being_cooked':
