@@ -21,8 +21,10 @@
 			</div>
 		</div>
 
+    <div class="row">
     {% for order in orders %}
-    <div class="card mb-4">
+    <div class="col-md-6 col-lg-4 mb-2">
+    <div class="card mb-4 m-1 h-100">
       <div class="card-header">
         Order Number: {{ order.order_number }}
       </div>
@@ -35,7 +37,8 @@
         <p class="card-text">Delivery Cost: €{{ order.delivery_cost }}</p>
         <p class="card-text">Line Item Total: €{{ order.order_total }}</p>
         <p class="card-text">Grand Total: €{{ order.grand_total }}</p>
-        <!-- Add more order details as needed -->
+        <p class="card-text">Order Status: {{ order.progress.status }}</p>
+        <a href="{% url 'proceed' order.order_number %}" class="btn btn-custom">{% if order.progress.status == 'completed' %}Archive{% else %}Proceed{% endif %}</a>
 
         <h5 class="card-title mt-4">Line Items</h5>
         <table class="table">
@@ -45,7 +48,6 @@
               <th scope="col">Size</th>
               <th scope="col">Quantity</th>
               <th scope="col">Total</th>
-              <!-- Add more headers as needed -->
             </tr>
           </thead>
           <tbody>
@@ -62,7 +64,9 @@
         </table>
       </div>
     </div>
+    </div>
     {% endfor %}
+    </div>
 	
     </div>
 	</div>

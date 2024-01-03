@@ -19,6 +19,7 @@ class OrderProgress(models.Model):
     start_preparing_at = models.DateTimeField(null=True, blank=True)
     start_delivering_at = models.DateTimeField(null=True, blank=True)
     completed_at = models.DateTimeField(null=True, blank=True)
+    is_active = models.BooleanField(default=True)
 
     def save(self, *args, **kwargs):
         if self._state.adding:
