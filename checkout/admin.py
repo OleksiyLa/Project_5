@@ -1,5 +1,6 @@
 from django.contrib import admin
 from .models import Order, OrderLineItem
+from order_status_management.models import OrderProgress
 
 
 class OrderLineItemAdminInline(admin.TabularInline):
@@ -20,11 +21,11 @@ class OrderAdmin(admin.ModelAdmin):
               'postcode', 'town_or_city', 'street_address1',
               'street_address2', 'county', 'delivery_cost',
               'order_total', 'grand_total', 'original_bag',
-              'stripe_pid')
+              'stripe_pid', 'progress')
 
     list_display = ('order_number', 'created_at', 'full_name',
                     'order_total', 'delivery_cost',
-                    'grand_total',)
+                    'grand_total', 'progress')
 
     ordering = ('-created_at',)
 

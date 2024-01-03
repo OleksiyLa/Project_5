@@ -60,6 +60,9 @@ class Order(models.Model):
         """
         if not self.order_number:
             self.order_number = self._generate_order_number()
+        if not self.progress_id:
+            progress = OrderProgress.objects.create(status='new')
+            self.progress = progress
         super().save(*args, **kwargs)
 
     def __str__(self):

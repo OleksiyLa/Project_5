@@ -124,6 +124,16 @@ h1 {
   background-color: var(--success-color) !important;
 }
 
+.filter-btn {
+  cursor: pointer;
+  width: 100px;
+}
+
+.filter-btn.active {
+  background-color: var(--main-color);
+  color: #ffffff !important;
+}
+
 /* header */
 header {
   top: 0;
