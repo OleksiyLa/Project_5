@@ -12,8 +12,10 @@ def order_tracker(request):
 def order_tracker_bar(request, order_number):    
     order = Order.objects.get(order_number=order_number)
     status = order.progress.status
-    
+
+    time_taken = None
     status_name = 'Pending'
+
     if status == 'accepted':
         status_name = 'Accepted'
     elif status == 'being_cooked':
@@ -24,5 +26,8 @@ def order_tracker_bar(request, order_number):
         status_name = 'Delivering'
     elif status == 'completed':
         status_name = 'Delivered'
+        time_taken = order.progress.completed_at - order.progress.new_at
+        time_taken = time_taken.total_seconds() // 60
+        time_taken = str(time_taken).split('.')[0]
 
-    return render(request, 'order_tracker/order_tracker_bar.html', {'status': status, 'status_name': status_name, 'order': order, 'active_link': 'tracker'})
+    return render(request, 'order_tracker/order_tracker_bar.html', {'status': status, 'status_name': status_name, 'order': order, 'active_link': 'tracker', 'time_taken': time_taken})

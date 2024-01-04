@@ -13,14 +13,16 @@
         <div class="card-header">
           Order Number: {{ order.order_number }}
         </div>
-        <div class="m-5 card-body">
+        {% if time_taken %}<h2 class="mt-4 salsa">Time Taken: {{ time_taken }} minutes</h2>{% endif %}
+        <div class="my-5 card-body">
           <p class="card-text">Address: {{ order.street_address1 }}, {{ order.town_or_city }}, {{ order.county }}, {{ order.country }}</p>
           <p class="card-text">Grand Total: €{{ order.grand_total }}</p>
             {% for line_item in order.lineitems.all %}
               <p>({{ line_item.product }} {{ line_item.product_size }}cm |Quantity: {{ line_item.quantity }} Price: €{{ line_item.lineitem_total }})</p>
             {% endfor %}
-            <div class="progress m-5" style="height: 40px;">
-              <div class="salsa progress-bar text-bg-warning h5" role="progressbar" style="background: #0b5a1d; color: #d3d3d3; height: 40px; width: 
+            <h2 class="salsa mt-5" style="color: #{% if status == 'new' %}800020{% elif status == 'completed' %}4caf50{% else %}ffd700{% endif %};">{{ status_name }}</h2>
+            <div class="progress mb-5" style="height: 40px;">
+              <div class="salsa progress-bar h5" role="progressbar" style="background: #{% if status == 'completed' %}0b5a1d{% else %}ffd700{% endif %}; height: 40px; width: 
                 {% if status == 'new' %}
                     0%
                 {% elif status == 'accepted' %}
@@ -35,9 +37,9 @@
                     100%
                 {% endif %}
                 ;" aria-valuenow="{% if status == 'new' %}0{% elif status == 'accepted' %}20{% elif status == 'being_cooked' %}40{% elif status == 'being_prepared' %}60{% elif status == 'being_delivered' %}80{% elif status == 'completed' %}100{% endif %}" aria-valuemin="0" aria-valuemax="100">
-                {{ status_name }}
               </div>
             </div>
+            
         </div>
         <div class="card-footer salsa h5">
           Enjoy your pizza!
