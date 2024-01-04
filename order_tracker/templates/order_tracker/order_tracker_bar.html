@@ -21,7 +21,7 @@
               <p>({{ line_item.product }} {{ line_item.product_size }}cm |Quantity: {{ line_item.quantity }} Price: €{{ line_item.lineitem_total }})</p>
             {% endfor %}
             <h2 class="salsa mt-5" style="color: #{% if status == 'new' %}800020{% elif status == 'completed' %}4caf50{% else %}ffd700{% endif %};">{{ status_name }}</h2>
-            <div class="progress mb-5" style="height: 40px; background: #{% if status == 'completed' %}0b5a1d{% else %}ffd700{% endif %};">
+            <div class="progress mb-5" style="height: 40px; background: #{% if status == 'completed' %}0b5a1d;{% endif %}">
               <div class="salsa progress-bar h5" role="progressbar" style="background: #{% if status == 'completed' %}0b5a1d{% else %}ffd700{% endif %}; height: 40px; width: 
                 {% if status == 'new' %}
                     0%
