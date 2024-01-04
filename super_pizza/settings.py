@@ -55,6 +55,7 @@ INSTALLED_APPS = [
     'checkout',
     'order_status_management',
     'order_tracker',
+    'profiles',
 ]
 
 MIDDLEWARE = [
