@@ -1,6 +1,7 @@
 from django.shortcuts import render, redirect
 from django.db.models import Q
 from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
+from django.contrib import messages
 from .models import Product, Topping
 from .forms import AddProduct, PizzaFilterForm, AddTopping
 
@@ -51,24 +52,34 @@ def pizza_list(request):
 
 
 def add_pizza(request):
-    form = AddProduct()
     if request.method == 'POST':
         form = AddProduct(request.POST, request.FILES)
 
         if form.is_valid():
             form.save()
+            messages.success(request, 'Pizza added successfully')
             return redirect('pizza_list')
+        else:
+            messages.error(request, 'Failed to add pizza. Please ensure the form is valid.')
+    else:
+        form = AddProduct()
+
     return render(request, 'products/pizza_add.html', {'form': form})
 
 
 def add_topping(request):
-    form = AddTopping()
     if request.method == 'POST':
         form = AddTopping(request.POST, request.FILES)
 
         if form.is_valid():
             form.save()
+            messages.success(request, 'Topping added successfully')
             return redirect('pizza_list')
+        else:
+            messages.error(request, 'Failed to add topping. Please ensure the form is valid.')
+    else:
+        form = AddTopping()
+
     return render(request, 'products/topping_add.html', {'form': form})
 
 
