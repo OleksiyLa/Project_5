@@ -36,6 +36,7 @@ def pizza_list(request):
             if any(filters.values()):
                 products = products.filter(**filters)
             
+    products = products.order_by('-id')
     paginator = Paginator(products, 12)
     page = request.GET.get('page')
 
