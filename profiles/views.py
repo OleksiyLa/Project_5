@@ -1,6 +1,7 @@
 from django.shortcuts import render, get_object_or_404
 from django.contrib import messages
 from django.contrib.auth.decorators import login_required
+from django.http import Http404
 
 from .models import UserProfile
 from .forms import UserProfileForm
@@ -33,8 +34,14 @@ def profile(request):
 
     return render(request, template, context)
 
+
+@login_required
 def order_history(request, order_number):
     order = get_object_or_404(Order, order_number=order_number)
+    is_user = request.user == order.user_profile.user
+
+    if not is_user:
+        raise Http404("Resource does not exist")
 
     messages.info(request, (
         f'This is a past confirmation for order number {order_number}. '
