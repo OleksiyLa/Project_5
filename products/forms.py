@@ -1,4 +1,5 @@
 from django import forms
+from .widgets import CustomCloudinaryField
 from .models import Product, Topping
 
 
@@ -6,13 +7,17 @@ class ProductForm(forms.ModelForm):
 
     class Meta:
         model = Product
-        fields = ['name', 'description', 'price', 'rating', 'image', 'is_spicy', 'is_vegetarian', 'is_premium', 'is_seafood', 'is_new']
+        fields = ['name', 'description', 'price', 'image', 'is_spicy', 'is_vegetarian', 'is_premium', 'is_seafood', 'is_new']
+    
+    image = CustomCloudinaryField(label='Image', required=False)
 
 
 class ToppingForm(forms.ModelForm):
     class Meta:
         model = Topping
         fields = ['name', 'price', 'image']
+    
+    image = CustomCloudinaryField(label='Image', required=False)
 
 
 class PizzaFilterForm(forms.Form):

@@ -113,7 +113,9 @@ def edit_pizza(request, slug):
         if form.is_valid():
             product = get_object_or_404(Product, slug=slug)
             new_image = form.cleaned_data.get('image')
-            if new_image:
+            image_clear = form.cleaned_data.get('image-clear')
+
+            if (new_image and product.image) or image_clear:
                 configure_cloudinary()
                 destroy(product.image.public_id)
             form.save()
@@ -141,7 +143,7 @@ def edit_topping(request, slug):
         if form.is_valid():
             topping = get_object_or_404(Topping, slug=slug)
             new_image = form.cleaned_data.get('image')
-            if new_image:
+            if new_image and topping.image:
                 configure_cloudinary()
                 destroy(topping.image.public_id)
         if form.is_valid():
