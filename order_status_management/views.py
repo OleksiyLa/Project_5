@@ -1,18 +1,32 @@
 from django.shortcuts import render, redirect
 from django.utils import timezone
+from django.contrib.auth.decorators import login_required
+from django.http import Http404
 from checkout.models import Order
 
 
-def orders(request, status):    
+@login_required
+def orders(request, status):
+    is_worker = request.user.groups.filter(name='Worker').exists()
+
+    if not (is_worker or request.user.is_superuser):
+        raise Http404("Resource does not exist")
+
     orders = Order.objects.filter(progress__status=status, progress__is_active=True).order_by('-created_at')
 
     return render(request, 'order_status_management/orders.html', {'orders': orders, 'status': status})
 
 
+@login_required
 def proceed(request, order_number):
+    is_worker = request.user.groups.filter(name='Worker').exists()
+
+    if not (is_worker or request.user.is_superuser):
+        raise Http404("Resource does not exist")
+
     order = Order.objects.get(order_number=order_number)
     prev_status = order.progress.status
-    print(prev_status)
+
     if prev_status == 'new':
         order.progress.status = 'accepted'
         order.progress.accepted_at = timezone.now()
