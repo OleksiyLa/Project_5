@@ -136,6 +136,12 @@
                   <input type="hidden" name="redirect_url" value="{{ full_path }}">
                   <button type="submit" class="btn btn-primary btn-custom rounded-2 w-100">Add to Cart</button>
                 </form>
+                {% if request.user.is_superuser %}
+                  <small class="ml-3">
+                    <a class="text-main-color" href="{% url 'edit_pizza' product.slug %}">Edit</a> | 
+                    <a class="text-red" href="{% url 'delete_pizza' product.slug %}">Delete</a>
+                  </small>
+                {% endif %}
               </div>
             </div>
           {% endfor %}

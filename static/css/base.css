@@ -316,10 +316,14 @@ h2.card-title {
   position: absolute;
   left: 50%;
   transform: translateX(-50%);
-  bottom: 2rem;
-  font-size: 2rem;
+  bottom: 40px;
+  font-size: 30px;
   cursor: pointer;
   color: var(--main-color);
+}
+
+.topping-admin {
+  transform: translateX(-50%);
 }
 
 .add-icon:hover {

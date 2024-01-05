@@ -1,9 +1,11 @@
-from django.shortcuts import render, redirect
+from django.shortcuts import render, redirect, get_object_or_404
 from django.db.models import Q
 from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
 from django.contrib import messages
 from .models import Product, Topping
-from .forms import AddProduct, PizzaFilterForm, AddTopping
+from .forms import ProductForm, PizzaFilterForm, ToppingForm
+from cloudinary.uploader import destroy
+from .utils import configure_cloudinary
 
 
 def pizza_list(request):
@@ -51,9 +53,16 @@ def pizza_list(request):
     return render(request, 'products/pizza_list.html', {'products': products, 'form': form, 'full_path': full_path, 'active_link': 'pizza'})
 
 
+def pizza_detail(request, slug):
+    full_path = request.build_absolute_uri()
+    pizza = Product.objects.get(slug=slug)
+    toppings = Topping.objects.all()
+    return render(request, 'products/pizza_detail.html', {'product': pizza, 'toppings': toppings, 'full_path': full_path})
+
+
 def add_pizza(request):
     if request.method == 'POST':
-        form = AddProduct(request.POST, request.FILES)
+        form = ProductForm(request.POST, request.FILES)
 
         if form.is_valid():
             form.save()
@@ -62,14 +71,14 @@ def add_pizza(request):
         else:
             messages.error(request, 'Failed to add pizza. Please ensure the form is valid.')
     else:
-        form = AddProduct()
+        form = ProductForm()
 
     return render(request, 'products/pizza_add.html', {'form': form})
 
 
 def add_topping(request):
     if request.method == 'POST':
-        form = AddTopping(request.POST, request.FILES)
+        form = ToppingForm(request.POST, request.FILES)
 
         if form.is_valid():
             form.save()
@@ -78,13 +87,78 @@ def add_topping(request):
         else:
             messages.error(request, 'Failed to add topping. Please ensure the form is valid.')
     else:
-        form = AddTopping()
+        form = ToppingForm()
 
     return render(request, 'products/topping_add.html', {'form': form})
 
 
-def pizza_detail(request, slug):
-    full_path = request.build_absolute_uri()
-    pizza = Product.objects.get(slug=slug)
-    toppings = Topping.objects.all()
-    return render(request, 'products/pizza_detail.html', {'product': pizza, 'toppings': toppings, 'full_path': full_path})
+def edit_pizza(request, slug):
+    """ Edit a pizza in the store """
+    product = get_object_or_404(Product, slug=slug)
+    if request.method == 'POST':
+        form = ProductForm(request.POST, request.FILES, instance=product)
+        if form.is_valid():
+            product = get_object_or_404(Product, slug=slug)
+            new_image = form.cleaned_data.get('image')
+            if new_image:
+                configure_cloudinary()
+                destroy(product.image.public_id)
+            form.save()
+            messages.success(request, 'Pizza updated successfully')
+            return redirect('pizza_detail', slug=product.slug)
+        else:
+            messages.error(request, 'Failed to update pizza. Please ensure the form is valid.')
+    else:
+        form = ProductForm(instance=product)
+        messages.info(request, f'You are editing {product.name}')
+
+    return render(request, 'products/pizza_edit.html', {'form': form})
+
+
+def edit_topping(request, slug):
+    """ Edit a topping in the store """
+    topping = get_object_or_404(Topping, slug=slug)
+
+    if request.method == 'POST':
+        form = ToppingForm(request.POST, request.FILES, instance=topping)
+        if form.is_valid():
+            topping = get_object_or_404(Topping, slug=slug)
+            new_image = form.cleaned_data.get('image')
+            if new_image:
+                configure_cloudinary()
+                destroy(topping.image.public_id)
+        if form.is_valid():
+            form.save()
+            messages.success(request, 'Topping updated successfully')
+            return redirect('pizza_list')
+        else:
+            messages.error(request, 'Failed to update topping. Please ensure the form is valid.')
+    else:
+        form = ToppingForm(instance=topping)
+        messages.info(request, f'You are editing {topping.name}')
+
+    return render(request, 'products/topping_edit.html', {'form': form})
+
+
+def delete_pizza(request, slug):
+    """ Delete a pizza from the store """
+    product = get_object_or_404(Product, slug=slug)
+
+    if product.image:
+        configure_cloudinary()
+        destroy(product.image.public_id)
+    product.delete()
+    messages.success(request, 'Pizza deleted!')
+    return redirect('pizza_list')
+
+
+def delete_topping(request, slug):
+    """ Delete a topping from the store """
+    topping = get_object_or_404(Topping, slug=slug)
+
+    if topping.image:
+        configure_cloudinary()
+        destroy(topping.image.public_id)
+    topping.delete()
+    messages.success(request, 'Topping deleted!')
+    return redirect('pizza_list')
