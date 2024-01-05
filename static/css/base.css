@@ -90,6 +90,10 @@ h1 {
   opacity: 0.9;
 }
 
+.border-custom {
+  border-color: var(--main-color) !important;
+}
+
 .btn-outline-custom {
   color: var(--main-color) !important;
   border-color: var(--main-color) !important;
