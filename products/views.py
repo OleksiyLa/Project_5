@@ -1,7 +1,8 @@
-from django.shortcuts import render, redirect, get_object_or_404
+from django.shortcuts import render, redirect, reverse, get_object_or_404
 from django.db.models import Q
 from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
 from django.contrib import messages
+from django.contrib.auth.decorators import login_required
 from .models import Product, Topping
 from .forms import ProductForm, PizzaFilterForm, ToppingForm
 from cloudinary.uploader import destroy
@@ -60,14 +61,18 @@ def pizza_detail(request, slug):
     return render(request, 'products/pizza_detail.html', {'product': pizza, 'toppings': toppings, 'full_path': full_path})
 
 
+@login_required
 def add_pizza(request):
+    if not request.user.is_superuser:
+        return redirect(reverse('pizza_list'))
+
     if request.method == 'POST':
         form = ProductForm(request.POST, request.FILES)
 
         if form.is_valid():
             form.save()
             messages.success(request, 'Pizza added successfully')
-            return redirect('pizza_list')
+            return redirect(reverse('pizza_list'))
         else:
             messages.error(request, 'Failed to add pizza. Please ensure the form is valid.')
     else:
@@ -76,7 +81,11 @@ def add_pizza(request):
     return render(request, 'products/pizza_add.html', {'form': form})
 
 
+@login_required
 def add_topping(request):
+    if not request.user.is_superuser:
+        return redirect(reverse('pizza_list'))
+
     if request.method == 'POST':
         form = ToppingForm(request.POST, request.FILES)
 
@@ -92,8 +101,12 @@ def add_topping(request):
     return render(request, 'products/topping_add.html', {'form': form})
 
 
+@login_required
 def edit_pizza(request, slug):
     """ Edit a pizza in the store """
+    if not request.user.is_superuser:
+        return redirect(reverse('pizza_list'))
+
     product = get_object_or_404(Product, slug=slug)
     if request.method == 'POST':
         form = ProductForm(request.POST, request.FILES, instance=product)
@@ -115,8 +128,12 @@ def edit_pizza(request, slug):
     return render(request, 'products/pizza_edit.html', {'form': form})
 
 
+@login_required
 def edit_topping(request, slug):
     """ Edit a topping in the store """
+    if not request.user.is_superuser:
+        return redirect(reverse('pizza_list'))
+
     topping = get_object_or_404(Topping, slug=slug)
 
     if request.method == 'POST':
@@ -140,8 +157,12 @@ def edit_topping(request, slug):
     return render(request, 'products/topping_edit.html', {'form': form})
 
 
+@login_required
 def delete_pizza(request, slug):
     """ Delete a pizza from the store """
+    if not request.user.is_superuser:
+        return redirect(reverse('pizza_list'))
+
     product = get_object_or_404(Product, slug=slug)
 
     if product.image:
@@ -152,8 +173,12 @@ def delete_pizza(request, slug):
     return redirect('pizza_list')
 
 
+@login_required
 def delete_topping(request, slug):
     """ Delete a topping from the store """
+    if not request.user.is_superuser:
+        return redirect(reverse('pizza_list'))
+
     topping = get_object_or_404(Topping, slug=slug)
 
     if topping.image:
