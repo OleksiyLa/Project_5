@@ -3,6 +3,7 @@ from django.db.models import Q
 from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
 from django.contrib import messages
 from django.contrib.auth.decorators import login_required
+from django.utils.text import slugify
 from .models import Product, Topping
 from .forms import ProductForm, PizzaFilterForm, ToppingForm
 from cloudinary.uploader import destroy
@@ -112,15 +113,19 @@ def edit_pizza(request, slug):
         form = ProductForm(request.POST, request.FILES, instance=product)
         if form.is_valid():
             product = get_object_or_404(Product, slug=slug)
-            new_image = form.cleaned_data.get('image')
-            image_clear = form.cleaned_data.get('image-clear')
-
-            if (new_image and product.image) or image_clear:
-                configure_cloudinary()
-                destroy(product.image.public_id)
+            new_image = request.FILES.get('image')
+            image_clear = request.POST.get('image-clear')
+            if product.image:
+                if image_clear == 'on':
+                    configure_cloudinary()
+                    destroy(product.image.public_id)
+                elif new_image:
+                    configure_cloudinary()
+                    destroy(product.image.public_id)
             form.save()
             messages.success(request, 'Pizza updated successfully')
-            return redirect('pizza_detail', slug=product.slug)
+            slug = slugify(form.cleaned_data.get('name'))
+            return redirect('pizza_detail', slug=slug)
         else:
             messages.error(request, 'Failed to update pizza. Please ensure the form is valid.')
     else:
@@ -142,11 +147,15 @@ def edit_topping(request, slug):
         form = ToppingForm(request.POST, request.FILES, instance=topping)
         if form.is_valid():
             topping = get_object_or_404(Topping, slug=slug)
-            new_image = form.cleaned_data.get('image')
-            if new_image and topping.image:
-                configure_cloudinary()
-                destroy(topping.image.public_id)
-        if form.is_valid():
+            new_image = request.FILES.get('image')
+            image_clear = request.POST.get('image-clear')
+            if topping.image:
+                if image_clear == 'on':
+                    configure_cloudinary()
+                    destroy(topping.image.public_id)
+                elif new_image:
+                    configure_cloudinary()
+                    destroy(topping.image.public_id)
             form.save()
             messages.success(request, 'Topping updated successfully')
             return redirect('pizza_list')
