@@ -203,7 +203,7 @@
                         <span class="text-uppercase">Back to Profile</span>
                     </a>
                 {% else %}
-                    <a href="{% url 'order_tracker_bar' order.order_number %}" class="btn btn-custom rounded-0 my-2">
+                    <a href="{% url 'order_tracker_bar' order.order_number timestamp %}" class="btn btn-custom rounded-0 my-2">
                         <span class="text-uppercase">Track Your Order!</span>
                     </a>
                 {% endif %}

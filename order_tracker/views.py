@@ -1,5 +1,6 @@
 from django.shortcuts import render, redirect, get_object_or_404
 from django.contrib import messages
+from django.http import Http404
 from checkout.models import Order
 
 
@@ -11,7 +12,8 @@ def order_tracker(request):
         if order:
             order = Order.objects.get(order_number=order_number)
             if order.progress.is_active:
-                return redirect('order_tracker_bar', order_number=order.order_number)
+                timestamp = int(order.progress.new_at.timestamp())
+                return redirect('order_tracker_bar', order_number=order.order_number, timestamp=timestamp)
             else:
                 messages.error(request, 'Order not found')
                 return redirect('order_tracker')
@@ -22,8 +24,12 @@ def order_tracker(request):
     return render(request, 'order_tracker/order_tracker.html', {'active_link': 'tracker'})
 
 
-def order_tracker_bar(request, order_number):    
+def order_tracker_bar(request, order_number, timestamp):    
     order = get_object_or_404(Order, order_number=order_number, progress__is_active=True)
+
+    if int(order.progress.new_at.timestamp()) != int(timestamp):
+        raise Http404('Order not found')
+
     status = order.progress.status
 
     time_taken = None
