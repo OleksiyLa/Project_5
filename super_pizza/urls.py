@@ -16,6 +16,7 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path, include
+from .views import handler404
 
 urlpatterns = [
     path('admin/', admin.site.urls),
@@ -28,3 +29,5 @@ urlpatterns = [
     path('order_tracker/', include('order_tracker.urls')),
     path('profiles/', include('profiles.urls')),
 ]
+
+handler404 = 'boutique_ado.views.handler404'
