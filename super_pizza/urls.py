@@ -30,4 +30,4 @@ urlpatterns = [
     path('profiles/', include('profiles.urls')),
 ]
 
-handler404 = 'boutique_ado.views.handler404'
+handler404 = 'super_pizza.views.handler404'
