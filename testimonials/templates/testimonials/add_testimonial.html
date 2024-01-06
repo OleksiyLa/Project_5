@@ -25,7 +25,7 @@
           {% endfor %}
         {% endfor %}
       {% endif %}
-      <form method="POST" id="testimonial-form">
+      <form method="POST" id="testimonial-form" novalidate>
         {% csrf_token %}
         <div class="mb-3">
           {{ form.name|as_crispy_field  }}
