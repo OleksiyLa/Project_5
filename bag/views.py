@@ -1,5 +1,6 @@
 from django.shortcuts import render, redirect, reverse, HttpResponse
 from django.contrib import messages
+from products.models import Topping
 import uuid
 
 
@@ -22,6 +23,15 @@ def add_to_bag(request, item_id):
             additional_toppings_list = additional_toppings.split(',')
             if len(additional_toppings_list) > 7:
                 messages.warning(request, "You can only add up to 7 additional toppings")
+                if 'bag' in request.session:
+                    del request.session['bag']
+                return redirect(redirect_url)
+
+            additional_toppings_instances = Topping.objects.filter(id__in=additional_toppings_list)
+            if len(additional_toppings_instances) != len(additional_toppings_list):
+                if 'bag' in request.session:
+                    del request.session['bag']
+                messages.error(request, "Some additional toppings do not exist.")
                 return redirect(redirect_url)
             sorted_toppings_list = sorted(additional_toppings_list)
 
@@ -32,6 +42,12 @@ def add_to_bag(request, item_id):
                 for pizza in pizzas_by_size:
                     sorted_toppings = sorted(pizza['additional_toppings'])
                     if sorted_toppings == sorted_toppings_list:
+                        if pizza['quantity'] > 14:
+                            messages.error(request, "You can only add up to 15 pizzas of the same type")
+                            if 'bag' in request.session:
+                                del request.session['bag']
+                            return redirect(redirect_url)
+
                         pizza['quantity'] += 1
                         flag = False
                         break
