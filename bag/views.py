@@ -66,6 +66,11 @@ def adjust_bag(request, item_id):
     """Adjust the quantity of the specified product to the specified amount"""
 
     quantity = int(request.POST.get('quantity'))
+
+    if quantity > 15:
+        messages.warning(request, "You can only add up to 15 pizzas of the same type")
+        return redirect(reverse('view_bag'))
+
     id = request.POST.get('id')
     bag = request.session.get('bag', {})
     for pizza in bag[item_id]:

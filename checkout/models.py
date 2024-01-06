@@ -3,6 +3,7 @@ import uuid
 from django.db import models
 from django.db.models import Sum
 from django.conf import settings
+from django.core.validators import MaxValueValidator
 from products.models import Product, Topping
 from order_status_management.models import OrderProgress
 from profiles.models import UserProfile
@@ -76,6 +77,6 @@ class OrderLineItem(models.Model):
     order = models.ForeignKey(Order, null=False, blank=False, on_delete=models.CASCADE, related_name='lineitems')
     product = models.ForeignKey(Product, null=True, blank=False, on_delete=models.SET_NULL)
     product_size = models.CharField(max_length=2, null=True, blank=True)
-    quantity = models.IntegerField(null=False, blank=False, default=0)
+    quantity = models.IntegerField(null=False, blank=False, default=0, validators=[MaxValueValidator(15)])
     toppings = models.ManyToManyField(Topping)
     lineitem_total = models.DecimalField(max_digits=6, decimal_places=2, null=False, blank=False, editable=False)

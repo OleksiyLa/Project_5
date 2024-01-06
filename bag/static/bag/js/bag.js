@@ -3,7 +3,7 @@ function handleEnableDisable(id) {
 	if (inputElement) {
 		const currentValue = parseInt(inputElement.value);
 		const minusDisabled = currentValue < 2;
-		const plusDisabled = currentValue > 98;
+		const plusDisabled = currentValue > 14;
 		const decrementButton = document.getElementById('decrement-qty_' + id);
 		const incrementButton = document.getElementById('increment-qty_' + id);
 		decrementButton.disabled = minusDisabled;
