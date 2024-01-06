@@ -28,6 +28,7 @@ urlpatterns = [
     path('order_status_management/', include('order_status_management.urls')),
     path('order_tracker/', include('order_tracker.urls')),
     path('profiles/', include('profiles.urls')),
+    path('testimonials/', include('testimonials.urls')),
 ]
 
 handler404 = 'super_pizza.views.handler404'
