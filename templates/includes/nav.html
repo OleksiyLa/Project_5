@@ -31,26 +31,36 @@
           {% endif %}
         </ul>
         <ul class="navbar-nav text-center">
-          {% if request.user.is_authenticated %}
-            <li class="nav-item mx-2">
-              <a class="nav-link {% if active_link == 'profile' %}active{% endif %}" href="{% url 'profile' %}">My Profile</a>
-            </li>
-            <li class="nav-item mx-2">
-              <a class="nav-link {% if active_link == 'login' %}active{% endif %}" href="{% url 'account_logout' %}">Logout</a>
-            </li>
-          {% else %}
-            <li class="nav-item mx-2">
-              <a class="nav-link {% if active_link == 'login' %}active{% endif %}" href="{% url 'account_login' %}">Login</a>
-            </li>
-            <li class="nav-item mx-2">
-              <a class="nav-link {% if active_link == 'register' %}active{% endif %}" href="{% url 'account_signup' %}">Register</a>
-            </li>
-          {% endif %}
-          <li class="nav-item mx-3">
-            <a class="nav-link {% if active_link == 'bag' %}active{% endif %}" href="{% url 'view_bag' %}">
-              {% if bag_items %}€{{ grand_total }}{% endif %}
-              <img src="{% static 'svg/cart.svg' %}" alt="cart" width="25px">
+          <li class="nav-item dropdown">
+            <a class="nav-link user-icon" href="#" id="user-options" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+              <i class="fas fa-user fa-lg"></i>
             </a>
+            <ul class="dropdown-menu dropdown-menu-end border-0 text-center" aria-labelledby="user-options">
+              {% if request.user.is_authenticated %}
+                <li class="text-main-color dropdown-item"><a class="nav-link {% if active_link == 'profile' %}active{% endif %}" href="{% url 'profile' %}">My Profile</a></li>
+                {% if request.user.is_superuser %}
+                  <li class="text-main-color dropdown-item">
+                    <a class="nav-link" href="{% url 'add_pizza' %}">Add Pizza</a>
+                  </li>
+                  <li class="text-main-color dropdown-item">
+                    <a class="nav-link" href="{% url 'add_topping' %}">Add Topping</a>
+                  </li>
+                {% endif %}
+                <li class="text-main-color dropdown-item"><a class="nav-link {% if active_link == 'logout' %}active{% endif %}" href="{% url 'account_logout' %}">Logout</a></li>
+              {% else %}
+                <li class="text-main-color dropdown-item"><a href="{% url 'account_login' %}" class="nav-link">Login</a></li>
+                <li class="text-main-color dropdown-item"><a href="{% url 'account_signup' %}" class="nav-link">Register</a></li>
+              {% endif %} 
+            </ul>
+          </li>      
+          <li class="nav-item mx-4">
+            <a class="nav-link pe-5 {% if active_link == 'bag' %}active{% endif %}" href="{% url 'view_bag' %}">
+              
+              <i class="fas fa-shopping-cart fa-lg position-relative" alt="cart">
+              <small class="position-absolute bottom-0">{% if bag_items %}€{{ grand_total }}{% endif %}</small>
+            </i>
+            </a>
+            
           </li>
         </ul>
       </div>

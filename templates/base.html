@@ -43,5 +43,14 @@
   {% block scripts %}
   {% endblock %}
   <script src="{% static 'js/index.js' %}"></script>
+  <script>
+    $(document).ready(function() {
+      var currentPath = window.location.pathname;
+      $('.dropdown-menu a[href="' + currentPath + '"]').addClass('active');
+      if ($('.dropdown-menu a[href="' + currentPath + '"]').hasClass('active')) {
+        $('.user-icon').addClass('active');
+      }
+    });
+  </script>
 </body>
 </html>
