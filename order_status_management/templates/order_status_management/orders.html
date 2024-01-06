@@ -29,6 +29,7 @@
         Order Number: {{ order.order_number }}
       </div>
       <div class="card-body">
+        <sup class="card-text">{{ order.created_at }}</sup>
         <h5 class="card-title">Customer Information</h5>
         <p class="card-text">Name: {{ order.full_name }}</p>
         <p class="card-text">Email: {{ order.email }}</p>
