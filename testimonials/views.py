@@ -26,6 +26,10 @@ def testimonials_view(request):
 def add_testimonial(request):
     if request.method == 'POST':
         user = request.user
+        has_testimonial = Testimonial.objects.filter(user=user, publish_testimonial=True).exists()
+        if has_testimonial:
+            messages.warning(request, 'You have already left a testimonial. You may be able to leave it after some time.')
+            return redirect('testimonials')
         orders = user.userprofile.orders.all()
         if orders.count() > 0:
             form = TestimonialForm(request.POST)
@@ -74,5 +78,5 @@ def delete_testimonial(request, testimonial_id):
 def view_not_approved_testimonials(request):
     if not request.user.is_superuser:
         raise Http404('Not found.')
-    testimonials = Testimonial.objects.filter(is_verified=False, publish_testimonial=True)
+    testimonials = Testimonial.objects.filter(is_verified=False, publish_testimonial=True).order_by('created_at')
     return render(request, 'testimonials/testimonials.html', {'active_link': 'testimonials', 'testimonials': testimonials})

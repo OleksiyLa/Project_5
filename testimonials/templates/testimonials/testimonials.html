@@ -23,6 +23,9 @@
       {% for testimonial in testimonials %}
       <div class="col-md-4 mb-4">
         <div class="card h-100">
+          <div class="card-header text-center">
+            {{ testimonial.created_at|date:"d M Y" }}
+          </div>
           <div class="card-body">
             <h2 class="card-title">{{ testimonial.name }}</h2>
             <div class="d-flex mb-2">
@@ -34,6 +37,7 @@
             <hr class="my-3">
             <p class="card-text">{{ testimonial.testimonial }}</p>
           </div>
+          <div class="card-footer text-muted text-center">
           {% if request.user.is_superuser %}
           <small class="ml-3 text-center">
             {% if not testimonial.is_verified %}
@@ -42,6 +46,7 @@
             <a class="text-red" href="{% url 'delete_testimonial' testimonial.id %}">Delete</a>
           </small>
           {% endif %}
+          </div>
         </div>
       </div>
       {% endfor %}
