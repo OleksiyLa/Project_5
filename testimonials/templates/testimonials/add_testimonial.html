@@ -4,13 +4,15 @@
 
 {% block title %}Your Testimonial{% endblock %}
 
+{% block css %}<link rel="stylesheet" href="{% static 'testimonials/css/testimonials.css' %}">{% endblock %}
+
 {% block content %}
-<div class="container my-3">
+<main class="container my-3">
   <div class="row">
     <div class="col-lg-6 mt-3 offset-lg-3 shadow-lg p-5">
       <div class="d-flex align-items-center mb-3">
         <h1 class="text-center h3 mb-0 mx-auto d-flex align-items-center title-wrapper">
-          Add Pizza
+          Provide Your Testimonial
         </h1>
       </div>
       {% if form.errors %}
@@ -23,12 +25,52 @@
           {% endfor %}
         {% endfor %}
       {% endif %}
-      <form class="my-5" method="POST" novalidate enctype="multipart/form-data">
+      <form method="POST" id="testimonial-form">
         {% csrf_token %}
-        {{ form|crispy }}
-        <button type="submit" class="btn btn-lg btn-custom w-100">Add Pizza</button>
-      </form>
+        <div class="mb-3">
+          {{ form.name|as_crispy_field  }}
+        </div>
+        <div class="mb-3">
+            {{ form.testimonial|as_crispy_field  }}
+        </div>
+        <div class="mb-3 ratings">
+          <p class="m-0">Please rate your experience with us *</p>
+          {% for choice in form.rating %}
+            {{ choice.tag }}
+            <label class="rating-color rating-label" for="{{ choice.id_for_label }}">
+              <i class="fa fa-star"></i>
+            </label>
+          {% endfor %}
+        </div>
+        <div class="mb-3">
+            {{ form.publish_testimonial|as_crispy_field  }}
+        </div>
+        <button type="submit" class="btn btn-lg btn-custom w-100">Submit</button>
+    </form>
     </div>
   </div>
-</div>
+</main>
 {% endblock %}
+
+{% block scripts %}
+<script>
+  document.addEventListener("DOMContentLoaded", function() {
+    const ratingLabels = document.querySelectorAll('.ratings .rating-label');
+
+    ratingLabels.forEach(label => {
+      label.addEventListener('click', function() {
+        const clickedIndex = [...ratingLabels].indexOf(label);
+
+        ratingLabels.forEach(label => {
+          label.classList.remove('selected-rating-color');
+        });
+
+        for (let i = clickedIndex; i >= 0; i--) {
+          ratingLabels[i].classList.add('selected-rating-color');
+        }
+      });
+    });
+  });
+</script>
+{% endblock %}
+

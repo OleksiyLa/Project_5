@@ -1,0 +1,20 @@
+.ratings input[type="radio"] {
+    display: none;
+}
+
+
+
+.rating-color{
+    /* color: var(--warning-color); */
+    opacity: 0.3;
+}
+
+.selected-rating-color {
+    color: var(--main-color) !important;
+    opacity: 1;
+}
+
+.rating-label {
+    font-size: 2rem;
+    cursor: pointer;
+}

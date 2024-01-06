@@ -11,6 +11,7 @@ class Testimonial(models.Model):
     )
 
     user = models.ForeignKey(User, on_delete=models.CASCADE)
+    name = models.CharField(max_length=100, blank=False, null=False)
     rating = models.IntegerField(choices=RATING_CHOICES, default=5)
     testimonial = models.TextField(blank=False, null=False)
     publish_testimonial = models.BooleanField(default=False)

@@ -41,6 +41,9 @@
             <ul class="dropdown-menu dropdown-menu-end border-0 text-center" aria-labelledby="user-options">
               {% if request.user.is_authenticated %}
                 <li class="text-main-color dropdown-item"><a class="nav-link {% if active_link == 'profile' %}active{% endif %}" href="{% url 'profile' %}">My Profile</a></li>
+                <li class="text-main-color dropdown-item">
+                  <a class="nav-link" href="{% url 'add_testimonial' %}">Provide Testimonials</a>
+                </li>
                 {% if request.user.is_superuser %}
                   <li class="text-main-color dropdown-item">
                     <a class="nav-link" href="{% url 'add_pizza' %}">Add Pizza</a>
