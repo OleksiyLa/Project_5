@@ -23,8 +23,7 @@ def profile(request):
             messages.error(request, 'Update failed. Please ensure the form is valid.')
 
     form = UserProfileForm(instance=profile)
-    orders = profile.orders.all()
-    print("orders", orders)
+    orders = profile.orders.all().order_by('-created_at')
     template = 'profiles/profile.html'
     context = {
         'active_link': 'profile',
@@ -39,6 +38,7 @@ def profile(request):
 def order_history(request, order_number):
     order = get_object_or_404(Order, order_number=order_number)
     is_user = request.user == order.user_profile.user
+    timestamp = int(order.progress.new_at.timestamp())
 
     if not is_user:
         raise Http404("Resource does not exist")
@@ -52,6 +52,7 @@ def order_history(request, order_number):
     context = {
         'order': order,
         'from_profile': True,
+        'timestamp': timestamp,
     }
 
     return render(request, template, context)
