@@ -57,3 +57,9 @@
 ### Database Schema
 
 ![Database Schema](./README/db/schema.png)
+
+## Marketing
+
+### Facebook
+
+![Facebook mockup](./README/facebook/mockup.png)
