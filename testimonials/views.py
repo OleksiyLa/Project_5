@@ -2,13 +2,14 @@ from django.shortcuts import render, redirect
 from django.contrib.auth.decorators import login_required
 from django.db.models import Value, Case, When, BooleanField
 from django.http import Http404
+from django.contrib import messages
+from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
 from .models import Testimonial
 from .forms import TestimonialForm
-from django.contrib import messages
 
 
 def testimonials_view(request):
-    six_testimonials = Testimonial.objects.filter(
+    testimonials = Testimonial.objects.filter(
         publish_testimonial=True,
         is_verified=True
     ).annotate(
@@ -17,9 +18,19 @@ def testimonials_view(request):
             default=Value(1),
             output_field=BooleanField()
         )
-    ).order_by('is_5_star', 'created_at')[:6]
+    ).order_by('is_5_star', '-created_at')[:30]
 
-    return render(request, 'testimonials/testimonials.html', {'active_link': 'testimonials', 'testimonials': six_testimonials})
+    paginator = Paginator(testimonials, 6)
+    page = request.GET.get('page')
+
+    try:
+        testimonials = paginator.page(page)
+    except PageNotAnInteger:
+        testimonials = paginator.page(1)
+    except EmptyPage:
+        testimonials = paginator.page(paginator.num_pages)
+
+    return render(request, 'testimonials/testimonials.html', {'active_link': 'testimonials', 'testimonials': testimonials})
 
 
 @login_required
