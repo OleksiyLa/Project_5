@@ -1,4 +1,5 @@
-from django.shortcuts import render, redirect, reverse, get_object_or_404, HttpResponse
+from django.shortcuts import (
+    render, redirect, reverse, get_object_or_404, HttpResponse)
 from django.views.decorators.http import require_POST
 from django.contrib import messages
 from django.conf import settings
@@ -17,6 +18,9 @@ import json
 
 @require_POST
 def cache_checkout_data(request):
+    """
+    A view to cache the checkout data
+    """
     try:
         pid = request.POST.get('client_secret').split('_secret')[0]
         stripe.api_key = settings.STRIPE_SECRET_KEY
@@ -33,6 +37,12 @@ def cache_checkout_data(request):
 
 
 def checkout(request):
+    """
+    A view to return the checkout page,
+    handle the checkout form and stripe payments
+    calls the cache_checkout_data view,
+    calculates the total price of the order
+    """
     stripe_public_key = settings.STRIPE_PUBLIC_KEY
     stripe_secret_key = settings.STRIPE_SECRET_KEY
 
@@ -59,25 +69,41 @@ def checkout(request):
                 product = Product.objects.get(id=item_id)
                 for item in item_list:
                     try:
-                        selected_toppings = None
+                        selec_topp = None
                         if len(item['additional_toppings']) > 0:
                             if len(item['additional_toppings']) > 1:
-                                selected_toppings = Topping.objects.filter(id__in=item['additional_toppings'])
+                                selec_topp = (
+                                    Topping.objects.filter(
+                                        id__in=item['additional_toppings'])
+                                        )
                             else:
-                                selected_toppings = Topping.objects.filter(id=item['additional_toppings'][0])
+                                selec_topp = (
+                                    Topping.objects.filter(
+                                        id=item['additional_toppings'][0])
+                                        )
 
-                        toppings_price = 0
-                        if selected_toppings is not None:
-                            toppings_price = sum(int(topping.price) for topping in selected_toppings.all()) * item['quantity']
+                        tp_p = 0
+                        if selec_topp is not None:
+                            tp_p = sum(
+                                int(topping.price)
+                                for topping in selec_topp.all()
+                            ) * item['quantity']
 
                         if item['size'] == '30':
-                            lineitem_total = product.price * item['quantity'] + toppings_price
+                            item_q = item['quantity']
+                            item_total = product.price * item_q + tp_p
                         elif item['size'] == '35':
-                            toppings_price = toppings_price * Decimal(1.1)
-                            lineitem_total = (product.price * Decimal(1.1)) * item['quantity'] + toppings_price
+                            tp_p = tp_p * Decimal(1.1)
+                            p_pr = product.price * Decimal(1.1)
+                            item_total = (
+                                p_pr * item['quantity'] + tp_p
+                                )
                         elif item['size'] == '40':
-                            toppings_price = toppings_price * Decimal(1.3)
-                            lineitem_total = (product.price * Decimal(1.3)) * item['quantity'] + toppings_price
+                            tp_p = tp_p * Decimal(1.3)
+                            p_pr = product.price * Decimal(1.3)
+                            item_total = (
+                                p_pr * item['quantity'] + tp_p
+                                )
 
                         try:
                             order_line_item = OrderLineItem(
@@ -85,36 +111,37 @@ def checkout(request):
                                 product=product,
                                 product_size=item['size'],
                                 quantity=item['quantity'],
-                                lineitem_total=round(lineitem_total, 2),
+                                lineitem_total=round(item_total, 2),
                             )
 
                             order_line_item.save()
-                            
-                            if selected_toppings is not None:
-                                order_line_item.toppings.set(selected_toppings)
+
+                            if selec_topp is not None:
+                                order_line_item.toppings.set(selec_topp)
                                 order_line_item.save()
                         except Exception as e:
-                            messages.error(request, f'An error occurred while saving your order. \
+                            messages.error(request, f'An error occurred \
                                 Please try again later. {e}')
                             order.delete()
                             return redirect(reverse('view_bag'))
 
                     except Product.DoesNotExist:
                         messages.error(request, (
-                            "One of the products in your bag wasn't found in our database. "
+                            "A product in your bag wasn't found."
                             "Please call us for assistance!")
                         )
                         order.delete()
                         return redirect(reverse('view_bag'))
             request.session['save_info'] = 'save-info' in request.POST
-            return redirect(reverse('checkout_success', args=[order.order_number]))
+            return redirect(
+                reverse('checkout_success', args=[order.order_number]))
         else:
             messages.error(request, 'There was an error with your form. \
                 Please double check your information.')
     else:
         bag = request.session.get('bag', {})
         if not bag:
-            messages.error(request, "There's nothing in your bag at the moment")
+            messages.error(request, "There's nothing in your bag")
             return redirect(reverse('pizza_list'))
 
         current_bag = bag_contents(request)

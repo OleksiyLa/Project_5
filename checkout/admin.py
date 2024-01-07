@@ -1,14 +1,19 @@
 from django.contrib import admin
 from .models import Order, OrderLineItem
-from order_status_management.models import OrderProgress
 
 
 class OrderLineItemAdminInline(admin.TabularInline):
+    """
+    Allows admin to add and edit line items in the admin
+    """
     model = OrderLineItem
     readonly_fields = ('lineitem_total',)
 
 
 class OrderAdmin(admin.ModelAdmin):
+    """
+    Allows admin to view and edit orders in the admin
+    """
     inlines = (OrderLineItemAdminInline,)
 
     readonly_fields = ('order_number', 'created_at',
@@ -28,5 +33,6 @@ class OrderAdmin(admin.ModelAdmin):
                     'grand_total', 'progress')
 
     ordering = ('-created_at',)
+
 
 admin.site.register(Order, OrderAdmin)

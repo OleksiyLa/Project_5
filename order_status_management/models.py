@@ -12,7 +12,9 @@ class OrderProgress(models.Model):
         ('completed', 'Completed'),
     ]
 
-    status = models.CharField(max_length=20, choices=STATUS_CHOICES, default='new')
+    status = models.CharField(max_length=20,
+                              choices=STATUS_CHOICES,
+                              default='new')
     new_at = models.DateTimeField(null=True, blank=True)
     accepted_at = models.DateTimeField(null=True, blank=True)
     start_cooking_at = models.DateTimeField(null=True, blank=True)
@@ -25,7 +27,7 @@ class OrderProgress(models.Model):
         if self._state.adding:
             if self.status == 'new':
                 self.new_at = timezone.now()
-        
+
         super().save(*args, **kwargs)
 
     def __str__(self):

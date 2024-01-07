@@ -11,12 +11,14 @@ from .utils import configure_cloudinary
 
 
 def pizza_list(request):
+    """ A view to show all pizzas, including sorting and search queries """
     products = Product.objects.all()
     full_path = request.build_absolute_uri()
     query = request.GET.get('q')
     if query:
         form = PizzaFilterForm()
-        products = products.filter(Q(name__icontains=query) | Q(description__icontains=query))
+        products = products.filter(
+            Q(name__icontains=query) | Q(description__icontains=query))
     else:
         form = PizzaFilterForm(request.GET)
         if form.is_valid():
@@ -40,7 +42,7 @@ def pizza_list(request):
 
             if any(filters.values()):
                 products = products.filter(**filters)
-            
+
     products = products.order_by('-id')
     paginator = Paginator(products, 12)
     page = request.GET.get('page')
@@ -52,18 +54,34 @@ def pizza_list(request):
     except EmptyPage:
         products = paginator.page(paginator.num_pages)
 
-    return render(request, 'products/pizza_list.html', {'products': products, 'form': form, 'full_path': full_path, 'active_link': 'pizza'})
+    return render(
+        request,
+        'products/pizza_list.html',
+        {'products': products,
+         'form': form,
+         'full_path': full_path,
+         'active_link': 'pizza'})
 
 
 def pizza_detail(request, slug):
+    """
+    A view to show individual pizza details
+    including toppings
+    """
     full_path = request.build_absolute_uri()
     pizza = Product.objects.get(slug=slug)
     toppings = Topping.objects.all()
-    return render(request, 'products/pizza_detail.html', {'product': pizza, 'toppings': toppings, 'full_path': full_path})
+    return render(request,
+                  'products/pizza_detail.html',
+                  {'product': pizza,
+                   'toppings': toppings,
+                   'full_path': full_path
+                   })
 
 
 @login_required
 def add_pizza(request):
+    """ Add a pizza to the store (admin only)"""
     if not request.user.is_superuser:
         return redirect(reverse('pizza_list'))
 
@@ -75,15 +93,20 @@ def add_pizza(request):
             messages.success(request, 'Pizza added successfully')
             return redirect(reverse('pizza_list'))
         else:
-            messages.error(request, 'Failed to add pizza. Please ensure the form is valid.')
+            messages.error(
+                request,
+                'Failed to add pizza. Please ensure the form is valid.')
     else:
         form = ProductForm()
 
-    return render(request, 'products/pizza_add.html', {'form': form})
+    return render(request,
+                  'products/pizza_add.html',
+                  {'form': form})
 
 
 @login_required
 def add_topping(request):
+    """ Add a topping to the store (admin only)"""
     if not request.user.is_superuser:
         return redirect(reverse('pizza_list'))
 
@@ -92,19 +115,25 @@ def add_topping(request):
 
         if form.is_valid():
             form.save()
-            messages.success(request, 'Topping added successfully')
+            messages.success(
+                request,
+                'Topping added successfully')
             return redirect('pizza_list')
         else:
-            messages.error(request, 'Failed to add topping. Please ensure the form is valid.')
+            messages.error(
+                request,
+                'Failed to add topping. Please ensure the form is valid.')
     else:
         form = ToppingForm()
 
-    return render(request, 'products/topping_add.html', {'form': form})
+    return render(request,
+                  'products/topping_add.html',
+                  {'form': form})
 
 
 @login_required
 def edit_pizza(request, slug):
-    """ Edit a pizza in the store """
+    """ Edit a pizza in the store (admin only)"""
     if not request.user.is_superuser:
         return redirect(reverse('pizza_list'))
 
@@ -127,7 +156,9 @@ def edit_pizza(request, slug):
             slug = slugify(form.cleaned_data.get('name'))
             return redirect('pizza_detail', slug=slug)
         else:
-            messages.error(request, 'Failed to update pizza. Please ensure the form is valid.')
+            messages.error(
+                request,
+                'Failed to update pizza. Please ensure the form is valid.')
     else:
         form = ProductForm(instance=product)
         messages.info(request, f'You are editing {product.name}')
@@ -137,7 +168,7 @@ def edit_pizza(request, slug):
 
 @login_required
 def edit_topping(request, slug):
-    """ Edit a topping in the store """
+    """ Edit a topping in the store (admin only)"""
     if not request.user.is_superuser:
         return redirect(reverse('pizza_list'))
 
@@ -160,7 +191,9 @@ def edit_topping(request, slug):
             messages.success(request, 'Topping updated successfully')
             return redirect('pizza_list')
         else:
-            messages.error(request, 'Failed to update topping. Please ensure the form is valid.')
+            messages.error(
+                request,
+                'Failed to update topping. Please ensure the form is valid.')
     else:
         form = ToppingForm(instance=topping)
         messages.info(request, f'You are editing {topping.name}')
@@ -170,7 +203,7 @@ def edit_topping(request, slug):
 
 @login_required
 def delete_pizza(request, slug):
-    """ Delete a pizza from the store """
+    """ Delete a pizza from the store (admin only)"""
     if not request.user.is_superuser:
         return redirect(reverse('pizza_list'))
 
@@ -186,7 +219,7 @@ def delete_pizza(request, slug):
 
 @login_required
 def delete_topping(request, slug):
-    """ Delete a topping from the store """
+    """ Delete a topping from the store (admin only)"""
     if not request.user.is_superuser:
         return redirect(reverse('pizza_list'))
 

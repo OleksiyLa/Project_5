@@ -1,6 +1,7 @@
 from django.db import models
 from django.contrib.auth.models import User
 
+
 class Testimonial(models.Model):
     RATING_CHOICES = (
         (1, '1 star'),

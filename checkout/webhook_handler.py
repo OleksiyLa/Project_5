@@ -13,6 +13,7 @@ import json
 import time
 import stripe
 
+
 class StripeWH_Handler:
     """Handle Stripe webhooks"""
 
@@ -28,7 +29,7 @@ class StripeWH_Handler:
         body = render_to_string(
             'checkout/confirmation_emails/confirmation_email_body.txt',
             {'order': order, 'contact_email': settings.DEFAULT_FROM_EMAIL})
-        
+
         send_mail(
             subject,
             body,
@@ -71,11 +72,13 @@ class StripeWH_Handler:
         if username != 'AnonymousUser':
             profile = UserProfile.objects.get(user__username=username)
             if save_info:
+                street_address1 = shipping_details.address.line1
+                street_address2 = shipping_details.address.line2
                 profile.default_full_name = shipping_details.name
                 profile.default_phone_number = shipping_details.phone
                 profile.default_postcode = shipping_details.address.postal_code
-                profile.default_street_address1 = shipping_details.address.line1
-                profile.default_street_address2 = shipping_details.address.line2
+                profile.default_street_address1 = street_address1
+                profile.default_street_address2 = street_address2
                 profile.save()
 
         order_exists = False
@@ -103,8 +106,9 @@ class StripeWH_Handler:
                 time.sleep(1)
         if order_exists:
             self._send_confirmation_email(order)
+            verified = 'SUCCESS: Verified order already in database'
             return HttpResponse(
-                content=f'Webhook received: {event["type"]} | SUCCESS: Verified order already in database',
+                content=f'Webhook received: {event["type"]} | {verified}',
                 status=200)
         else:
             order = None
@@ -126,26 +130,33 @@ class StripeWH_Handler:
                 for item_id, item_list in json.loads(bag).items():
                     product = Product.objects.get(id=item_id)
                     for item in item_list:
-                        selected_toppings = None
+                        selec_topp = None
                         if len(item['additional_toppings']) > 0:
                             if len(item['additional_toppings']) > 1:
-                                selected_toppings = Topping.objects.filter(id__in=item['additional_toppings'])
+                                selec_topp = Topping.objects.filter(
+                                    id__in=item['additional_toppings'])
                             else:
-                                selected_toppings = Topping.objects.filter(id=item['additional_toppings'][0])
+                                selec_topp = Topping.objects.filter(
+                                    id=item['additional_toppings'][0])
 
-                        toppings_price = 0
-                        if selected_toppings is not None:
-                            toppings_price = sum(int(topping.price) for topping in selected_toppings.all()) * item['quantity']
+                        t_p = 0
+                        if selec_topp is not None:
+                            t_p = sum(
+                                int(topping.price)
+                                for topping in selec_topp.all()
+                            ) * item['quantity']
 
                         if item['size'] == '30':
-                            lineitem_total = product.price * item['quantity'] + toppings_price
+                            tot_price = product.price * item['quantity']
+                            lineitem_total = tot_price + t_p
                         elif item['size'] == '35':
-                            toppings_price = toppings_price * Decimal(1.1)
-                            lineitem_total = (product.price * Decimal(1.1)) * item['quantity'] + toppings_price
+                            t_p = t_p * Decimal(1.1)
+                            p_p = product.price * Decimal(1.1)
+                            lineitem_total = p_p * item['quantity'] + t_p
                         elif item['size'] == '40':
-                            toppings_price = toppings_price * Decimal(1.3)
-                            lineitem_total = (product.price * Decimal(1.3)) * item['quantity'] + toppings_price
-
+                            t_p = t_p * Decimal(1.3)
+                            p_p = product.price * Decimal(1.3)
+                            lineitem_total = p_p * item['quantity'] + t_p
 
                             order_line_item = OrderLineItem(
                                 order=order,
@@ -156,9 +167,9 @@ class StripeWH_Handler:
                             )
 
                             order_line_item.save()
-                            
-                            if selected_toppings is not None:
-                                order_line_item.toppings.set(selected_toppings)
+
+                            if selec_topp is not None:
+                                order_line_item.toppings.set(selec_topp)
                                 order_line_item.save()
 
             except Exception as e:
@@ -168,8 +179,9 @@ class StripeWH_Handler:
                     content=f'Webhook received: {event["type"]} | ERROR: {e}',
                     status=500)
         self._send_confirmation_email(order)
+        verified = 'SUCCESS: Created order in webhook'
         return HttpResponse(
-            content=f'Webhook received: {event["type"]} | SUCCESS: Created order in webhook',
+            content=f'Webhook received: {event["type"]} | {verified}',
             status=200)
 
     def handle_payment_intent_payment_failed(self, event):

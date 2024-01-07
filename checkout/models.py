@@ -2,7 +2,6 @@ import uuid
 
 from django.db import models
 from django.db.models import Sum
-from django.conf import settings
 from django.core.validators import MaxValueValidator
 from products.models import Product, Topping
 from order_status_management.models import OrderProgress
@@ -10,24 +9,64 @@ from profiles.models import UserProfile
 
 
 class Order(models.Model):
-    order_number = models.CharField(max_length=32, null=False, editable=False)
-    user_profile = models.ForeignKey(UserProfile, on_delete=models.SET_NULL,
-                                     null=True, blank=True, related_name='orders')
-    full_name = models.CharField(max_length=50, null=False, blank=False)
-    email = models.EmailField(max_length=254, null=False, blank=False)
-    phone_number = models.CharField(max_length=20, null=False, blank=False)
-    country = models.CharField(max_length=40, null=False, blank=False, default="IE")
-    county = models.CharField(max_length=80, null=False, blank=False, default="Kerry")
-    town_or_city = models.CharField(max_length=40, null=False, blank=False, default="Tralee")
-    postcode = models.CharField(max_length=20, null=True, blank=True)
-    street_address1 = models.CharField(max_length=80, null=False, blank=False)
-    street_address2 = models.CharField(max_length=80, null=True, blank=True)
+    order_number = models.CharField(max_length=32,
+                                    null=False,
+                                    editable=False)
+    user_profile = models.ForeignKey(UserProfile,
+                                     on_delete=models.SET_NULL,
+                                     null=True,
+                                     blank=True,
+                                     related_name='orders')
+    full_name = models.CharField(max_length=50,
+                                 null=False,
+                                 blank=False)
+    email = models.EmailField(max_length=254,
+                              null=False,
+                              blank=False)
+    phone_number = models.CharField(max_length=20,
+                                    null=False,
+                                    blank=False)
+    country = models.CharField(max_length=40,
+                               null=False,
+                               blank=False,
+                               default="IE")
+    county = models.CharField(max_length=80,
+                              null=False,
+                              blank=False,
+                              default="Kerry")
+    town_or_city = models.CharField(max_length=40,
+                                    null=False,
+                                    blank=False,
+                                    default="Tralee")
+    postcode = models.CharField(max_length=20,
+                                null=True,
+                                blank=True)
+    street_address1 = models.CharField(max_length=80,
+                                       null=False,
+                                       blank=False)
+    street_address2 = models.CharField(max_length=80,
+                                       null=True,
+                                       blank=True)
     created_at = models.DateTimeField(auto_now_add=True)
-    delivery_cost = models.DecimalField(max_digits=4, decimal_places=2, null=False, default=0)
-    order_total = models.DecimalField(max_digits=7, decimal_places=2, null=False, default=0)
-    grand_total = models.DecimalField(max_digits=7, decimal_places=2, null=False, default=0)
-    original_bag = models.TextField(null=False, blank=False, default='')
-    stripe_pid = models.CharField(max_length=254, null=False, blank=False, default='')
+    delivery_cost = models.DecimalField(max_digits=4,
+                                        decimal_places=2,
+                                        null=False,
+                                        default=0)
+    order_total = models.DecimalField(max_digits=7,
+                                      decimal_places=2,
+                                      null=False,
+                                      default=0)
+    grand_total = models.DecimalField(max_digits=7,
+                                      decimal_places=2,
+                                      null=False,
+                                      default=0)
+    original_bag = models.TextField(null=False,
+                                    blank=False,
+                                    default='')
+    stripe_pid = models.CharField(max_length=254,
+                                  null=False,
+                                  blank=False,
+                                  default='')
     progress = models.OneToOneField(
         OrderProgress,
         null=False,
@@ -35,7 +74,6 @@ class Order(models.Model):
         on_delete=models.CASCADE,
         related_name='order'
     )
-
 
     def _generate_order_number(self):
         """
@@ -48,8 +86,11 @@ class Order(models.Model):
         Update grand total each time a line item is added,
         accounting for delivery costs.
         """
-        print("update_total", self.lineitems.aggregate(Sum('lineitem_total'))['lineitem_total__sum'])
-        self.order_total = self.lineitems.aggregate(Sum('lineitem_total'))['lineitem_total__sum']
+        self.order_total = (
+            self.lineitems.aggregate(
+                Sum('lineitem_total')
+                )['lineitem_total__sum']
+            )
         if self.order_total < 50:
             self.delivery_cost = 12
         else:
@@ -74,9 +115,25 @@ class Order(models.Model):
 
 
 class OrderLineItem(models.Model):
-    order = models.ForeignKey(Order, null=False, blank=False, on_delete=models.CASCADE, related_name='lineitems')
-    product = models.ForeignKey(Product, null=True, blank=False, on_delete=models.SET_NULL)
-    product_size = models.CharField(max_length=2, null=True, blank=True)
-    quantity = models.IntegerField(null=False, blank=False, default=0, validators=[MaxValueValidator(15)])
+    order = models.ForeignKey(Order,
+                              null=False,
+                              blank=False,
+                              on_delete=models.CASCADE,
+                              related_name='lineitems')
+    product = models.ForeignKey(Product,
+                                null=True,
+                                blank=False,
+                                on_delete=models.SET_NULL)
+    product_size = models.CharField(max_length=2,
+                                    null=True,
+                                    blank=True)
+    quantity = models.IntegerField(null=False,
+                                   blank=False,
+                                   default=0,
+                                   validators=[MaxValueValidator(15)])
     toppings = models.ManyToManyField(Topping)
-    lineitem_total = models.DecimalField(max_digits=6, decimal_places=2, null=False, blank=False, editable=False)
+    lineitem_total = models.DecimalField(max_digits=6,
+                                         decimal_places=2,
+                                         null=False,
+                                         blank=False,
+                                         editable=False)

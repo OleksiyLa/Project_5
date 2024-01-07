@@ -9,6 +9,11 @@ from .forms import TestimonialForm
 
 
 def testimonials_view(request):
+    """
+    Display 30 testimonials.
+    Testimonials are ordered by rating (5 stars first)
+    and then by date.
+    """
     testimonials = Testimonial.objects.filter(
         publish_testimonial=True,
         is_verified=True
@@ -30,16 +35,29 @@ def testimonials_view(request):
     except EmptyPage:
         testimonials = paginator.page(paginator.num_pages)
 
-    return render(request, 'testimonials/testimonials.html', {'active_link': 'testimonials', 'testimonials': testimonials})
+    return render(request,
+                  'testimonials/testimonials.html',
+                  {'active_link': 'testimonials',
+                   'testimonials': testimonials})
 
 
 @login_required
 def add_testimonial(request):
+    """
+    Add a testimonial.
+    A user can only add a testimonial
+    if they have placed an order and registered.
+    """
     if request.method == 'POST':
         user = request.user
-        has_testimonial = Testimonial.objects.filter(user=user, publish_testimonial=True).exists()
+        has_testimonial = Testimonial.objects.filter(
+            user=user,
+            publish_testimonial=True).exists()
         if has_testimonial:
-            messages.warning(request, 'You have already left a testimonial. You may be able to leave it after some time.')
+            messages.warning(
+                request,
+                'You have already left a testimonial. '
+                'You may be able to leave it after some time.')
             return redirect('testimonials')
         orders = user.userprofile.orders.all()
         if orders.count() > 0:
@@ -48,18 +66,28 @@ def add_testimonial(request):
                 testimonial = form.save(commit=False)
                 testimonial.user = request.user
                 testimonial.save()
-                messages.success(request, 'Thank you for your testimonial!')
+                messages.success(
+                    request,
+                    'Thank you for your testimonial!')
                 return redirect('testimonials')
         else:
-            messages.error(request, 'You must have placed an order to leave a testimonial.')
+            messages.error(
+                request,
+                'You must have placed an order to leave a testimonial.')
             return redirect('testimonials')
     else:
         form = TestimonialForm()
-    return render(request, 'testimonials/add_testimonial.html', {'form': form})
+    return render(request,
+                  'testimonials/add_testimonial.html',
+                  {'form': form})
 
 
 @login_required
 def approve_testimonial(request, testimonial_id):
+    """
+    Approve a testimonial.
+    Only superusers can approve testimonials.
+    """
     if not request.user.is_superuser:
         raise Http404('Not found.')
     try:
@@ -74,6 +102,10 @@ def approve_testimonial(request, testimonial_id):
 
 @login_required
 def delete_testimonial(request, testimonial_id):
+    """
+    Delete a testimonial.
+    Only superusers can delete testimonials.
+    """
     if not request.user.is_superuser:
         raise Http404('Not found.')
     try:
@@ -87,7 +119,16 @@ def delete_testimonial(request, testimonial_id):
 
 @login_required
 def view_not_approved_testimonials(request):
+    """
+    View testimonials that have not been approved.
+    Only superusers can view this page.
+    """
     if not request.user.is_superuser:
         raise Http404('Not found.')
-    testimonials = Testimonial.objects.filter(is_verified=False, publish_testimonial=True).order_by('created_at')
-    return render(request, 'testimonials/testimonials.html', {'active_link': 'testimonials', 'testimonials': testimonials})
+    testimonials = Testimonial.objects.filter(
+        is_verified=False,
+        publish_testimonial=True).order_by('created_at')
+    return render(request,
+                  'testimonials/testimonials.html',
+                  {'active_link': 'testimonials',
+                   'testimonials': testimonials})

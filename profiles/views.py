@@ -18,9 +18,13 @@ def profile(request):
         form = UserProfileForm(request.POST, instance=profile)
         if form.is_valid():
             form.save()
-            messages.success(request, 'Profile updated successfully')
+            messages.success(
+                request,
+                'Profile updated successfully')
         else:
-            messages.error(request, 'Update failed. Please ensure the form is valid.')
+            messages.error(
+                request,
+                'Update failed. Please ensure the form is valid.')
 
     form = UserProfileForm(instance=profile)
     orders = profile.orders.all().order_by('-created_at')
@@ -36,6 +40,7 @@ def profile(request):
 
 @login_required
 def order_history(request, order_number):
+    """ Display the user's selected order. """
     order = get_object_or_404(Order, order_number=order_number)
     is_user = request.user == order.user_profile.user
     timestamp = int(order.progress.new_at.timestamp())

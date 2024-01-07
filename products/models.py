@@ -2,7 +2,7 @@ from django.db import models
 from cloudinary.models import CloudinaryField
 from django.utils.text import slugify
 
-# Create your models here.
+
 class Product(models.Model):
     name = models.CharField(
         max_length=100,

@@ -22,28 +22,31 @@ def add_to_bag(request, item_id):
         if additional_toppings:
             additional_toppings_list = additional_toppings.split(',')
             if len(additional_toppings_list) > 7:
-                messages.warning(request, "You can only add up to 7 additional toppings")
+                messages.warning(request,
+                                 "You can only add up to 7 toppings")
                 if 'bag' in request.session:
                     del request.session['bag']
                 return redirect(redirect_url)
 
-            additional_toppings_instances = Topping.objects.filter(id__in=additional_toppings_list)
-            if len(additional_toppings_instances) != len(additional_toppings_list):
+            add_topp = Topping.objects.filter(id__in=additional_toppings_list)
+            if len(add_topp) != len(additional_toppings_list):
                 if 'bag' in request.session:
                     del request.session['bag']
-                messages.error(request, "Some additional toppings do not exist.")
+                messages.error(request,
+                               "Some additional toppings do not exist.")
                 return redirect(redirect_url)
             sorted_toppings_list = sorted(additional_toppings_list)
 
         if item_id in bag:
-            pizzas_by_size = [pizza for pizza in bag[item_id] if pizza['size'] == size]
-            if len(pizzas_by_size) > 0:
+            size_p = [pizza for pizza in bag[item_id] if pizza['size'] == size]
+            if len(size_p) > 0:
                 flag = True
-                for pizza in pizzas_by_size:
+                for pizza in size_p:
                     sorted_toppings = sorted(pizza['additional_toppings'])
                     if sorted_toppings == sorted_toppings_list:
                         if pizza['quantity'] > 14:
-                            messages.error(request, "You can only add up to 15 pizzas of the same type")
+                            messages.error(request,
+                                           "Maximum is 15 pizzas of one type")
                             if 'bag' in request.session:
                                 del request.session['bag']
                             return redirect(redirect_url)
@@ -57,7 +60,7 @@ def add_to_bag(request, item_id):
                         'size': size,
                         'additional_toppings': sorted_toppings_list,
                         'quantity': 1
-                    })       
+                    })
             else:
                 bag[item_id].append({
                     'id': str(uuid.uuid4()),
@@ -84,7 +87,7 @@ def adjust_bag(request, item_id):
     quantity = int(request.POST.get('quantity'))
 
     if quantity > 15:
-        messages.warning(request, "You can only add up to 15 pizzas of the same type")
+        messages.warning(request, "Maximum is 15 pizzas of one type")
         return redirect(reverse('view_bag'))
 
     id = request.POST.get('id')

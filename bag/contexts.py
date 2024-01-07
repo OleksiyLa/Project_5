@@ -11,7 +11,6 @@ def bag_contents(request):
     total = 0
     price = 0
     product_count = 0
-    
     bag = request.session.get('bag', {})
 
     for item_id, item_list in bag.items():
@@ -19,21 +18,29 @@ def bag_contents(request):
         for item in item_list:
             if len(item['additional_toppings']) == 0:
                 toppings = []
-                toppings_price = 0
+                top_sum = 0
             elif len(item['additional_toppings']) == 1:
-                toppings = [get_object_or_404(Topping, pk=item['additional_toppings'][0])]
-                toppings_price = int(toppings[0].price)
+                toppings = [get_object_or_404(
+                    Topping,
+                    pk=item['additional_toppings'][0]
+                )]
+                top_sum = int(toppings[0].price)
             else:
-                toppings = Topping.objects.filter(id__in=item['additional_toppings'])
-                toppings_price = sum(int(item.price) for item in toppings)
+                toppings = Topping.objects.filter(
+                    id__in=item['additional_toppings'])
+                top_sum = sum(int(item.price) for item in toppings)
             if item['size'] == '30':
-                price = item['quantity'] * (product.price + toppings_price)
+                price = item['quantity'] * (product.price + top_sum)
                 total += price
             if item['size'] == '35':
-                price = item['quantity'] * (product.price + toppings_price) * Decimal(1.1)
+                price = (
+                    item['quantity'] * (product.price + top_sum) * Decimal(1.1)
+                )
                 total += price
             if item['size'] == '40':
-                price = item['quantity'] * (product.price + toppings_price) * Decimal(1.3)
+                price = (
+                    item['quantity'] * (product.price + top_sum) * Decimal(1.3)
+                )
                 total += price
             topping_names = [topping.name for topping in toppings]
             product_count += item['quantity']
@@ -48,7 +55,7 @@ def bag_contents(request):
             })
 
     if total >= free_delivery_threshold:
-        delivery_cost = Decimal('0.00')  
+        delivery_cost = Decimal('0.00')
 
     grand_total = delivery_cost + Decimal(total)
 

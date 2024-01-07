@@ -1,6 +1,7 @@
 from django.conf import settings
 import cloudinary
 
+
 def configure_cloudinary():
     cloudinary.config(
         cloud_name=settings.CLOUDINARY_STORAGE['CLOUD_NAME'],
