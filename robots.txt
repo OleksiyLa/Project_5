@@ -1,0 +1,4 @@
+User-agent: *
+Disawllow: /accounts/
+Disawllow: /bag/
+Sitemap: https://super-pizza-4be7f9269aef.herokuapp.com/sitemap.xml
