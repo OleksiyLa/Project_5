@@ -2,6 +2,12 @@
 
 ## Planning & Development
 
+### Target Audience
+
+### App Objectives
+
+### Features to Implement
+
 ### Wireframes
 
 <details><summary>Pizza Page</summary>
@@ -58,8 +64,57 @@
 
 ![Database Schema](./README/db/schema.png)
 
+### Colors
+
+### Fonts
+
+### Technologies
+
+### Agile
+
 ## Marketing
 
-### Facebook
+### SEO
+
+### Keywords
+
+### Social Media
+
 
 ![Facebook mockup](./README/facebook/mockup.png)
+
+*Go back to the [top](#super-pizza)*
+
+## Features
+
+### Existing Features
+
+### Features to Implement
+
+*Go back to the [top](#super-pizza)*
+
+## Testing
+
+### Manual Testing
+
+### HTML Validation
+
+### CSS Validation
+
+### JavaScript Validation
+
+### Python Validation
+
+### LightHouse
+
+### User Stories Testing
+
+### Bugs
+
+*Go back to the [top](#super-pizza)*
+
+## Deployment
+
+## Credits
+
+## Acknowledgements
