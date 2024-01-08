@@ -32,7 +32,7 @@ document.addEventListener('DOMContentLoaded', function() {
     document.querySelector('.price').textContent = `€${totalPrice.toFixed(2)}`;
   };
 
-  const additionalToppingsText = document.querySelector('.card-text-additional-toppings');
+	const additionalToppingsText = document.querySelector('.card-text-additional-toppings');
 	const toppingIcons = document.querySelectorAll('.add-icon');
 	const selectedToppingsInput = document.querySelector('.selected-toppings');
 
@@ -57,7 +57,7 @@ document.addEventListener('DOMContentLoaded', function() {
 					this.classList.remove('fa-minus');
 					card.classList.remove('selected');
 					additionalToppingsText.textContent = additionalToppingsText.textContent.split(', ').filter(topping => {
-						if (!(topping === card.querySelector('.card-title').textContent)) {
+						if (topping !== card.querySelector('.card-title').textContent) {
 						return true;
 						}
 					}).join(', ');
@@ -87,8 +87,6 @@ document.addEventListener('DOMContentLoaded', function() {
 		input.addEventListener('change', function() {
 			const selectedSize = this.value;
 			const card = this.closest('.card');
-			const basePrice = parseFloat(card.querySelector('.price').getAttribute('data-base-price'));
-			let adjustedPrice = basePrice;
 
 			multiplier = 1;
 			if (selectedSize === '35') {

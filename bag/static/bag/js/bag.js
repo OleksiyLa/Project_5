@@ -41,12 +41,12 @@ document.addEventListener('DOMContentLoaded', () => {
 			e.preventDefault();
 			const id = this.dataset.id;
 			const closestInput = this.closest('.input-group').querySelector('.qty_input');
-			const form = closestInput.parentNode.parentNode
+			const form = closestInput.parentNode.parentNode;
 			if (closestInput) {
 				let currentValue = parseInt(closestInput.value);
 				closestInput.value = currentValue + 1;
 				handleEnableDisable(id);
-				submitFormDebounced(form)
+				submitFormDebounced(form);
 			}
 		});
 	});
@@ -56,12 +56,12 @@ document.addEventListener('DOMContentLoaded', () => {
 			e.preventDefault();
 			const id = this.dataset.id;
 			const closestInput = this.closest('.input-group').querySelector('.qty_input');
-			const form = closestInput.parentNode.parentNode
+			const form = closestInput.parentNode.parentNode;
 			if (closestInput) {
 				let currentValue = parseInt(closestInput.value);
 				closestInput.value = currentValue - 1;
 				handleEnableDisable(id);
-				submitFormDebounced(form)
+				submitFormDebounced(form);
 			}
 		});
 	});
