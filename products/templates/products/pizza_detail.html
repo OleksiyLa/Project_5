@@ -38,13 +38,13 @@
 						<a href="#toppings" id="navigate-to-toppings-link" class="link text-main-color p-2">Add Toppings</a>
 						<div class="size-options my-4">
 							<div class="btn-group" role="group" aria-label="Length options" id="pizza-size">
-								<input type="radio" class="btn-check pizza-size-input" name="pizza-size" id="size-30" value="30" autocomplete="off" checked>
+								<input type="radio" class="btn-check pizza-size-input" name="pizza-size" id="size-30" value="30" checked>
 								<label class="btn btn-outline-primary" for="size-30">30cm</label>
 
-								<input type="radio" class="btn-check pizza-size-input" name="pizza-size" id="size-35" value="35" autocomplete="off">
+								<input type="radio" class="btn-check pizza-size-input" name="pizza-size" id="size-35" value="35" >
 								<label class="btn btn-outline-primary" for="size-35">35cm</label>
 
-								<input type="radio" class="btn-check pizza-size-input" name="pizza-size" id="size-40" value="40" autocomplete="off">
+								<input type="radio" class="btn-check pizza-size-input" name="pizza-size" id="size-40" value="40" >
 								<label class="btn btn-outline-primary" for="size-40">40cm</label>
 							</div>
 						</div>
@@ -72,19 +72,19 @@
 			<h2 class="mb-2 text-center text-main-color salsa h5" id="toppings">Additional Toppings</h2>
 			<div class="d-flex justify-content-center mt-4">
 				<div class="btn-group main-color d-flex flex-wrap" role="group" aria-label="Toppings options" id="topping_categories">
-					<input type="radio" class="btn-check" name="pizza-toppings-category" id="all" value="all" autocomplete="off" checked>
+					<input type="radio" class="btn-check" name="pizza-toppings-category" id="all" value="all" checked>
 					<label class="btn btn-outline-primary pizza-toppings-category-topping" for="all">All</label>
-					<input type="radio" class="btn-check" name="pizza-toppings-category" id="meats" value="Meats" autocomplete="off">
+					<input type="radio" class="btn-check" name="pizza-toppings-category" id="meats" value="Meats" >
 					<label class="btn btn-outline-primary pizza-toppings-category-topping" for="meats">Meats</label>
-					<input type="radio" class="btn-check" name="pizza-toppings-category" id="seafood" value="Seafood" autocomplete="off">
+					<input type="radio" class="btn-check" name="pizza-toppings-category" id="seafood" value="Seafood" >
 					<label class="btn btn-outline-primary pizza-toppings-category-topping" for="seafood">Seafood</label>
-					<input type="radio" class="btn-check" name="pizza-toppings-category" id="vegetables" value="Vegetables" autocomplete="off">
+					<input type="radio" class="btn-check" name="pizza-toppings-category" id="vegetables" value="Vegetables" >
 					<label class="btn btn-outline-primary pizza-toppings-category-topping" for="vegetables">Vegetables</label>
-					<input type="radio" class="btn-check" name="pizza-toppings-category" id="fruits" value="Fruits" autocomplete="off">
+					<input type="radio" class="btn-check" name="pizza-toppings-category" id="fruits" value="Fruits" >
 					<label class="btn btn-outline-primary pizza-toppings-category-topping" for="fruits">Fruits</label>
-					<input type="radio" class="btn-check" name="pizza-toppings-category" id="cheeses" value="Cheeses" autocomplete="off">
+					<input type="radio" class="btn-check" name="pizza-toppings-category" id="cheeses" value="Cheeses" >
 					<label class="btn btn-outline-primary pizza-toppings-category-topping" for="cheeses">Cheeses</label>
-					<input type="radio" class="btn-check" name="pizza-toppings-category" id="other" value="Other" autocomplete="off">
+					<input type="radio" class="btn-check" name="pizza-toppings-category" id="other" value="Other" >
 					<label class="btn btn-outline-primary pizza-toppings-category-topping" for="other">Other</label>
 				</div>
 			</div>
@@ -101,7 +101,9 @@
 								{% endif %}
 								<h2 class="card-title my-3 h5">{{ topping.name }}</h2>
 								<p class="card-text topping-price" data-base-price="{{ topping.price }}">€{{ topping.price }}</p>
-								<i class="fa fa-plus add-icon" data-topping-id="{{ topping.id }}" aria-label="select topping"></i>
+								<div role="button" tabindex="0" aria-label="Select topping">
+									<i class="fa fa-plus add-icon" data-topping-id="{{ topping.id }}"></i>
+								</div>
 								{% if request.user.is_superuser %}
 									<small class="ml-3 position-absolute bottom-0 topping-admin">
 										<a class="text-main-color" href="{% url 'edit_topping' topping.slug %}">Edit</a> | 
