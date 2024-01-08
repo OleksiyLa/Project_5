@@ -9,6 +9,7 @@
 
 {% block content %}
 <main>
+  <div class="modal" id="delete-modal"></div>
   <div class="container">
     <hr class="my-3">
     <h1 class="my-5 text-center">Testimonials</h1>
@@ -43,7 +44,7 @@
             {% if not testimonial.is_verified %}
               <a class="text-main-color" href="{% url 'approve_testimonial' testimonial.id %}">Approve</a>
             {% endif %} | 
-            <a class="text-red" href="{% url 'delete_testimonial' testimonial.id %}">Delete</a>
+            <span class="text-red confirm-delete delete-tag" data-url="{% url 'delete_testimonial' testimonial.id %}" data-txt="testimonial">Delete</span>
           </small>
           {% endif %}
           </div>

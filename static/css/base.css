@@ -47,12 +47,34 @@ h1 {
   background-color: var(--overlay-color);
 }
 
+.delete-tag {
+  cursor: pointer;
+  text-decoration: underline;
+}
+
+.delete-tag:hover {
+  opacity: 0.8;
+}
+
 .salsa {
   font-family: 'Salsa', cursive;
 }
 
 .text-red {
   color: var(--error-color);
+}
+
+.light-color {
+  color: var(--light-color);
+}
+
+.light-color:hover {
+  color: var(--light-color);
+  opacity: 0.9;
+}
+
+.light-color:active {
+  opacity: 1;
 }
 
 .bg-red {

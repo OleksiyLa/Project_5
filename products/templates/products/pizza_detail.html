@@ -6,6 +6,7 @@
 {% block content %}
 
 <main class="container mt-4">
+	<div class="modal" id="delete-modal"></div>
 	<div class="modal fade position-fixed" id="toppingLimitModal" tabindex="-1" aria-labelledby="toppingLimitModalLabel" aria-hidden="true">
 		<div class="modal-dialog">
       <div class="modal-content">
@@ -60,7 +61,7 @@
 						{% if request.user.is_superuser %}
 							<small class="ml-3">
 								<a class="text-main-color" href="{% url 'edit_pizza' product.slug %}">Edit</a> | 
-								<a class="text-red" href="{% url 'delete_pizza' product.slug %}">Delete</a>
+								<span class="text-red confirm-delete delete-tag" data-url="{% url 'delete_pizza' product.slug %}" data-txt="pizza">Delete</span>
 							</small>
 						{% endif %}
 					</div>
@@ -107,7 +108,7 @@
 								{% if request.user.is_superuser %}
 									<small class="ml-3 position-absolute bottom-0 topping-admin">
 										<a class="text-main-color" href="{% url 'edit_topping' topping.slug %}">Edit</a> | 
-										<a class="text-red" href="{% url 'delete_topping' topping.slug %}">Delete</a>
+										<span class="text-red confirm-delete delete-tag" data-url="{% url 'delete_topping' topping.slug %}" data-txt="topping">Delete</span>
 									</small>
 								{% endif %}
 							</div>
