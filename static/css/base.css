@@ -111,6 +111,10 @@ h1 {
   opacity: 0.9;
 }
 
+.btn-custom:active {
+  opacity: 1;
+}
+
 .border-custom {
   border-color: var(--main-color) !important;
 }
@@ -126,6 +130,16 @@ h1 {
   color: var(--light-color) !important;
   background-color: var(--main-color) !important;
   opacity: 0.9;
+}
+
+.btn-outline-custom:hover {
+  color: var(--light-color) !important;
+  background-color: var(--main-color) !important;
+  opacity: 0.9;
+}
+
+.btn-outline-custom:active {
+  opacity: 1;
 }
 
 .custom-input {
