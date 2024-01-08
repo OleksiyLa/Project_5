@@ -3,7 +3,7 @@
   <nav class="navbar navbar-expand-lg navbar-light bg-light">
     <div class="container-fluid">
       <a class="nav-link {% if active_link == 'pizza' %}active{% endif %}" aria-current="page" href="{% url 'pizza_list' %}">
-        <sup class="navbar-brand" href="#"><u class="logo">SuperPizza</u></sup>
+        <sup class="navbar-brand"><u class="logo">SuperPizza</u></sup>
       </a>
       <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
@@ -37,8 +37,8 @@
         </ul>
         <ul class="navbar-nav text-center">
           <li class="nav-item dropdown">
-            <a class="nav-link user-icon" href="#" id="user-options" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-              <i class="fas fa-user fa-lg"></i>
+            <a class="nav-link user-icon" href="#" id="user-options" role="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Link that opens dropdown menu with otions to login, register, logout and profile page">
+              <i class="fas fa-user fa-lg" aria-label="Profile image"></i>
             </a>
             <ul class="dropdown-menu dropdown-menu-end border-0 shadow text-center" aria-labelledby="user-options">
               {% if request.user.is_authenticated %}
@@ -64,11 +64,11 @@
             </ul>
           </li>      
           <li class="nav-item mx-4">
-            <a class="nav-link pe-5 {% if active_link == 'bag' %}active{% endif %}" href="{% url 'view_bag' %}">
+            <a class="nav-link pe-5 {% if active_link == 'bag' %}active{% endif %}" href="{% url 'view_bag' %}" aria-label="Link that leads to the shopping bag page">
               
-              <i class="fas fa-shopping-cart fa-lg position-relative" alt="cart">
-              <small class="position-absolute bottom-0">{% if bag_items %}€{{ grand_total }}{% endif %}</small>
-            </i>
+              <i class="fas fa-shopping-cart fa-lg position-relative" aria-label="Shopping cart icon">
+                <small class="position-absolute bottom-0">{% if bag_items %}€{{ grand_total }}{% endif %}</small>
+              </i>
             </a>
             
           </li>

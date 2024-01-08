@@ -1,7 +1,7 @@
 {% extends "base.html" %}
 {% load static %}
 
-{% block title %}Pizza{% endblock title %}
+{% block title %}Pizza Details{% endblock title %}
 
 {% block content %}
 
@@ -10,7 +10,7 @@
 		<div class="modal-dialog">
       <div class="modal-content">
         <div class="modal-header">
-          <h5 class="modal-title" id="toppingLimitModalLabel">Topping Limit Exceeded</h5>
+          <h2 class="modal-title h5" id="toppingLimitModalLabel">Topping Limit Exceeded</h2>
           <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
         </div>
         <div class="modal-body text-center">
@@ -69,7 +69,7 @@
 		</div>
 		<!-- Toppings -->
 		<div class="mt-4">
-			<h2 class="mb-2 text-center text-main-color salsa" id="toppings">Additional Toppings</h2>
+			<h2 class="mb-2 text-center text-main-color salsa h5" id="toppings">Additional Toppings</h2>
 			<div class="d-flex justify-content-center mt-4">
 				<div class="btn-group main-color d-flex flex-wrap" role="group" aria-label="Toppings options" id="topping_categories">
 					<input type="radio" class="btn-check" name="pizza-toppings-category" id="all" value="all" autocomplete="off" checked>
@@ -99,7 +99,7 @@
 								{% else %}
 									<img class="img-fluid topping-image top-0" src="https://res.cloudinary.com/dcq31wib9/image/upload/v1703947640/noimage_hpttfg.png" alt="{{ topping.name }}">
 								{% endif %}
-								<h5 class="card-title my-3">{{ topping.name }}</h5>
+								<h2 class="card-title my-3 h5">{{ topping.name }}</h2>
 								<p class="card-text topping-price" data-base-price="{{ topping.price }}">€{{ topping.price }}</p>
 								<i class="fa fa-plus add-icon" data-topping-id="{{ topping.id }}" aria-label="select topping"></i>
 								{% if request.user.is_superuser %}

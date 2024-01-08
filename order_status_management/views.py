@@ -22,7 +22,9 @@ def orders(request, status):
 
     return render(request,
                   'order_status_management/orders.html',
-                  {'orders': orders, 'status': status})
+                  {'active_link': 'orders',
+                   'orders': orders,
+                   'status': status})
 
 
 @login_required

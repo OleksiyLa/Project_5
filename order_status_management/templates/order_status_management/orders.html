@@ -30,7 +30,7 @@
       </div>
       <div class="card-body">
         <sup class="card-text">{{ order.created_at }}</sup>
-        <h5 class="card-title">Customer Information</h5>
+        <h2 class="card-title h5">Customer Information</h2>
         <p class="card-text">Name: {{ order.full_name }}</p>
         <p class="card-text">Email: {{ order.email }}</p>
         <p class="card-text">Phone Number: {{ order.phone_number }}</p>
@@ -41,7 +41,7 @@
         <p class="card-text">Order Status: {{ order.progress.status }}</p>
         <a href="{% url 'proceed' order.order_number %}" class="btn btn-custom">{% if order.progress.status == 'completed' %}Archive{% else %}Proceed{% endif %}</a>
 
-        <h5 class="card-title mt-4">Line Items</h5>
+        <h2 class="card-title mt-4">Line Items</h2>
         <table class="table">
           <thead>
             <tr>
