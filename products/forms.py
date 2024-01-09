@@ -49,6 +49,20 @@ class ProductForm(forms.ModelForm):
             'max_digits': 'The price should have at most 6 digits.'
         }
     )
+
+    def clean_name(self):
+        name = self.cleaned_data['name']
+        min_length = 5
+        if len(name) < min_length:
+            raise forms.ValidationError(f"Name must be at least {min_length} characters long.")
+        return name
+
+    def clean_description(self):
+        description = self.cleaned_data['description']
+        min_length = 20
+        if len(description) < min_length:
+            raise forms.ValidationError(f"Description must be at least {min_length} characters long.")
+        return description
     
 
 
