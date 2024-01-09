@@ -36,3 +36,19 @@ class OrderForm(forms.ModelForm):
             self.fields[field].widget.attrs['placeholder'] = placeholder
             self.fields[field].widget.attrs['class'] = 'stripe-style-input'
             self.fields[field].label = False
+
+    def clean_phone_number(self):
+        phone_number = self.cleaned_data['phone_number']
+
+        if len(phone_number) < 8:
+            raise forms.ValidationError("Please enter a valid phone number.")
+
+        return phone_number
+
+    def clean_postcode(self):
+        postcode = self.cleaned_data['postcode']
+
+        if postcode and len(postcode) < 7:
+            raise forms.ValidationError("Please enter a valid postcode.")
+
+        return postcode

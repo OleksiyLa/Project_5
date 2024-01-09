@@ -76,7 +76,7 @@ class UserProfileForm(forms.ModelForm):
 
         if len(phone_number) < 8:
             raise forms.ValidationError("Please enter a valid phone number.")
-    
+
         return phone_number
 
     def clean_default_postcode(self):

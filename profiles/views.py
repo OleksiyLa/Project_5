@@ -26,7 +26,6 @@ def profile(request):
                 request,
                 'Update failed. Please ensure the form is valid.')
 
- 
     orders = profile.orders.all().order_by('-created_at')
     template = 'profiles/profile.html'
     context = {
