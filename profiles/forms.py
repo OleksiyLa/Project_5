@@ -21,12 +21,6 @@ class UserProfileForm(forms.ModelForm):
             'default_street_address2': 'Street Address 2',
         }
 
-        self.fields['default_full_name'].widget.attrs['maxlength'] = 50
-        self.fields['default_phone_number'].widget.attrs['maxlength'] = 20
-        self.fields['default_postcode'].widget.attrs['maxlength'] = 20
-        self.fields['default_street_address1'].widget.attrs['maxlength'] = 80
-        self.fields['default_street_address2'].widget.attrs['maxlength'] = 80
-
         self.fields['default_full_name'].widget.attrs['autofocus'] = True
         for field in self.fields:
             if self.fields[field].required:
@@ -36,3 +30,59 @@ class UserProfileForm(forms.ModelForm):
             self.fields[field].widget.attrs['placeholder'] = placeholder
             self.fields[field].widget.attrs['class'] = 'border-custom'
             self.fields[field].label = False
+
+    default_full_name = forms.CharField(
+        label='Full Name',
+        max_length=80,
+        error_messages={
+            'max_length': 'Full name should have at most 80 characters.'
+        }
+    )
+
+    default_street_address1 = forms.CharField(
+        label='Street Address 1',
+        max_length=80,
+        error_messages={
+            'max_length': 'Street Address 1 should have at most 80 characters.'
+        }
+    )
+
+    default_street_address2 = forms.CharField(
+        label='Street Address 2',
+        max_length=80,
+        error_messages={
+            'max_length': 'Street Address 2 should have at most 80 characters.'
+        }
+    )
+
+    default_phone_number = forms.CharField(
+        label='Phone Number',
+        max_length=20,
+        error_messages={
+            'max_length': 'Phone number should have at most 20 characters.'
+        }
+    )
+
+    default_postcode = forms.CharField(
+        label='Postal Code',
+        max_length=20,
+        error_messages={
+            'max_length': 'Postal code should have at most 20 characters.'
+        }
+    )
+
+    def clean_default_phone_number(self):
+        phone_number = self.cleaned_data['default_phone_number']
+
+        if len(phone_number) < 8:
+            raise forms.ValidationError("Please enter a valid phone number.")
+    
+        return phone_number
+
+    def clean_default_postcode(self):
+        postcode = self.cleaned_data['default_postcode']
+
+        if postcode and len(postcode) < 7:
+            raise forms.ValidationError("Please enter a valid postcode.")
+
+        return postcode

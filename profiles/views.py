@@ -13,7 +13,7 @@ from checkout.models import Order
 def profile(request):
     """ Display the user's profile. """
     profile = get_object_or_404(UserProfile, user=request.user)
-
+    form = UserProfileForm(instance=profile)
     if request.method == 'POST':
         form = UserProfileForm(request.POST, instance=profile)
         if form.is_valid():
@@ -26,7 +26,7 @@ def profile(request):
                 request,
                 'Update failed. Please ensure the form is valid.')
 
-    form = UserProfileForm(instance=profile)
+ 
     orders = profile.orders.all().order_by('-created_at')
     template = 'profiles/profile.html'
     context = {
