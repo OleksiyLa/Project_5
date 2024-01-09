@@ -70,10 +70,10 @@ class TestimonialForm(forms.ModelForm):
         return name
 
     def clean_testimonial(self):
-        description = self.cleaned_data['description']
+        testimonial = self.cleaned_data['testimonial']
         min_length = 20
-        if len(description) < min_length:
+        if len(testimonial) < min_length:
             raise forms.ValidationError(
                 f"Testimonial must be at least {min_length} characters long."
-                )
-        return description
+            )
+        return testimonial
