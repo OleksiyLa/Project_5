@@ -37,6 +37,10 @@
           {{ form.image }}
         </div>
 
+        <div class="mb-3">
+          {{ form.category|as_crispy_field }}
+        </div>
+
         <button type="submit" class="btn btn-lg btn-custom w-100">Edit Topping</button>
       </form>
     </div>
