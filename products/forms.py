@@ -38,7 +38,7 @@ class ProductForm(forms.ModelForm):
             'required': 'Please provide the product description.',
         }
     )
-    
+
     price = forms.DecimalField(
         label='Price',
         max_digits=6,
@@ -54,17 +54,19 @@ class ProductForm(forms.ModelForm):
         name = self.cleaned_data['name']
         min_length = 5
         if len(name) < min_length:
-            raise forms.ValidationError(f"Name must be at least {min_length} characters long.")
+            raise forms.ValidationError(
+                f"Name must be at least {min_length} characters long."
+                )
         return name
 
     def clean_description(self):
         description = self.cleaned_data['description']
         min_length = 20
         if len(description) < min_length:
-            raise forms.ValidationError(f"Description must be at least {min_length} characters long.")
+            raise forms.ValidationError(
+                f"Description must be at least {min_length} characters long."
+                )
         return description
-    
-
 
 
 class ToppingForm(forms.ModelForm):
@@ -74,7 +76,7 @@ class ToppingForm(forms.ModelForm):
 
     image = CustomCloudinaryField(label='Image',
                                   required=False)
-    
+
     name = forms.CharField(
         label='Name',
         max_length=100,
@@ -83,7 +85,7 @@ class ToppingForm(forms.ModelForm):
             'required': 'Please provide the topping name.',
             'max_length': 'The name cannot exceed 100 characters.'
         })
-    
+
     price = forms.DecimalField(
         label='Price',
         max_digits=6,
@@ -93,9 +95,9 @@ class ToppingForm(forms.ModelForm):
             'required': 'Please specify the topping price.',
             'max_digits': 'The price should have at most 6 digits.'
         })
-    
+
     CATEGORY_CHOICES = Topping.CATEGORY_CHOICES
-    
+
     category = forms.ChoiceField(
         label='Category',
         choices=CATEGORY_CHOICES,
@@ -103,11 +105,12 @@ class ToppingForm(forms.ModelForm):
         error_messages={
             'required': 'Please specify the topping category.',
         })
-    
+
     def clean_category(self):
         category = self.cleaned_data['category']
         if category not in dict(self.fields['category'].choices).keys():
-            raise forms.ValidationError('Invalid choice. Please select a valid category.')
+            raise forms.ValidationError(
+                'Invalid choice. Please select a valid category.')
         return category
 
 

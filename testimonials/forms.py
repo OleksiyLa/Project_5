@@ -56,8 +56,8 @@ class TestimonialForm(forms.ModelForm):
 
     def clean_rating(self):
         rating = self.cleaned_data['rating']
-        rating_values = [str(choice[0]) for choice in Testimonial.RATING_CHOICES]
-        if rating not in rating_values:
+        rating_val = [str(choice[0]) for choice in Testimonial.RATING_CHOICES]
+        if rating not in rating_val:
             raise forms.ValidationError('Invalid rating value.')
         return rating
 
@@ -65,12 +65,15 @@ class TestimonialForm(forms.ModelForm):
         name = self.cleaned_data['name']
         min_length = 5
         if len(name) < min_length:
-            raise forms.ValidationError(f"Name must be at least {min_length} characters long.")
+            raise forms.ValidationError(
+                f"Name must be at least {min_length} characters long.")
         return name
-    
+
     def clean_testimonial(self):
         description = self.cleaned_data['description']
         min_length = 20
         if len(description) < min_length:
-            raise forms.ValidationError(f"Testimonial must be at least {min_length} characters long.")
+            raise forms.ValidationError(
+                f"Testimonial must be at least {min_length} characters long."
+                )
         return description
