@@ -35,6 +35,7 @@ class UserProfileForm(forms.ModelForm):
         label='Full Name',
         max_length=80,
         error_messages={
+            'required': 'Please enter your full name.',
             'max_length': 'Full name should have at most 80 characters.'
         }
     )
@@ -43,6 +44,7 @@ class UserProfileForm(forms.ModelForm):
         label='Street Address 1',
         max_length=80,
         error_messages={
+            'required': 'Please enter your street address.',
             'max_length': 'Street Address 1 should have at most 80 characters.'
         }
     )
@@ -59,6 +61,7 @@ class UserProfileForm(forms.ModelForm):
         label='Phone Number',
         max_length=20,
         error_messages={
+            'required': 'Please enter your phone number.',
             'max_length': 'Phone number should have at most 20 characters.'
         }
     )
@@ -67,6 +70,7 @@ class UserProfileForm(forms.ModelForm):
         label='Postal Code',
         max_length=20,
         error_messages={
+            'required': 'Please enter your postal code.',
             'max_length': 'Postal code should have at most 20 characters.'
         }
     )
