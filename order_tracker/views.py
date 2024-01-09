@@ -2,6 +2,7 @@ from django.shortcuts import render, redirect, get_object_or_404
 from django.contrib import messages
 from django.http import Http404
 from checkout.models import Order
+from .forms import OrderTrackerForm
 
 
 def order_tracker(request):
@@ -9,27 +10,35 @@ def order_tracker(request):
     A view to show the order tracker page
     This view leads to the order tracker bar
     """
-    if request.POST:
-        order_number = request.POST['order_number']
-        order = Order.objects.filter(order_number=order_number).exists()
+    if request.method == 'POST':
+        form = OrderTrackerForm(request.POST)
+        if form.is_valid():
+            order_number = form.cleaned_data['order_number']
+            order = Order.objects.filter(order_number=order_number).exists()
 
-        if order:
-            order = Order.objects.get(order_number=order_number)
-            if order.progress.is_active:
-                timestamp = int(order.progress.new_at.timestamp())
-                return redirect('order_tracker_bar',
-                                order_number=order.order_number,
-                                timestamp=timestamp)
+            if order:
+                order = Order.objects.get(order_number=order_number)
+                if order.progress.is_active:
+                    timestamp = int(order.progress.new_at.timestamp())
+                    return redirect('order_tracker_bar',
+                                    order_number=order.order_number,
+                                    timestamp=timestamp)
+                else:
+                    messages.error(request, 'Order not found')
+                    form.add_error(
+                        'order_number',
+                        'Please enter a valid order number.')
             else:
                 messages.error(request, 'Order not found')
-                return redirect('order_tracker')
-        else:
-            messages.error(request, 'Order not found')
-            return redirect('order_tracker')
-
+                form.add_error(
+                    'order_number',
+                    'Please enter a valid order number.')
+    else:
+        form = OrderTrackerForm()
     return render(request,
                   'order_tracker/order_tracker.html',
-                  {'active_link': 'tracker'})
+                  {'active_link': 'tracker',
+                   'form': form})
 
 
 def order_tracker_bar(request, order_number, timestamp):
