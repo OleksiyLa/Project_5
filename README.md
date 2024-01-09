@@ -120,23 +120,23 @@
 
 #### Authorization
 
-  - Authenticated User
-    - Confirmed that authenticated users can access and manage their profiles.
-    - Validated the functionality to view order history and edit personal details for checkout.
-    - Verified that authenticated users with at least one order can write testimonials.
-    - Ensured testimonial submission is restricted until the user meets the minimum order requirement.
+- Authenticated User
+  - Confirmed that authenticated users can access and manage their profiles.
+  - Validated the functionality to view order history and edit personal details for checkout.
+  - Verified that authenticated users with at least one order can write testimonials.
+  - Ensured testimonial submission is restricted until the user meets the minimum order requirement.
 
 ![Authenticated User](./README/tests/manual_testing/authorization/pizza_list_authenticated.png)
 
-  - Worker
-    - Tested the additional "Orders" navigation link accessible to workers.
+- Worker
+  - Tested the additional "Orders" navigation link accessible to workers.
 
 ![Worker](./README/tests/manual_testing/authorization/worker.png)
 
-  - Admin
-    - Validated additional profile dropdown menu options available to admins.
-    - Confirmed functionality to add pizzas, toppings, and provide testimonials from the admin profile.
-    - Checked access to the admin panel through the designated navigation link.
+- Admin
+  - Validated additional profile dropdown menu options available to admins.
+  - Confirmed functionality to add pizzas, toppings, and provide testimonials from the admin profile.
+  - Checked access to the admin panel through the designated navigation link.
 
 <details><summary>Admin Authorization</summary>
 
@@ -158,17 +158,43 @@
 
   - Validated Add Pizza form.
 
-![Add Pizza form](./README/tests/manual_testing/forms/)
+![Add Pizza form](./README/tests/manual_testing/forms/add_pizza.png)
 
   - Validated Edit Pizza form.
+
+![Edit Pizza form](./README/tests/manual_testing/forms/edit_pizza.png)
+
   - Validated Add Topping form.
+
+![Add Topping form](./README/tests/manual_testing/forms/add_topping.png)
+
   - Validated Edit Topping form.
+
+![Edit Topping form](./README/tests/manual_testing/forms/edit_topping.png)
+
   - Validated Login form.
+
+![Login](./README/tests/manual_testing/forms/login.png)
+
   - Validated Registration form.
+
+![Registration](./README/tests/manual_testing/forms/register.png)
+
   - Validated Profile form.
+
+![Profile form](./README/tests/manual_testing/forms/profile.png)
+
   - Validated Checkout form.
+
+![Checkout form](./README/tests/manual_testing/forms/checkout.png)
+
   - Validated Provide Testimonial form.
+
+![Provide Testimonial form](./README/tests/manual_testing/forms/testimonial.png)
+
   - Validated Track Order form.
+
+![Track Order form](./README/tests/manual_testing/forms/order_tracker.png)
 
 #### Crud
 
