@@ -88,7 +88,15 @@ def adjust_bag(request, item_id):
 
     if quantity > 15:
         messages.warning(request, "Maximum is 15 pizzas of one type")
-        return redirect(reverse('view_bag'))
+        if 'bag' in request.session:
+            del request.session['bag']
+        return redirect(reverse('pizza_list'))
+    
+    if quantity < 1:
+        messages.warning(request, "Cannot have less than 1 pizza")
+        if 'bag' in request.session:
+            del request.session['bag']
+        return redirect(reverse('pizza_list'))
 
     id = request.POST.get('id')
     bag = request.session.get('bag', {})
