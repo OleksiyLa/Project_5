@@ -91,7 +91,7 @@ def adjust_bag(request, item_id):
         if 'bag' in request.session:
             del request.session['bag']
         return redirect(reverse('pizza_list'))
-    
+
     if quantity < 1:
         messages.warning(request, "Cannot have less than 1 pizza")
         if 'bag' in request.session:

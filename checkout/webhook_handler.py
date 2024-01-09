@@ -4,6 +4,7 @@ from django.template.loader import render_to_string
 from django.conf import settings
 
 from .models import Order, OrderLineItem
+from .forms import OrderForm
 from products.models import Product, Topping
 from profiles.models import UserProfile
 
@@ -61,6 +62,20 @@ class StripeWH_Handler:
         billing_details = stripe_charge.billing_details
         shipping_details = intent.shipping
         grand_total = round(stripe_charge.amount / 100, 2)
+
+        order_form = OrderForm({
+            'full_name': shipping_details.name,
+            'email': billing_details.email,
+            'phone_number': shipping_details.phone,
+            'street_address1': shipping_details.address.line1,
+            'street_address2': shipping_details.address.line2,
+            'postcode': shipping_details.address.postal_code,
+        })
+
+        if not order_form.is_valid():
+            return HttpResponse(
+                content=f'Webhook received: {event["type"]} | ERROR: {e}',
+                status=500)
 
         # Clean data in the shipping details
         for field, value in shipping_details.address.items():
