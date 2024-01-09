@@ -97,11 +97,78 @@
 
 ### Manual Testing
 
-#### Auth
+#### Authentication
+
+  - Verified the functionality of the registration form, ensuring all required fields are present and functional.
+
+![Sign Up Form](./README/tests/manual_testing/authentication/register.png)
+
+  - Validated the form's behavior when submitting incomplete or erroneous data (e.g., missing fields, invalid email format).
+  - Tested the form's responsiveness across various devices to ensure usability.
+  - Checked that successful registration results in the creation of a user account.
+
+  - Verified that users receive confirmation emails.
+
+![Sign Up Form](./README/tests/manual_testing/authentication/email_confirmation.png)
+
+  - Tested the login functionality to authenticate registered users.
+
+![Sign Up Form](./README/tests/manual_testing/authentication/login.png)
+
+  - Verified that incorrect login credentials trigger appropriate error messages.
+  - Tested the "Forgot Password" feature to confirm its functionality in allowing users to reset their passwords.
 
 #### Authorization
 
+  - Authenticated User
+    - Confirmed that authenticated users can access and manage their profiles.
+    - Validated the functionality to view order history and edit personal details for checkout.
+    - Verified that authenticated users with at least one order can write testimonials.
+    - Ensured testimonial submission is restricted until the user meets the minimum order requirement.
+
+![Authenticated User](./README/tests/manual_testing/authorization/pizza_list_authenticated.png)
+
+  - Worker
+    - Tested the additional "Orders" navigation link accessible to workers.
+
+![Worker](./README/tests/manual_testing/authorization/worker.png)
+
+  - Admin
+    - Validated additional profile dropdown menu options available to admins.
+    - Confirmed functionality to add pizzas, toppings, and provide testimonials from the admin profile.
+    - Checked access to the admin panel through the designated navigation link.
+
+<details><summary>Admin Authorization</summary>
+
+  ![Admin](./README/tests/manual_testing/authorization/admin_nav_dropdown.png)
+  ![Admin](./README/tests/manual_testing/authorization/add_pizza.png)
+  ![Admin](./README/tests/manual_testing/authorization/approve_testimonial.png)
+  ![Admin](./README/tests/manual_testing/authorization/edit_topping_form.png)
+  ![Admin](./README/tests/manual_testing/authorization/pizza_list_admin.png)
+
+</details>
+
+![Admin Nav and Profile Dropdown](./README/tests/manual_testing/authorization/admin_nav_dropdown.png)
+
+    - Verified admin privileges within the admin panel, including editing/deleting products and testimonials.
+    - Ensured that under product cards (e.g., pizzas, toppings), admins can access links to edit or delete them.
+    - Verified admin access to approving or deleting testimonials.
+
 #### Form Validation
+
+  - Validated Add Pizza form.
+
+![Add Pizza form](./README/tests/manual_testing/forms/)
+
+  - Validated Edit Pizza form.
+  - Validated Add Topping form.
+  - Validated Edit Topping form.
+  - Validated Login form.
+  - Validated Registration form.
+  - Validated Profile form.
+  - Validated Checkout form.
+  - Validated Provide Testimonial form.
+  - Validated Track Order form.
 
 #### Crud
 
@@ -141,7 +208,7 @@
   - The MailChimp subscription form has been tested and the form works correctly.
   - The information like "Opening Hours", "Our Location" and "Contact Us" is displayed correctly.
 
-
+![Footer](./README/tests/manual_testing/footer/footer.png)
 
 ### HTML Validation
 
