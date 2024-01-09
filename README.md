@@ -148,11 +148,9 @@
 
 </details>
 
-![Admin Nav and Profile Dropdown](./README/tests/manual_testing/authorization/admin_nav_dropdown.png)
-
-    - Verified admin privileges within the admin panel, including editing/deleting products and testimonials.
-    - Ensured that under product cards (e.g., pizzas, toppings), admins can access links to edit or delete them.
-    - Verified admin access to approving or deleting testimonials.
+  - Verified admin privileges within the admin panel, including editing/deleting products and testimonials.
+  - Ensured that under product cards (e.g., pizzas, toppings), admins can access links to edit or delete them.
+  - Verified admin access to approving or deleting testimonials.
 
 #### Form Validation
 
@@ -198,19 +196,52 @@
 
 #### Crud
 
+  - Verified that admins can successfully add new pizzas and toppings to the system.
+
+![CRUD](./README/tests/manual_testing/crud/added_pizza.png)
+![CRUD](./README/tests/manual_testing/crud/added_pizza_pickles.png)
+
+  - Verified that admins can successfully update pizza or topping.
+
+![CRUD](./README/tests/manual_testing/crud/edit_pickles.png)
+
+  - Verified that admins can successfully delete pizza or topping.
+
+![CRUD](./README/tests/manual_testing/crud/delete_from_pizza_list.png)
+![CRUD](./README/tests/manual_testing/crud/delete_toppping.png)
+
+  - Confirmed that images associated with pizzas or toppings created and deleted in Cloudinary.
+  - Ensured the ability for users to create testimonials and submit them successfully.
+  - Validated admin functionality to approve submitted testimonials.
+
+![CRUD](./README/tests/manual_testing/crud/testimonial_to_approve.png)
+![CRUD](./README/tests/manual_testing/crud/testimonial_approved.png)
+
+  - Confirmed that admins can delete testimonials as needed.
+
+![CRUD](./README/tests/manual_testing/crud/testimonial_delete_modal.png)
+
+  - Verified that users can add pizzas to their shopping bag successfully.
+
+![CRUD](./README/tests/manual_testing/crud/added_to_bag.png)
+
+  - Tested the removal of pizzas from the bag to ensure functionality.
+
+![CRUD](./README/tests/manual_testing/crud/updated_bag.png)
+
+  - Confirmed that users can modify the quantity of pizzas in their bag and that these changes reflect accurately.
+
+![CRUD](./README/tests/manual_testing/crud/removed_bag.png)
+
+  - Validated the ability for users to add toppings to their pizzas.
+
 #### Price
 
-#### Bag
-
-#### Checkout
-
-#### Tracking System
+#### Payment
 
 #### Profiles
 
-#### Testimonials
-
-#### UX
+#### Tracking System
 
 #### Responsiveness
 
