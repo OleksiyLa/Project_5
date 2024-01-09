@@ -1,0 +1,11 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block content %}
+    <div class="container h-100">
+        <h1 class="my-5 text-center py-5">500 - Internal Server Error</h1>
+        <p class="mb-5 text-center h5 py-5">Oops! Something went wrong. We're working on fixing it.</p>
+        <a class="link d-block text-center h3 text-main-color" href="{% url 'pizza_list' %}">
+            View Our Delicious Pizza...
+        </a>
+    </div>
+{% endblock %}
