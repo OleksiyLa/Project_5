@@ -7,6 +7,9 @@ Superpizza, our online delivery store in Tralee, offers a seamless user experien
 Our platform includes a secure online payment system and provides an option to track order status from the moment an order is placed until it reaches your doorstep. The intuitive design extends to our workers and administrators, granting them the ability to efficiently manage orders, approve or remove testimonials, and effortlessly modify the store's products such as pizzas and toppings.
 
 Link to the [live website](https://super-pizza-4be7f9269aef.herokuapp.com/)
+
+<br>
+
 Link to the [github repository](https://github.com/OleksiyLa/Project_5)
 
 <br>
@@ -902,7 +905,81 @@ The website demonstrates consistent adherence to SEO, best practices, and strong
 
 ### User Stories Testing
 
-### Bugs
+Registration
+- Test Email Activation:
+  - Verify that a new user receives an account activation email upon successful registration.
+  - Confirm that clicking the activation link completes the registration process and grants access to platform features.
+Login
+- Test Successful Login:
+  - Confirm that a registered user can successfully log in using valid credentials.
+  - Ensure that successful login grants access to the user's profile and features.
+Logout
+- Test Logout Functionality:
+  - Validate that a user can successfully log out of their account.
+  - Ensure that personal information is secured and inaccessible after logout.
+Admin Pizza Management
+- Test Adding Pizza:
+  - Navigate to the admin interface and verify the ability to add a new pizza.
+  - Confirm that the addition instantly reflects and updates on the pizza page for users.
+- Test Updating Pizza:
+  - Access the admin interface and update details of an existing pizza.
+  - Confirm that changes are immediately reflected and updated on the pizza page for users.
+- Test Deleting Pizza:
+  - Navigate to the admin interface and attempt to delete a pizza.
+  - Verify that a confirmation prompt prevents accidental deletions.
+Admin Topping Management
+- Test Adding Topping:
+  - Access the admin interface and verify the ability to add a new topping.
+  - Confirm that the addition instantly reflects and updates on the topping page for users.
+- Test Updating Topping:
+  - Access the admin interface and update details of an existing topping.
+  - Confirm that changes are immediately reflected and updated on the topping page for users.
+- Test Deleting Topping:
+  - Navigate to the admin interface and attempt to delete a topping.
+  - Verify that a confirmation prompt prevents accidental deletions.
+  - Tracking Every Step of Delivery
+- Test Order Status Tracking:
+  - Access the order tracking page and verify real-time updates on the order's progress.
+  - Confirm that each stage is clearly labeled with visual cues for easy comprehension.
+  - Accessing and Managing Orders
+- Test Order Management Page:
+  - Access the order management page and verify the display of pending orders.
+  - Confirm the ability to review order details and update order status.
+Profile Page
+- Test Profile Information Editing:
+  - Log in as a user, navigate to the profile page, and edit profile information.
+  - Confirm that changes made are immediately reflected and saved to the database.
+Order History
+- Test Order History Display:
+  - Access the order history section in the profile.
+  - Verify the chronological list of orders and the ability to view detailed information on individual orders.
+Online Payment
+- Test Secure Online Payment:
+  - Initiate an online payment transaction and confirm that sensitive information is handled securely.
+  - Verify a clear and intuitive checkout process, confirmation message, and redirection to a "Checkout Success" page.
+Shopping Bag
+- Test Basket Functionality:
+  - Add multiple items to the basket, and verify that the basket icon accurately displays the total cost.
+  - Confirm the ability to modify quantities, remove items, and proceed to checkout seamlessly.
+View All Pizzas
+- Test Pizza Pagination and Filtering:
+  - Navigate to the page displaying all available pizzas.
+  - Verify pagination controls and the ability to filter pizzas by categories (Spicy, Vegetarian, Seafood, Premium, New).
+- Test Pizza Search Functionality:
+  - Use the text input to search for a specific pizza by title or details.
+  - Confirm that the search returns relevant results.
+Pizza Details
+- Test Pizza Customization:
+  - Click on a pizza card to view its details.
+  - Verify the availability of size selection options and the ability to customize the pizza with additional ingredients.
+Provide Testimonial
+- Test Testimonial Submission:
+  - Log in as a user who has made at least one purchase.
+  - Attempt to submit a testimonial and verify the testimonial is in a pending state awaiting admin approval.
+View Testimonials
+- Test Testimonial Display:
+  - Navigate to the testimonials section and verify the organized display of testimonials.
+  - Confirm that each testimonial includes the user's name, date, rating, and content.
 
 ## Deployment
 
