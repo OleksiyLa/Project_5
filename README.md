@@ -182,8 +182,6 @@ Noto Sans and Salsa fonts were chosen for Super Pizza's online store to enhance 
 
 ### Agile
 
-## Marketing
-
 ## Business Model
 
   - SuperPizza operates as a Business-to-Customer (B2C) online pizza delivery service, focusing on delivering high-quality pizzas directly to individual consumers in Tralee. Emphasizing customer satisfaction, the business model centers on providing convenient and premium culinary offerings.
@@ -709,8 +707,99 @@ The website demonstrates consistent adherence to SEO, best practices, and strong
 
 ### Bugs
 
-
 ## Deployment
+
+### Initial Deployment
+- The Task Manager App was deployed to Heroku using the following steps:
+  - Create a virtual environment and install Django.
+    - python -m venv myenv
+    - myenv\Scripts\activate
+    - Install Django using pip install Django
+  - Create a project and app.
+    - django-admin startproject project_name
+    - cd project_name
+    - python manage.py startapp app_name
+  - Heroku setup
+    - Log in to Heroku or create an account if required.
+    - Click "Create new app".
+    - Select the relevant region.
+    - Enter a unique app name.
+    - Click "Create app".
+  - Update Django settings for Heroku.
+    - Ensure DEBUG is set to False.
+    - Update ALLOWED_HOSTS to include your Heroku app's domain.
+    - Update the DATABASES configuration to use dj_database_url for the Heroku PostgreSQL database.
+    - Add logic for Heroku-specific configurations, e.g., handling static files.
+      - Set STATICFILES_STORAGE and DEFAULT_FILE_STORAGE to Cloudinary storage classes.
+      - Update STATIC_ROOT and MEDIA_URL.
+  - Install dependencies.
+  - Prepare requirements file.
+    - Use pip3 freeze > requirements.txt to generate a requirements.txt file listing the Python dependencies for your project.
+  - Create a Procfile.
+    - Create a Procfile to declare what commands are run by your app's dynos on the Heroku platform. For example, for a Django project, it might contain: web: gunicorn your_app_name.wsgi.
+  - Push project to GitHub.
+    - Push your project to a GitHub repository.
+  - Configure environment variables.
+    - Scroll down to the "Config Vars" section.
+    - Click "Reveal Config Vars".
+    - Add the following environment variables:
+    - CLOUD_NAME,
+    - API_KEY,
+    - API_SECRET,
+    - DATABASE_URL: Link to your PostgreSQL database.
+    - PORT: Set the value to 8000.
+    - SECRET_KEY: Set the Django secret key for your application.
+  - Set buildpack.
+    - Scroll down to the buildpacks section of the settings page.
+    - Click "Add buildpack".
+    -  Select "Python" and save changes.
+  - Deployment configuration.
+    - Navigate to the "Deploy" tab.
+    -  Connect your Heroku app to the GitHub repository containing your project.
+    -  Choose the branch to deploy.
+  - Deploy to Heroku.
+    - Trigger the deployment process in Heroku either manually or set up automatic deployments.
+    -  Initiate the deployment process in Heroku.
+    -  Monitor the build logs to ensure successful deployment
+  - Access live application.
+    - Once deployed, click "View" in Heroku to access your live application.
+
+### Development Deployment
+  - Develop Project and Implement Changes
+  - Make necessary changes, implement features, or update code within your project locally.
+  - After installing new packages, update requirements.txt with freeze > requirements.txt command.
+  - After properly configuring settings.py, add and commit changes to Git.
+  - Set Missing Configuration Variables in Heroku
+    - EMAIL_HOST_PASS
+    - EMAIL_HOST_USER
+    - STRIPE_PUBLIC_KEY
+    - STRIPE_SECRET_KEY
+    - STRIPE_WH_SECRET
+  - Redeploy to Heroku
+  - Validate Redeployed Application
+
+### Deployment to Heroku
+- Log in to Heroku and create a new app.
+- Set up the app's configurations:
+- Connect the app to your GitHub repository.
+- Choose the deployment branch.
+- Set the required config vars in the Heroku dashboard.
+  - SECRET_KEY
+  - DATABASE_URL
+  - EMAIL_HOST_USER,
+  - EMAIL_HOST_PASS
+  - CLOUD_NAME,
+  - API_KEY,
+  - API_SECRET,
+  - STRIPE_PUBLIC_KEY,
+  - STRIPE_SECRET_KEY,
+  - STRIPE_WH_SECRET
+- Trigger the deployment process either manually or enable automatic deploys.
+- Verify successful deployment in the Heroku dashboard.
+
+### Finalize Deployment
+  - Test the live application on Heroku by accessing the deployed URL.
+  - Monitor logs and functionalities to ensure everything operates as expected.
 
 ## Credits
 
