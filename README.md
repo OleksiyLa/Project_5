@@ -152,20 +152,72 @@ SuperPizza employs a selection of vibrant colors aimed at enhancing the online e
 
 ### Fonts
 
+Noto Sans and Salsa fonts were chosen for Super Pizza's online store to enhance readability and reinforce brand identity. Noto Sans ensures clear and easy-to-read text, while Salsa adds personality to headlines. This choice maintains brand consistency, guides user attention, and ensures a smooth browsing experience across devices and browsers.
+
+- Noto Sans
+- Salsa
+
 ### Technologies
+
+- Version control: Git + Github
+- Deployment: Heroku
+- Database: PostgreSQL
+- Media + static: Cloudinary
+- Payment: Stripe
+
+### Languages
+
+- HTML
+- CSS
+- JavaScript
+- Python
+
+### Libraries / Frameworks
+
+- Django
+- Bootstrap
+- Font Awesome
+- jQuery
+- MailChimp
 
 ### Agile
 
 ## Marketing
 
-### SEO
+## Business Model
 
-### Keywords
+  - SuperPizza operates as a Business-to-Customer (B2C) online pizza delivery service, focusing on delivering high-quality pizzas directly to individual consumers in Tralee. Emphasizing customer satisfaction, the business model centers on providing convenient and premium culinary offerings.
 
-### Social Media
+## Marketing Strategy
 
+ In the pursuit of a strong brand reputation and active engagement within the local Tralee community, SuperPizza has strategically implemented various marketing initiatives:
 
-![Facebook mockup](./README/facebook/mockup.png)
+### Brand Establishment
+
+  - SuperPizza Website: Serving as the primary branding platform, the website showcases the commitment to delivering quality pizzas to the Tralee populace. Meticulous optimization with targeted keywords such as "Tralee pizza delivery," "quality pizzas in Tralee," "fast pizza delivery," and "diverse pizza menu" enhances visibility and accessibility for local customers seeking pizza delivery services.
+
+### Social Media Presence
+  
+  - Facebook Page: Maintaining an active presence on Facebook, SuperPizza leverages this social media platform to connect and engage with the local community. Functioning as a central hub for updates, promotions, and direct customer interaction, it amplifies our digital presence, complementing SEO efforts to extend reach and engagement within the community.
+
+![Facebook](./README//facebook/mockup.png)
+
+### Customer Engagement Strategies
+
+  - Email Subscription via MailChimp: Offering an email subscription service through MailChimp keeps customers informed about the latest offers, menu expansions, and exclusive deals. These initiatives are complemented by website SEO optimizations, ensuring seamless access to relevant information for potential customers.
+
+### Localization and Community Involvement
+
+  - Localized Marketing: Tailoring marketing efforts to resonate with the people of Tralee emphasizes dedication to serving the local community. Website SEO strategies facilitate effective delivery of localized messages to the intended audience.
+
+  - Community Collaborations: Active participation in local events and collaborations with community initiatives foster stronger connections within the Tralee populace. Website SEO practices contribute to enhanced visibility in local searches, encouraging community engagement.
+
+### Search Engine Optimization (SEO)
+
+  - SuperPizza's website is meticulously optimized with targeted keywords such as "Tralee pizza delivery," "quality pizzas in Tralee," "fast pizza delivery," and "diverse pizza menu." These strategic SEO practices significantly enhance the website's visibility and accessibility for local customers actively seeking pizza delivery services in Tralee. The emphasis on SEO complements SuperPizza's marketing strategies, ensuring the website ranks prominently in relevant search results, thereby attracting and engaging potential customers effectively.
+
+### Conclusion
+SuperPizza's comprehensive B2C model and strategic marketing initiatives, incorporating robust SEO practices and targeted keywords, aim to establish a resilient online presence and deeply engage the local Tralee community. The commitment remains centered on delivering exceptional pizza experiences while continuously enhancing brand visibility, accessibility, and reach through effective SEO strategies.
 
 
 ## Features
