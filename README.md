@@ -99,6 +99,30 @@ Our platform includes a secure online payment system and provides an option to t
 
 ### Database Schema
 
+User Profile:
+
+  - Connected to the User table (custom Django user model). Stores additional user-related information and can prefill certain order fields during checkout.
+
+Testimonial:
+
+  - Connected directly to the User table. Allows users to submit testimonials about their experiences with Superpizza.
+
+Order:
+
+  - Connected to Order Line Item and Order Progress tables. Contains information about individual orders placed by users.
+
+Order Line Item:
+
+  - Connected to Product (through Foreign Key), Topping (through Many-to-Many relationship), and Order tables. Stores details about items within each order, such as product, quantity, size which is enoug to calculate total price of item.
+
+Topping:
+
+  - Connected to Order Line Item through a complementary table (topping_order_line_item) in a Many-to-Many relationship. Represents various toppings available for customizing pizzas.
+
+Order Progress:
+
+  - Connected to the Order table. Manages and tracks the status of orders, allowing for efficient order management.
+
 ![Database Schema](./README/db/schema.png)
 
 ### Colors
