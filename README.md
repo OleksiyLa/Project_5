@@ -1,12 +1,49 @@
 # Super Pizza
 
+Superpizza, our online delivery store in Tralee, offers a seamless user experience, designed for easy navigation. Customers can explore our diverse range of pizzas, select their preferred size, and personalize it by adding extra toppings. They also have the convenience of leaving testimonials to share their experiences.
+
+Our platform includes a secure online payment system and provides an option to track order status from the moment an order is placed until it reaches your doorstep. The intuitive design extends to our workers and administrators, granting them the ability to efficiently manage orders, approve or remove testimonials, and effortlessly modify the store's products such as pizzas and toppings.
+
+![Pizza menu page](./README/website/pizza_list_page.png)
+
+<br>
+
 ## Planning & Development
 
 ### Target Audience
 
+  - Busy Professionals: Individuals who lack time to cook and prefer the convenience of ordering food online.
+  - Families: Parents looking for quick meal solutions or a treat for their children without leaving home.
+  - Students: Those living on campus or in nearby areas who enjoy the ease of online ordering for gatherings or individual meals.
+  - Food Enthusiasts: People who appreciate customization and quality ingredients in their pizzas.
+  - Tech-Savvy Users: Those comfortable with online platforms and seeking a streamlined, user-friendly ordering experience.
+  - Local Community Members: Individuals supporting local businesses and seeking easy access to delicious, freshly made pizzas in their area.
+
 ### App Objectives
 
+  - User Convenience: Simplify the pizza ordering process for customers, ensuring a seamless and user-friendly interface.
+  - Customization: Allow customers to personalize their orders by choosing pizza size, toppings.
+  - Efficient Order Management: Enable workers and administrators to efficiently manage orders, ensuring timely processing and delivery.
+  - Enhanced Customer Experience: Provide a platform for customers to leave testimonials and feedback, fostering a sense of engagement and trust.
+  - Secure Payment Processing: Implement a reliable and secure online payment system to facilitate smooth transactions.
+  - Order Tracking: Offer customers the ability to track their orders from placement to delivery, enhancing transparency and reliability.
+  - Scalability: Build a platform that can adapt and scale with the growing business needs, accommodating potential expansions or modifications to the menu or services.
+  - Marketing and Analytics: Incorporate features to gather data on customer preferences and behavior, aiding in targeted marketing efforts and service improvements.
+
 ### Features to Implement
+
+  - Convenient Real-Time Tracking System: Allow users to track their orders in real-time, providing updates from acceptance to delivery stages.
+  - Order Management for Workers: A dashboard for workers to view all active new orders and update their status from 'new' to 'done' upon completion.
+  - Online Payment System: Integrate a secure online payment gateway for seamless transactions within the app.
+  - Registration and Login: Enable users to create accounts and log in to access personalized features and order history.
+  - Pizza List Page with Filters: Present a comprehensive list of available pizzas with filter options for easy browsing.
+  - Pizza Details and Customization: Offer a detailed view of each pizza with customization options, including the ability to change size, add extra toppings.
+  - Add to Bag Functionality: Allow users to add selected items to their shopping bag for a streamlined ordering process.
+  - Profile Page for Registered Users: Provide a dedicated space for registered users to manage their information and view past orders.
+  - Testimonials Submission: Enable customers to write testimonials to share their experiences with Superpizza.
+  - Testimonials Management for Admins: Admins can review, approve and delete testimonials submitted by customers to maintain the integrity of displayed reviews.
+  - Store Product Management for Admins: Grant admins the capability to manage products in the store, including adding, editing, or deleting pizzas and toppings from the menu.
+  - Responsive Design: Ensure the app is responsive across various devices and screen sizes.
 
 ### Wireframes
 
