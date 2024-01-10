@@ -776,12 +776,33 @@ The website demonstrates consistent adherence to SEO, best practices, and strong
     - STRIPE_SECRET_KEY
     - STRIPE_WH_SECRET
   - Redeploy to Heroku
-  - Validate Redeployed Application
 
 ### Finalize Deployment
-  - Test the live application on Heroku by accessing the deployed URL.
-  - Monitor logs and functionalities to ensure everything operates as expected.
+  - Validate Redeployed Application
+    - Test the live application on Heroku by accessing the deployed URL.
+    - Monitor logs and functionalities to ensure everything operates as expected.
 
 ## Credits
 
-## Acknowledgements
+### Content
+- The Salsa and Noto Sans fonts were obtained from Google Fonts: https://fonts.google.com
+
+### Media
+- All SVG icons, including the favicon, were sourced from FontAwesome and Bootstrap icons: 
+    - https://fontawesome.com
+    - https://icons.getbootstrap.com/
+
+### Frameworks and Libraries
+- Django Docs: https://docs.djangoproject.com/en/4.2/
+- Bootsrap5: https://getbootstrap.com/docs/5.3/getting-started/introduction/
+- jQuery: https://jquery.com/
+
+### README
+- The color palette images featured in the README was sourced from the website http://colormind.io/
+- The text content in the README was composed with the assistance of ChatGPT: https://chat.openai.com
+- The validation image for HTML were captured from: https://validator.w3.org/
+- The validation image for CSS were captured from: https://jigsaw.w3.org/css-validator/
+- The validation image for JS were captured from: https://jshint.com/
+- The validation image for Python were captured from: https://pep8ci.herokuapp.com/#
+- Database model image was created with the assistance of Draw Sql: https://drawsql.app/
+- Balsamique was used to create wireframes and facebook mockup page: https://balsamiq.com/
