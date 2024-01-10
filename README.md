@@ -115,13 +115,17 @@ Order Line Item:
 
   - Connected to Product (through Foreign Key), Topping (through Many-to-Many relationship), and Order tables. Stores details about items within each order, such as product, quantity, size which is enoug to calculate total price of item.
 
+Order Progress:
+
+  - Connected to the Order table. Manages and tracks the status of orders, allowing for efficient order management.
+
 Topping:
 
   - Connected to Order Line Item through a complementary table (topping_order_line_item) in a Many-to-Many relationship. Represents various toppings available for customizing pizzas.
 
-Order Progress:
+Product:
 
-  - Connected to the Order table. Manages and tracks the status of orders, allowing for efficient order management.
+  - This table compiles the assortment of pizzas available at the store. It features detailed information for each pizza, including their names, descriptions, prices, and various boolean attributes designed to facilitate product filtering.
 
 ![Database Schema](./README/db/schema.png)
 
