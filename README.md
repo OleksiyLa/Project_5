@@ -120,7 +120,6 @@ Our platform includes a secure online payment system and provides an option to t
 
 ![Facebook mockup](./README/facebook/mockup.png)
 
-*Go back to the [top](#super-pizza)*
 
 ## Features
 
@@ -128,7 +127,6 @@ Our platform includes a secure online payment system and provides an option to t
 
 ### Features to Implement
 
-*Go back to the [top](#super-pizza)*
 
 ## Testing
 
@@ -570,7 +568,6 @@ Our platform includes a secure online payment system and provides an option to t
 
 ### Bugs
 
-*Go back to the [top](#super-pizza)*
 
 ## Deployment
 
