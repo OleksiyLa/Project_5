@@ -792,6 +792,9 @@ The website demonstrates consistent adherence to SEO, best practices, and strong
     - https://fontawesome.com
     - https://icons.getbootstrap.com/
 
+### Code
+- Stripe payment functionality was inspired by the Code Institute Boutique Ado project: https://codeinstitute.net/ie/
+
 ### Frameworks and Libraries
 - Django Docs: https://docs.djangoproject.com/en/4.2/
 - Bootsrap5: https://getbootstrap.com/docs/5.3/getting-started/introduction/
