@@ -131,7 +131,7 @@ Product:
 
 ### Colors
 
-SuperPizza employs a selection of vibrant colors aimed at enhancing the online experience:
+SuperPizza employs a selection of vibrant colors aimed at enhancing the online experience, those that are the most prominent are:
 
 - Main Color: #00555a
   - The primary color, #00555a, conveys reliability and trust. It guides users seamlessly through the ordering process, portraying efficiency and dependability.
@@ -610,6 +610,48 @@ SuperPizza employs a selection of vibrant colors aimed at enhancing the online e
 </details>
 
 ### LightHouse
+
+A comprehensive Lighthouse audit was performed on multiple pages across the website, evaluating their performance on both mobile and desktop platforms. The assessment covered essential aspects including SEO, best practices, accessibility, and performance metrics.
+
+SEO & Best Practices:
+Consistently, across almost all pages, the website scored a commendable 100 in SEO and best practices, showcasing strong optimization and compliance with industry standards.
+
+Accessibility:
+Accessibility across the pages consistently demonstrated strong scores falling within the 95-100 range, ensuring high inclusivity and usability for a diverse audience.
+
+Performance:
+The Lighthouse audit for mobile devices primarily targeted pages with substantial content. The evaluation yielded an average performance score above 70, indicating a satisfactory level considering the content density. Despite this, there remains room for improvement to further refine the user experience on these content-rich pages.
+
+<details><summary>Lighthouse testing images</summary>
+
+  ![Lighthouse](./README/tests/ligthouse/about_desktop.png)
+  ![Lighthouse](./README/tests/ligthouse/add_pizza_desktop.png)
+  ![Lighthouse](./README/tests/ligthouse/add_testimonial_desktop.png)
+  ![Lighthouse](./README/tests/ligthouse/add_topping_desktop.png)
+  ![Lighthouse](./README/tests/ligthouse/bag.png)
+  ![Lighthouse](./README/tests/ligthouse/bag_desktop.png)
+  ![Lighthouse](./README/tests/ligthouse/checkout.png)
+  ![Lighthouse](./README/tests/ligthouse/checkout_desktop.png)
+  ![Lighthouse](./README/tests/ligthouse/checkout_success_desktop.png)
+  ![Lighthouse](./README/tests/ligthouse/order_tracker_desktop.png)
+  ![Lighthouse](./README/tests/ligthouse/orders.png)
+  ![Lighthouse](./README/tests/ligthouse/orders_desktop.png)
+  ![Lighthouse](./README/tests/ligthouse/pizza_details.png)
+  ![Lighthouse](./README/tests/ligthouse/pizza_details_desktop.png)
+  ![Lighthouse](./README/tests/ligthouse/pizza_list.png)
+  ![Lighthouse](./README/tests/ligthouse/profile.png)
+  ![Lighthouse](./README/tests/ligthouse/profile_desktop.png)
+  ![Lighthouse](./README/tests/ligthouse/progress_bar.png)
+  ![Lighthouse](./README/tests/ligthouse/progress_bar_desktop.png)
+  ![Lighthouse](./README/tests/ligthouse/sign_in_desktop.png)
+  ![Lighthouse](./README/tests/ligthouse/sign_up_desktop.png)
+  ![Lighthouse](./README/tests/ligthouse/testimonial_form_desktop.png)
+  ![Lighthouse](./README/tests/ligthouse/testimonials.png)
+  ![Lighthouse](./README/tests/ligthouse/testimonials_desktop.png)
+
+</details>
+
+The website demonstrates consistent adherence to SEO, best practices, and strong accessibility scores between 95-100 across multiple pages. Nevertheless, the mobile performance, especially on content-heavy pages, presents an opportunity for enhancement. Addressing these aspects could significantly improve the overall user experience, aligning mobile performance more closely with the robust desktop performance observed.
 
 ### User Stories Testing
 
