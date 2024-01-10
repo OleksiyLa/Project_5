@@ -346,39 +346,39 @@ Link to the [Kanban Board](https://github.com/users/OleksiyLa/projects/3/views/1
 
 #### Retrospective
 
-##### Introduction:
+- Introduction:
 
   - In navigating the complexities of a time-constrained project within an emerging technology landscape, I embraced an adaptive approach by incorporating Agile methodology. Recognizing the challenges posed by short timeframes, I leveraged Agile principles alongside the utilization of a Kanban board to enhance my workflow and efficiently deliver results.
 
-##### Adaptability in Work Approach:
+- Adaptability in Work Approach:
 
   - Acknowledging the limitations of time and the dynamic nature of the technology at hand, I adopted an adaptability approach, ensuring flexibility in my work processes. Rather than strictly adhering to traditional sprint structures, I tailored my approach to suit the unique demands of the project.
 
-##### Kanban Board Implementation:
+- Kanban Board Implementation:
 
   - To visualize and manage the flow of tasks, I implemented a Kanban board. This visual management tool provided transparency into the progress of work items, allowing me to prioritize effectively and optimize resource allocation. The Kanban board became a central hub for tracking tasks, minimizing bottlenecks, and fostering a collaborative work environment.
 
-##### Work Breakdown Structure:
+- Work Breakdown Structure:
 
   - In tandem with the Kanban board, I organized the project using the concept of epics and user stories. Work was categorized into broader epics, representing high-level functionalities, and further broken down into granular user stories. This hierarchical breakdown facilitated a more manageable and iterative development process.
 
-##### Single-Sprint Development:
+- Single-Sprint Development:
 
   - Given the compressed timeframe, I consolidated my development efforts into what would traditionally be considered a single sprint. Strategic task prioritization and a dynamic Kanban board allowed for efficient management of the condensed timeline, ensuring maximum productivity.
 
-##### Iterative Development Cycle:
+- Iterative Development Cycle:
 
   - Aligned with Agile principles, I maintained an iterative development cycle. Regular feedback loops, facilitated by the Kanban board, were established to assess progress, identify potential impediments, and make real-time adjustments. This iterative approach ensured continuous improvement and alignment with evolving project requirements.
 
-##### Results and Achievements:
+- Results and Achievements:
 
   - The incorporation of Agile principles, coupled with the use of a Kanban board, yielded significant outcomes. The visual representation of tasks on the Kanban board enhanced project visibility, and the adaptability approach allowed for effective navigation of challenges. The combination of these methodologies within a single-sprint development framework resulted in tangible achievements and successful project delivery.
 
-##### Challenges and Learnings:
+- Challenges and Learnings:
 
   - The integration of Agile and Kanban in a time-constrained environment posed unique challenges, emphasizing the need for dynamic planning and effective use of visual tools. The experience underscored the importance of adaptability and continuous improvement, as insights gained from the Kanban board informed real-time adjustments to the work approach.
 
-##### Conclusion:
+- Conclusion:
 
   - In conclusion, the application of Agile methodology, enriched by the implementation of a Kanban board, proved to be a potent combination. By fostering adaptability, visualizing work through the Kanban board, and maintaining an iterative development cycle, I navigated challenges successfully and delivered results aligned with project objectives. This experience reinforces the efficacy of Agile and Kanban principles in optimizing workflows, particularly in environments characterized by time constraints and evolving technological landscapes.
 
@@ -906,18 +906,25 @@ The website demonstrates consistent adherence to SEO, best practices, and strong
 ### User Stories Testing
 
 Registration
+
 - Test Email Activation:
   - Verify that a new user receives an account activation email upon successful registration.
   - Confirm that clicking the activation link completes the registration process and grants access to platform features.
+
 Login
+
 - Test Successful Login:
   - Confirm that a registered user can successfully log in using valid credentials.
   - Ensure that successful login grants access to the user's profile and features.
+
 Logout
+
 - Test Logout Functionality:
   - Validate that a user can successfully log out of their account.
   - Ensure that personal information is secured and inaccessible after logout.
+
 Admin Pizza Management
+
 - Test Adding Pizza:
   - Navigate to the admin interface and verify the ability to add a new pizza.
   - Confirm that the addition instantly reflects and updates on the pizza page for users.
@@ -927,7 +934,9 @@ Admin Pizza Management
 - Test Deleting Pizza:
   - Navigate to the admin interface and attempt to delete a pizza.
   - Verify that a confirmation prompt prevents accidental deletions.
+
 Admin Topping Management
+
 - Test Adding Topping:
   - Access the admin interface and verify the ability to add a new topping.
   - Confirm that the addition instantly reflects and updates on the topping page for users.
@@ -945,38 +954,54 @@ Admin Topping Management
 - Test Order Management Page:
   - Access the order management page and verify the display of pending orders.
   - Confirm the ability to review order details and update order status.
+
 Profile Page
+
 - Test Profile Information Editing:
   - Log in as a user, navigate to the profile page, and edit profile information.
   - Confirm that changes made are immediately reflected and saved to the database.
+
 Order History
+
 - Test Order History Display:
   - Access the order history section in the profile.
   - Verify the chronological list of orders and the ability to view detailed information on individual orders.
+
 Online Payment
+
 - Test Secure Online Payment:
   - Initiate an online payment transaction and confirm that sensitive information is handled securely.
   - Verify a clear and intuitive checkout process, confirmation message, and redirection to a "Checkout Success" page.
+
 Shopping Bag
+
 - Test Basket Functionality:
   - Add multiple items to the basket, and verify that the basket icon accurately displays the total cost.
   - Confirm the ability to modify quantities, remove items, and proceed to checkout seamlessly.
+
 View All Pizzas
+
 - Test Pizza Pagination and Filtering:
   - Navigate to the page displaying all available pizzas.
   - Verify pagination controls and the ability to filter pizzas by categories (Spicy, Vegetarian, Seafood, Premium, New).
 - Test Pizza Search Functionality:
   - Use the text input to search for a specific pizza by title or details.
   - Confirm that the search returns relevant results.
+
 Pizza Details
+
 - Test Pizza Customization:
   - Click on a pizza card to view its details.
   - Verify the availability of size selection options and the ability to customize the pizza with additional ingredients.
+
 Provide Testimonial
+
 - Test Testimonial Submission:
   - Log in as a user who has made at least one purchase.
   - Attempt to submit a testimonial and verify the testimonial is in a pending state awaiting admin approval.
+
 View Testimonials
+
 - Test Testimonial Display:
   - Navigate to the testimonials section and verify the organized display of testimonials.
   - Confirm that each testimonial includes the user's name, date, rating, and content.
