@@ -778,25 +778,6 @@ The website demonstrates consistent adherence to SEO, best practices, and strong
   - Redeploy to Heroku
   - Validate Redeployed Application
 
-### Deployment to Heroku
-- Log in to Heroku and create a new app.
-- Set up the app's configurations:
-- Connect the app to your GitHub repository.
-- Choose the deployment branch.
-- Set the required config vars in the Heroku dashboard.
-  - SECRET_KEY
-  - DATABASE_URL
-  - EMAIL_HOST_USER,
-  - EMAIL_HOST_PASS
-  - CLOUD_NAME,
-  - API_KEY,
-  - API_SECRET,
-  - STRIPE_PUBLIC_KEY,
-  - STRIPE_SECRET_KEY,
-  - STRIPE_WH_SECRET
-- Trigger the deployment process either manually or enable automatic deploys.
-- Verify successful deployment in the Heroku dashboard.
-
 ### Finalize Deployment
   - Test the live application on Heroku by accessing the deployed URL.
   - Monitor logs and functionalities to ensure everything operates as expected.
