@@ -218,6 +218,10 @@ main {
     background-position: center;
 }
 
+.carousel-img p[class*="ad-text"] {
+  font-size: 1.4rem;
+}
+
 .carousel-img-1 {
     background-image: url("https://res.cloudinary.com/dcq31wib9/image/upload/v1702986919/slider_3_t4o5se.webp");
 }
@@ -491,5 +495,22 @@ footer a:hover .social-svg {
     top: 72px;
     right: 5px;
     z-index: 999999999;
+  }
+}
+
+@media only screen and (max-device-width: 767px) and (orientation: landscape) {
+  .carousel-img {
+    height: 60vh;
+  }
+
+  .overlay {
+    height: 60vh;
+  }
+
+  .carousel-img p {
+    font-size: 1.4rem;
+  }
+  .carousel-img p[class*="ad-text"] {
+    font-size: 1rem;
   }
 }
