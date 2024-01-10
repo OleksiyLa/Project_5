@@ -1,10 +1,13 @@
 # Super Pizza
 
+![Pizza menu page](./README/website/pizza_list_page.png)
+
 Superpizza, our online delivery store in Tralee, offers a seamless user experience, designed for easy navigation. Customers can explore our diverse range of pizzas, select their preferred size, and personalize it by adding extra toppings. They also have the convenience of leaving testimonials to share their experiences.
 
 Our platform includes a secure online payment system and provides an option to track order status from the moment an order is placed until it reaches your doorstep. The intuitive design extends to our workers and administrators, granting them the ability to efficiently manage orders, approve or remove testimonials, and effortlessly modify the store's products such as pizzas and toppings.
 
-![Pizza menu page](./README/website/pizza_list_page.png)
+Link to the [live website](https://super-pizza-4be7f9269aef.herokuapp.com/)
+Link to the [github repository](https://github.com/OleksiyLa/Project_5)
 
 <br>
 
@@ -181,6 +184,200 @@ Noto Sans and Salsa fonts were chosen for Super Pizza's online store to enhance 
 - MailChimp
 
 ### Agile
+
+#### Epics
+- Epic Authentication
+  - Registration
+  - Login
+  - Logout
+
+- Epic Authorization
+  - Admin Authorization
+  - Worker Authorization
+
+- Epic Admin Product Management
+  - Admin Pizza Management
+  - Admin Topping Management
+
+- Epic Order Tracking and Management
+  - Tracking Every Step of Delivery
+  - Accessing and Managing Orders
+
+- Epics Profile
+  - Profile page
+  - Order History
+
+- Epic Seamless Shopping and Checkout Experience
+  - Shopping Bag
+  - Online payment
+
+- Epic Streamlined Pizza Browsing
+  - View All Pizzas
+  - Pizza Details
+
+#### User Stories
+Registration
+- As a customer I can register for an account so that I can access the platform's features, such as making an order and accessing my profile page
+  - Acceptance Criteria:
+  - An account activation process is initiated upon successful registration to verify the email address for validity.
+  - An automated confirmation email containing an activation link is sent to the registered email address.
+  - Clicking the activation link completes the registration process, confirming the account's validity.
+  - After activation, the user gains access to the platform's features, including the ability to make orders and access their profile page.
+
+Login
+- As a registered user I can log in so that access my profile and make orders
+  - Acceptance Criteria:
+  - Login functionality verifies user credentials (emai or usernamel/password).
+  - Successful login grants access to the user's profile and features
+
+Logout
+- As a customer I can log out of my account so that my personal information remains secure and inaccessible to unauthorized users
+
+Admin Pizza Management
+  - As a admin I can add new pizza items, update existing ones, or delete pizzas directly on the pizza page so that I can efficiently maintain and modify the available pizza menu
+  - Acceptance Criteria:
+  - Within the pizza page, an admin-exclusive interface or admin mode is accessible, providing additional functionalities for pizza management.
+  - The admin mode or interface includes options to add a new pizza, update details of existing pizzas, or delete pizzas directly from the pizza listing.
+  - Adding a new pizza presents a form with fields for essential pizza details (name, description, price, ingredients, image upload) directly on the pizza page.
+  - Deleting a pizza triggers a confirmation modal or prompt to prevent accidental deletions.
+  - Upon any addition, update, or deletion, the changes are instantly reflected and updated on the pizza page for users.
+
+Admin Topping Management
+  - As an admin, I can add new topping items, update existing ones, or delete toppings so that I can efficiently maintain and modify the available toppings
+  - Acceptance Criteria:
+  - The admin mode or interface includes options to add a new topping, update details of existing toppings, or delete toppings directly from the topping listing.
+  - Adding a new topping presents a form with fields for essential topping details (name, price, image upload) directly on the topping page.
+  - Deleting a topping triggers a confirmation modal or prompt to prevent accidental deletions.
+  - Upon any addition, update, or deletion, the changes are instantly reflected and updated on the topping page for users.
+
+Tracking Every Step of Delivery
+  - As a customer, I can track the status of my order so that I can monitor its progress from acceptance to delivery, knowing whether it's accepted, being cooked, prepared for delivery, in transit, or completed.
+  - Acceptance Criteria
+  - Customer can access the order status through a designated page on the website
+  - The system provides real-time updates on the order's progress, including stages like 'Order Accepted,' 'Being Cooked,' 'Prepared for Delivery,' 'Delivering,' and 'Completed.
+  - Each stage in the order process is clearly labeled to avoid confusion or ambiguity
+  - Visual cues like progress bars or icons complement the textual status updates for easy comprehension of the order's progress
+
+Accessing and Managing Orders
+  - As a worker I can access the order page so that I can accept customer orders and update their status for display on the tracking page
+  - Acceptance Criteria:
+  - Workers have a dedicated or "Orders" section accessible from their dashboard or a designated area in the system.
+  - Upon entering the order management page, workers can view a list of pending orders with essential details (e.g., order number, items, customer details, status).
+  - Workers have the ability to review order details, including specific items in the order and customer information.
+  - Workers can update the status of orders (e.g., new, delivering, delivered)
+  - Any status changes made by workers are immediately reflected and updated on the tracking page accessible to customers.
+
+Profile Page
+  - As a customer I can view and manage my account details on the profile page so that ** I can access and modify my information easily**
+  - Acceptance Criteria:
+  - Upon logging in, the user can navigate to the profile page from the main dashboard or navigation menu.
+  - The profile page displays the customer's basic information fetched from the database.
+  - Users can edit their profile information.
+  - Changes made to the profile information are immediately reflected and saved to the database upon confirmation.
+
+Order history
+  - As a customer I can review my past orders on the platform so that I can track my purchase history and make informed decisions
+  - Acceptance Criteria:
+  - Dedicated section within the profile displays a chronological list of orders.
+  - Users can click on individual orders to view more detailed information, including order specifics (items, quantities).
+
+Online Payment
+  - As a customer, I can pay online so that my pizza is delivered.
+  - Acceptance Criteria
+  - Confirm that sensitive payment information is handled securely
+  - Ensure there is a clear and intuitive process for customers to proceed to checkout after selecting their desired pizzas
+  - Verify that users receive a confirmation message or email after successful payment, summarizing the order details and estimated delivery time
+  - Redirect the user to a "Checkout Success" page after completing the payment process, displaying relevant order details such as items purchased, total cost, and delivery information
+
+Shopping Bag
+  - As a customer I can view all selected products in the basket so that I can review my choices before making a purchase and proceed confidently
+  - Acceptance Criteria:
+  - The basket icon or link should be prominently displayed and easily accessible from any page on the website.
+  - Upon clicking the basket icon/link, a clear and organized display of all selected products with their names, quantities, and prices should be visible.
+  - The total cost of all items in the basket should be calculated and displayed.
+  - Customers should have the ability to easily modify quantities, remove items, or proceed to checkout directly from the basket page.
+  - Changes made to the basket (additions, removals, quantity adjustments) should reflect instantly and accurately.
+  - The basket display should be responsive, ensuring a seamless experience across various devices (desktop, mobile, tablet).
+  - The basket page should prominently feature a 'Checkout' or 'Proceed to Payment' button, allowing customers to smoothly transition from reviewing their selections to initiating the payment process.
+
+View All Pizzas
+  - As a customer I can visit a page displaying all available pizzas so that I can easily browse and select the pizzas I want to order.
+  - Acceptance Criteria
+  - When the number of pizzas exceeds a defined limit per page, pagination controls should be visible to navigate between different pages of pizza listings
+  - Add the ability to filter pizza by Spicy, Vegetarian, Seafood, Premium, New
+  - Add text input to search for pizza by title or details
+  - Check that each pizza displayed has an 'Add to Cart' button or similar functionality available on the pizza card
+  - Ensure the availability of size selection options (30cm, 35cm, and 40cm) for each pizza
+  -Price and image of the pizza are displayed on the card
+
+Pizza Details
+  - As a customer, I can visit the pizza details page by clicking on any pizza card so that I can view more information about the selected pizza, such as its ingredients, sizes, and customization options.
+  - Acceptance Criteria
+  - 'Add to Cart' button or similar functionality available on the pizza card
+  - Ensure the availability of size selection options (30cm, 35cm, and 40cm) for each pizza
+  - Price and image of the pizza are displayed on the card
+  - It is possible to customize the pizza by adding additional ingredients, which are reflected in the price
+
+Provide Testimonial
+  - As a user, I want to be able to submit a testimonial easily on the platform, so that my positive experiences and feedback can be shared with the community.
+  - Acceptance Criteria:
+  - The platform should provide a user-friendly testimonial submission form.
+  - Authentication is required for users to access the testimonial submission form, ensuring that only registered users can submit testimonials.
+  -A user must have purchased at least one order on the platform before being eligible to submit a testimonial.
+  - Upon submitting the testimonial, the platform should check the user's purchase history to validate that they have indeed made at least one order.
+  - Testimonials submitted by users should not be immediately published on the platform but should instead be in a pending state until approved by an administrator.
+  - Admin approval should be necessary for a testimonial to be shared with other users.
+
+View Testimonials
+  - As a user, I want to be able to view and browse testimonials submitted by other users, so that I can gain insights into their experiences.
+  - Acceptance Criteria:
+  - There should be a dedicated section or page on the platform where testimonials are displayed.
+  - Testimonials should be organized in a visually appealing and easy-to-read format.
+  - Each testimonial should include the user's name, the date, rating and testimonial.
+
+#### Kanban Board
+
+![Kanban Board](./README/other/kanban_board.png)
+
+Link to the [Kanban Board](https://github.com/users/OleksiyLa/projects/3/views/1)
+
+#### Retrospective
+
+##### Introduction:
+
+  - In navigating the complexities of a time-constrained project within an emerging technology landscape, I embraced an adaptive approach by incorporating Agile methodology. Recognizing the challenges posed by short timeframes, I leveraged Agile principles alongside the utilization of a Kanban board to enhance my workflow and efficiently deliver results.
+
+##### Adaptability in Work Approach:
+
+  - Acknowledging the limitations of time and the dynamic nature of the technology at hand, I adopted an adaptability approach, ensuring flexibility in my work processes. Rather than strictly adhering to traditional sprint structures, I tailored my approach to suit the unique demands of the project.
+
+##### Kanban Board Implementation:
+
+  - To visualize and manage the flow of tasks, I implemented a Kanban board. This visual management tool provided transparency into the progress of work items, allowing me to prioritize effectively and optimize resource allocation. The Kanban board became a central hub for tracking tasks, minimizing bottlenecks, and fostering a collaborative work environment.
+
+##### Work Breakdown Structure:
+
+  - In tandem with the Kanban board, I organized the project using the concept of epics and user stories. Work was categorized into broader epics, representing high-level functionalities, and further broken down into granular user stories. This hierarchical breakdown facilitated a more manageable and iterative development process.
+
+##### Single-Sprint Development:
+
+  - Given the compressed timeframe, I consolidated my development efforts into what would traditionally be considered a single sprint. Strategic task prioritization and a dynamic Kanban board allowed for efficient management of the condensed timeline, ensuring maximum productivity.
+
+##### Iterative Development Cycle:
+
+  - Aligned with Agile principles, I maintained an iterative development cycle. Regular feedback loops, facilitated by the Kanban board, were established to assess progress, identify potential impediments, and make real-time adjustments. This iterative approach ensured continuous improvement and alignment with evolving project requirements.
+
+##### Results and Achievements:
+
+  - The incorporation of Agile principles, coupled with the use of a Kanban board, yielded significant outcomes. The visual representation of tasks on the Kanban board enhanced project visibility, and the adaptability approach allowed for effective navigation of challenges. The combination of these methodologies within a single-sprint development framework resulted in tangible achievements and successful project delivery.
+
+##### Challenges and Learnings:
+
+  - The integration of Agile and Kanban in a time-constrained environment posed unique challenges, emphasizing the need for dynamic planning and effective use of visual tools. The experience underscored the importance of adaptability and continuous improvement, as insights gained from the Kanban board informed real-time adjustments to the work approach.
+
+##### Conclusion:
+
+  - In conclusion, the application of Agile methodology, enriched by the implementation of a Kanban board, proved to be a potent combination. By fostering adaptability, visualizing work through the Kanban board, and maintaining an iterative development cycle, I navigated challenges successfully and delivered results aligned with project objectives. This experience reinforces the efficacy of Agile and Kanban principles in optimizing workflows, particularly in environments characterized by time constraints and evolving technological landscapes.
 
 ## Business Model
 
