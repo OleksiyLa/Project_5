@@ -131,6 +131,25 @@ Product:
 
 ### Colors
 
+SuperPizza employs a selection of vibrant colors aimed at enhancing the online experience:
+
+- Main Color: #00555a
+  - The primary color, #00555a, conveys reliability and trust. It guides users seamlessly through the ordering process, portraying efficiency and dependability.
+
+- Main Background Color: #d6cccc
+  - The neutral backdrop in #d6cccc creates a welcoming environment, allowing products to stand out distinctly.
+
+- Error Color: #800020
+  - The #800020 hue communicates urgency without causing alarm, prompting swift attention to any issues.
+
+- Success Color: #0b5a1d
+  - Representing accomplishment and satisfaction, #0b5a1d acknowledges the completion of a successful order.
+
+- Warning Color: #ffd700
+  - The #ffd700 color gently alerts users to review details or take necessary actions without being obtrusive.
+
+![Color Pallete](./README/colors/color_pallete.png)
+
 ### Fonts
 
 ### Technologies
