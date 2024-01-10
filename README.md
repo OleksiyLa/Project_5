@@ -237,13 +237,81 @@
 
 #### Price
 
+  - Confirmed that the price of a pizza changes correctly based on the selected size (30cm, 35cm, 40cm).
+
+![Price](./README/tests/manual_testing/price/pizza_small.png)
+![Price](./README/tests/manual_testing/price/pizza_large.png)
+
+  - Validated that the price of extra toppings adjusts according to the size of the pizza.
+
+![Price](./README/tests/manual_testing/price/toppings_price_small.png)
+![Price](./README/tests/manual_testing/price/toppings_price_large.png)
+
+  - Verified that adding extra toppings increases the pizza's price by the respective cost of each topping.
+
+![Price](./README/tests/manual_testing/price/pizza_large_toppings.png)
+
+  - Ensured that the delivery cost is correctly applied or omitted based on the total price of pizzas in the order.
+
+![Price](./README/tests/manual_testing/price/pizza_1.png)
+
+  - Confirmed that the grand total price changes accurately based on the quantity of pizzas added to the shopping bag.
+
+![Price](./README/tests/manual_testing/price/pizza_5.png)
+
+  - Checked that all applicable adjustments (size, toppings, delivery cost) reflect in the final calculated total.
+
+![Price](./README/tests/manual_testing/price/total_deliverycost.png)
+
 #### Payment
 
+  - Verified that items added to the shopping bag correctly transfer to the checkout page.
+  - Ensured the displayed prices in the checkout match those in the shopping bag.
+  - Validated the input of card details for payment.
+  - Confirmed that the price taken during the payment process matches the total displayed during checkout.
+
+![Payment](./README/tests/manual_testing/payment/checkout.png)
+
+  - Validated successful payment events in the Stripe dashboard.
+
+![Payment](./README/tests/manual_testing/payment/events.png)
+
+  - Tested and verified webhook functionality to ensure it works as expected.
+
+![Payment](./README/tests/manual_testing/payment/webhooks.png)
+
+  - Checked that users receive an order confirmation email after successful payment and completion of the checkout process.
+
+![Payment](./README/tests/manual_testing/payment/email.png)
+
+  - Confirmed that users are redirected to a "Checkout Success" page after completing the payment. Validated that this page displays relevant order details such as items purchased, total cost, and delivery information.
+
+![Payment](./README/tests/manual_testing/payment/success.png)
+
 #### Profiles
+  - Ensured that the details entered in the profile form are pre-filled in the checkout form for user convenience.
+
+![Profiles](./README/tests/manual_testing/profile/order_history.png)
+![Profiles](./README/tests/manual_testing/profile/checkout.png)
+
+  - Confirmed that the orders in the profile are displayed in chronological order, with the most recent order at the top.
+  - Tested the functionality to view detailed information for each order upon clicking.
+
+![Profiles](./README/tests/manual_testing/profile/details.png)
+
+  - Verified that for active orders, a track order button is displayed within the order details.
+  - Ensured the functionality of the track order button to provide real-time status updates for the user.
 
 #### Tracking System
 
 #### Responsiveness
+
+  - Verified the website's responsiveness on different screen sizes (e.g., mobile, tablet, desktop).
+  - Confirmed that content layout and elements adjust appropriately to fit various screen resolutions.
+  - Checked the readability of text, clarity of images, and accessibility of navigation menus on all screen sizes.
+  - Ensured that buttons, links, and interactive elements are easily clickable and usable across different devices.
+  - Validated that the design maintains visual consistency and integrity across all screen sizes.
+  - Confirmed that images, fonts, and overall aesthetics are consistent and appealing irrespective of the screen dimensions.
 
 #### Navbar
 
