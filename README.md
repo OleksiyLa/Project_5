@@ -304,6 +304,33 @@
 
 #### Tracking System
 
+  - Confirmed that when a customer purchases a pizza, an active order is created for tracking purposes.
+  - Tested the functionality to display the order's status progression (pending, accepted, cooking, preparing, delivering, delivered) on the customer's screen via a progress bar.
+  - Ensured that status changes made by workers or admins are instantly reflected on the customer's progress bar interface.
+  - Verified that workers or admins can view new orders as they are created.
+  - Tested the functionality for workers or admins to change the order status (e.g., from accepted to cooking, preparing, delivering).
+  - Ensured that order status changes can only progress sequentially from one stage to the next until reaching the "Done" status.
+  - Validated the functionality of the "Archive" button for completed orders, making them inactive and invisible to both workers and customers.
+
+<details><summary>Tracking System</summary>
+
+  ![Tracking](./README/tests/manual_testing/tracking/pending.png)
+  ![Tracking](./README/tests/manual_testing/tracking/order_new_full.png)
+  ![Tracking](./README/tests/manual_testing/tracking/accepted.png)
+  ![Tracking](./README/tests/manual_testing/tracking/order_verified.png)
+  ![Tracking](./README/tests/manual_testing/tracking/cooking.png)
+  ![Tracking](./README/tests/manual_testing/tracking/order_cooking.png)
+  ![Tracking](./README/tests/manual_testing/tracking/order_preparing.png)
+  ![Tracking](./README/tests/manual_testing/tracking/preparing.png)
+  ![Tracking](./README/tests/manual_testing/tracking/delivery.png)
+  ![Tracking](./README/tests/manual_testing/tracking/order_delivering.png)
+  ![Tracking](./README/tests/manual_testing/tracking/delivered.png)
+  ![Tracking](./README/tests/manual_testing/tracking/order_done.png)
+  ![Tracking](./README/tests/manual_testing/tracking/order_archived.png)
+  ![Tracking](./README/tests/manual_testing/tracking/not_found.png)
+
+</details>
+
 #### Responsiveness
 
   - Verified the website's responsiveness on different screen sizes (e.g., mobile, tablet, desktop).
