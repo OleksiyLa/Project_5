@@ -427,9 +427,9 @@ SuperPizza's comprehensive B2C model and strategic marketing initiatives, incorp
 
 The first page showcases a variety of pizzas with implemented pagination to enhance user experience. Users can filter pizzas by categories and use a search function to locate pizzas based on name or description.
 
-Each pizza card displays key information, including an image, name, description, price, and size. The default size is 30cm, and users can switch to 35cm or 40cm by clicking the highlighted button. As the size changes, so does the price, and the pizza image adjusts accordingly. A prominently displayed "Add to Bag" button facilitates quick addition to the bag.
+Each pizza card displays key information, including an image, name, description, price, and size. The default size is 30cm, and users can switch to 35cm or 40cm by clicking the highlighted button. As the size changes, so does the price, and the pizza image adjusts accordingly. A prominently displayed "Add to Cart" button facilitates quick addition to the bag.
 
-Upon clicking "Add to Bag," the selected pizza is added to the user's bag. Additionally, clicking the pizza image redirects the user to the detailed page for that specific pizza.
+Upon clicking "Add to Cart," the selected pizza is added to the user's bag. Additionally, clicking the pizza image redirects the user to the detailed page for that specific pizza.
 
 ![Pizza List](./README/website/pizza_list.png)
 
@@ -487,6 +487,8 @@ Responsive design ensures the website is accessible and functional across variou
 
 Intuitive and user friendly interface for admins to manage orders.
 Good user experience for customers, including the ability to track orders in real-time, view order history, and submit testimonials.
+
+There are present 404 and 500 custom pages
 
 ### Future Features
 
@@ -1169,9 +1171,7 @@ View Testimonials
 - The Salsa and Noto Sans fonts were obtained from Google Fonts: https://fonts.google.com
 
 ### Media
-- All SVG icons, including the favicon, were sourced from FontAwesome and Bootstrap icons: 
-    - https://fontawesome.com
-    - https://icons.getbootstrap.com/
+- The favicon, were sourced from FontAwesome: - https://fontawesome.com
 
 ### Code
 - Stripe payment functionality was inspired by the Code Institute Boutique Ado project: https://codeinstitute.net/ie/
