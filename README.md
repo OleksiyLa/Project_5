@@ -449,7 +449,11 @@ Upon completing the order, the user is redirected to the checkout success page. 
 
 ![Checkout Success](./README/website/success.png)
 
-Track Order page allows users to track their order in real-time. The page displays the order status of active orders. The user can also view the order details, including the items, quantities, and total price. The user can also view the order details in their profile.
+Track Order page allows users to track their order in real-time. The page displays the order status of active orders. The user can also view the order details, including the items, quantities, and total price.
+The order number can be used to track the order status on the tracking page. 
+The order number serves as a unique identifier, enabling users to conveniently track the status of their orders on our dedicated tracking page. By inputting the order number into the provided form, users can quickly locate and monitor the current status of their active orders. This streamlined process is not only user-friendly but also offers added convenience, allowing users to easily share the order progress bar with others for tracking purposes.
+
+To ensure security, accessing this feature requires a sophisticated order number, providing an additional layer of protection. The complexity of the order number, coupled with the encrypted URL displaying both the order number and the timestamp of its creation, ensures a secure and seamless experience for users tracking their orders.
 
 ![Track Order](./README/website/progress_bar.png)
 
