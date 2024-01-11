@@ -479,13 +479,7 @@ There are three user types: authenticated users, workers, and admins. While admi
 
 ![Worker](./README/website/user_to_worker.png)
 
-<br>
-
 Responsive design ensures the website is accessible and functional across various devices and screen sizes.
-
-![Responsive](./README/website/ipad_pizza_details.png)
-![Responsive](./README/website/ipad_pizza_list.png)
-![Responsive](./README/website/mobile_pizza_list.png)
 
 Intuitive and user friendly interface for admins to manage orders.
 Good user experience for customers, including the ability to track orders in real-time, view order history, and submit testimonials.
@@ -747,6 +741,14 @@ A statistics page is slated for implementation, aiming to calculate average orde
   - Ensured that buttons, links, and interactive elements are easily clickable and usable across different devices.
   - Validated that the design maintains visual consistency and integrity across all screen sizes.
   - Confirmed that images, fonts, and overall aesthetics are consistent and appealing irrespective of the screen dimensions.
+
+<details><summary>Responsive (iPad and mobile images)</summary>
+
+  ![Responsive](./README/website/ipad_pizza_details.png)
+  ![Responsive](./README/website/ipad_pizza_list.png)
+  ![Responsive](./README/website/mobile_pizza_list.png)
+
+</details>
 
 #### Navbar
 
