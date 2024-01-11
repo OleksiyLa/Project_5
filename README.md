@@ -479,6 +479,8 @@ There are three user types: authenticated users, workers, and admins. While admi
 
 ![Worker](./README/website/user_to_worker.png)
 
+<br>
+
 Responsive design ensures the website is accessible and functional across various devices and screen sizes.
 
 ![Responsive](./README/website/ipad_pizza_details.png)
@@ -488,7 +490,7 @@ Responsive design ensures the website is accessible and functional across variou
 Intuitive and user friendly interface for admins to manage orders.
 Good user experience for customers, including the ability to track orders in real-time, view order history, and submit testimonials.
 
-### Features to Implement
+### Future Features
 
 - Statistics: Implement a statistics page to display key metrics, including the number of orders, total revenue, and average order value. This page would be accessible to admins only. The statistics page would also feature a graph to visualize the number of orders over time.
 A statistics page is slated for implementation, aiming to calculate average order processing times and the duration between different status transitions. The necessary fields in the database will be utilized for these calculations. This feature is designed to identify potential bottlenecks and assess employee efficiency, providing a valuable tool for analyzing operational performance and optimizing processes.
