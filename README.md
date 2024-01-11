@@ -407,7 +407,7 @@ Link to the [Kanban Board](https://github.com/users/OleksiyLa/projects/3/views/1
 
   - Email Subscription via MailChimp: Offering an email subscription service through MailChimp keeps customers informed about the latest offers, menu expansions, and exclusive deals. This strategy fosters a sense of community and engagement, encouraging customers to remain connected with SuperPizza. MailChimp is located on the footer of the website.
 
-![MailChimp](./README/website/subscription.png)
+![MailChimp](./README/website/mail_chimp.png)
 
   - Testimonials: Providing a platform for customers to share their experiences and feedback fosters a sense of engagement and trust. The testimonials are organized in a visually appealing and easy-to-read format.
 
