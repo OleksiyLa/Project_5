@@ -490,6 +490,8 @@ Good user experience for customers, including the ability to track orders in rea
 
 There are present 404 and 500 custom pages
 
+![404](./README/website/page_not_found.png)
+
 ### Future Features
 
 - Statistics: Implement a statistics page to display key metrics, including the number of orders, total revenue, and average order value. This page would be accessible to admins only. The statistics page would also feature a graph to visualize the number of orders over time.
