@@ -546,15 +546,11 @@ A statistics page is slated for implementation, aiming to calculate average orde
   - Confirmed functionality to add pizzas, toppings, and provide testimonials from the admin profile.
   - Checked access to the admin panel through the designated navigation link.
 
-<details><summary>Admin Authorization</summary>
-
-  ![Admin](./README/tests/manual_testing/authorization/admin_nav_dropdown.png)
-  ![Admin](./README/tests/manual_testing/authorization/add_pizza.png)
-  ![Admin](./README/tests/manual_testing/authorization/approve_testimonial.png)
-  ![Admin](./README/tests/manual_testing/authorization/edit_topping_form.png)
-  ![Admin](./README/tests/manual_testing/authorization/pizza_list_admin.png)
-
-</details>
+![Admin](./README/tests/manual_testing/authorization/admin_nav_dropdown.png)
+![Admin](./README/tests/manual_testing/authorization/add_pizza.png)
+![Admin](./README/tests/manual_testing/authorization/approve_testimonial.png)
+![Admin](./README/tests/manual_testing/authorization/edit_topping_form.png)
+![Admin](./README/tests/manual_testing/authorization/pizza_list_admin.png)
 
   - Verified admin privileges within the admin panel, including editing/deleting products and testimonials.
   - Ensured that under product cards (e.g., pizzas, toppings), admins can access links to edit or delete them.
