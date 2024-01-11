@@ -219,6 +219,9 @@ Noto Sans and Salsa fonts were chosen for Super Pizza's online store to enhance 
   - Pizza Details
 
 #### User Stories
+
+![User Stories](./README/other/issues.png)
+
 Registration
 - As a customer I can register for an account so that I can access the platform's features, such as making an order and accessing my profile page
   - Acceptance Criteria:
@@ -422,8 +425,79 @@ SuperPizza's comprehensive B2C model and strategic marketing initiatives, incorp
 
 ### Existing Features
 
+The first page showcases a variety of pizzas with implemented pagination to enhance user experience. Users can filter pizzas by categories and use a search function to locate pizzas based on name or description.
+
+Each pizza card displays key information, including an image, name, description, price, and size. The default size is 30cm, and users can switch to 35cm or 40cm by clicking the highlighted button. As the size changes, so does the price, and the pizza image adjusts accordingly. A prominently displayed "Add to Bag" button facilitates quick addition to the bag.
+
+Upon clicking "Add to Bag," the selected pizza is added to the user's bag. Additionally, clicking the pizza image redirects the user to the detailed page for that specific pizza.
+
+![Pizza List](./README/website/pizza_list.png)
+
+The pizza details page displays the pizza's name, description, price, and size. Users can customize the pizza by selecting additional toppings. The price adjusts accordingly, and the pizza card updates to reflect the selected toppings. The user can then add the customized pizza to their bag. The larger the size, the more expensive the toppings become.
+
+![Pizza Details](./README/website/pizza_detail.png)
+
+The bag page displays all items added to the bag. Users can adjust the quantity of each item, remove items, or proceed to checkout. The total price is calculated based on the quantity and size of each item. The delivery cost is added to the total if the order is less than €20. The user can also return to the pizza list page to add more items to the bag.
+
+![Bag](./README/website/bag.png)
+
+Clicking the "Checkout" button redirects the user to the checkout page. The user can review the order details, including the items, quantities, and total price. The user can also modify the order by returning to the bag page. The checkout page features a form for entering personal details and payment information. The user can also opt to save their information to their profile for future orders. The user can then click the "Complete Order" button to finalize the order.
+
+![Checkout](./README/website/checkout.png)
+
+Upon completing the order, the user is redirected to the checkout success page. This page displays the order details, including the items, quantities, total price, and delivery information. The user can also view the order details in their profile. The user receives an order confirmation email.
+
+![Checkout Success](./README/website/success.png)
+
+Track Order page allows users to track their order in real-time. The page displays the order status of active orders. The user can also view the order details, including the items, quantities, and total price. The user can also view the order details in their profile.
+
+![Track Order](./README/website/progress_bar.png)
+
+The order status is updated by workers or admins. The order status can be changed from "New" to "Accepted," "Cooking," "Preparing," "Delivering," and "Done." The order status can only progress sequentially from one stage to the next until reaching the "Done" status. The order status changes are instantly reflected on the customer's progress bar interface. When the order is completed, the worker or admin can click the "Archive" button to finalize the order and render it inactive. The order is then will not be displayed on the tracking and orders page.
+
+![Orders](./README/website/orders.png)
+
+The profile page displays the user's basic information, and the user can edit their profile details. Any changes made to the profile will be prefilled on the checkout page. The user can also view their order history, including the order number, items, quantities, and total price. The user can click on individual orders to view more detailed information, including order specifics (items, quantities). if the order is active, the user can track the order status by clicking the "Track Order" button in the order details.
+
+![Profile](./README/website/profile.png)
+
+The testimonials page displays testimonials submitted by users. The testimonials are organized in a visually appealing and easy-to-read format. Each testimonial includes the user's name, the date, rating, and testimonial. The testimonials are in a pending state until approved by an administrator. Admin approval is necessary for a testimonial to be shared with other users. The testimonials page also features a form for submitting testimonials. Authentication is required for users to access the testimonial submission form, ensuring that only registered users can submit testimonials. A user must have purchased at least one order on the platform before being eligible to submit a testimonial. Upon submitting the testimonial, the platform checks the user's purchase history to validate that they have indeed made at least one order.
+
+![Testimonials](./README/website/testimonials.png)
+
+The admin panel is accessible to admins only. It features a dedicated navigation link and a dropdown menu in the profile section. The admin panel allows admins to manage products in the store, including adding, editing, or deleting pizzas and toppings from the menu. Admins can also approve or delete testimonials submitted by customers to maintain the integrity of displayed reviews. Admins can also access the order management page to view all active new orders and update their status from 'new' to 'done' upon completion.
+
+About page provides information about the company.
+
+![About](./README/website/about.png)
+
+On the footer, users can subscribe to the newsletter by entering their email address as well users can see social links and info about opening hours, location and contacts. MailChimp is used to manage the subscription list.
+
+![Footer](./README/website/footer.png)
+
+There are three user types: authenticated users, workers, and admins. While admins have access to the Orders page to manage orders, providing admin accounts to workers could pose a security risk, as it would grant them access to the database. Instead, admins can assign worker status to specific users as needed.
+
+![Worker](./README/website/user_to_worker.png)
+
+Responsive design ensures the website is accessible and functional across various devices and screen sizes.
+
+![Responsive](./README/website/ipad_pizza_details.png)
+![Responsive](./README/website/ipad_pizza_list.png)
+![Responsive](./README/website/mobile_pizza_list.png)
+
+Intuitive and user friendly interface for admins to manage orders.
+Good user experience for customers, including the ability to track orders in real-time, view order history, and submit testimonials.
+
 ### Features to Implement
 
+- Statistics: Implement a statistics page to display key metrics, including the number of orders, total revenue, and average order value. This page would be accessible to admins only. The statistics page would also feature a graph to visualize the number of orders over time.
+A statistics page is slated for implementation, aiming to calculate average order processing times and the duration between different status transitions. The necessary fields in the database will be utilized for these calculations. This feature is designed to identify potential bottlenecks and assess employee efficiency, providing a valuable tool for analyzing operational performance and optimizing processes.
+
+- Like button for pizza: Implement a like button for pizzas to allow users to express their preferences. This feature would be accessible to authenticated users only. The number of likes would be stored in the database and used to calculate the most popular pizzas.
+
+- Pizza recommendations: Implement a pizza recommendation feature to suggest pizzas based on user preferences. The recommendation algorithm would utilize the number of likes for each pizza to identify the most popular pizzas and recommend them to users.
+
+- Order cancellation and editing: Implement the ability for workers to cancel or edit orders. This feature would be accessible to workers and admins only. The order cancellation feature would be useful in cases where customers change their minds or cancel their orders. The order editing feature would allow workers to modify orders as needed.
 
 ## Testing
 
